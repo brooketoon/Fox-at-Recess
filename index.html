@@ -67,6 +67,10 @@ main{max-width:760px;margin:0 auto;padding:22px 16px 90px;}
 .hero-frame .hero-lead{color:#e4ece6;font-size:1.02rem;max-width:52ch;}
 .btn{border:none;border-radius:26px;font-family:var(--font-interface);font-weight:800;padding:13px 26px;font-size:1rem;min-height:48px;display:inline-flex;align-items:center;gap:8px;}
 .btn-amber{background:var(--amber);color:#3a2c0e;box-shadow:0 3px 0 #b9852a;}
+.btn-amber:disabled{background:#e6ddc4;color:#a89b78;box-shadow:none;cursor:not-allowed;}
+.path-transition{background:var(--sky);border-radius:14px;padding:14px 16px;margin:0 0 14px;font-size:.94rem;color:#3d4a3f;}
+.path-transition-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 8px;}
+.path-transition-note{font-size:.78rem;color:#8a8270;font-style:italic;}
 .btn-amber:hover{filter:brightness(1.04);}
 .btn-rust{background:var(--rust-deep);color:#fff;box-shadow:0 3px 0 #6d3216;}
 .btn-outline{background:transparent;border:2px solid var(--leaf);color:var(--leaf-deep);font-weight:800;border-radius:26px;padding:11px 22px;}
@@ -454,9 +458,8 @@ const JOURNAL_SCHEMA=[
       if(p==="dashboard")return "Study the Numbers (field measurements)";
       return "";
     },ready:()=>!!state.navigation.firstPath},
-  {screen:"6A",label:"What pattern do you notice across the five years?",get:()=>state.firstInvestigation.gallery.patternNote,type:"prompt",onlyIfPath:"gallery"},
-  {screen:"6A",label:"What's one thing these photos can't prove on their own?",get:()=>state.firstInvestigation.gallery.limitationNote,type:"prompt",onlyIfPath:"gallery"},
-  {screen:"6B",label:"What pattern do you notice across the three measurements?",get:()=>state.firstInvestigation.dashboard.claim,type:"prompt",onlyIfPath:"dashboard"}
+  {screen:"6A",label:"Sightings Team note",get:()=>state.firstInvestigation.gallery.patternNote,type:"prompt",onlyIfPath:"gallery"},
+  {screen:"6B",label:"Numbers Team note",get:()=>state.firstInvestigation.dashboard.claim,type:"prompt",onlyIfPath:"dashboard"}
 ];
 function openJournal(){
   const visited=state.progress&&state.progress.visitedScreens?state.progress.visitedScreens:[];
@@ -708,7 +711,12 @@ registerScreen(5,{title:"A Message About Ridge Den",hideNav:true,
 registerScreen("6A",{title:"The Trail-Cam Archive",hideNav:true,
   render(){
     return `<div class="screen">
-      ${scene({stamp:"Trail-Cam Archive",title:"The Trail-Cam Archive",sub:"Open all eight photos, then log what you notice.",img:"Images/ridge-den-archive-board.png",alt:"Trail-camera photo archive."})}
+      ${scene({stamp:"Sightings Team",title:"The Trail-Cam Archive"})}
+      <div class="card">
+        <p class="narrative-line">The Sightings Team receives a digital archive containing five seasons of trail-camera photographs from Ridge Den. Some cameras were placed near the den. Others recorded animal paths closer to Ridge Trail.</p>
+        ${dialogue(alvarez("Look at the photographs in order. One unusual image may not mean much by itself. Your team needs to determine whether the records show a pattern."))}
+        <p class="narrative-line" style="margin-bottom:0"><strong>Open all eight trail-camera records.</strong> Pay attention to what changes&mdash;and what stays the same.</p>
+      </div>
       <div class="card">
         <div class="gallery-grid" id="galleryGrid">
           ${GALLERY.map(g=>`<button class="photo-tile" data-id="${g.id}" aria-label="Open photo from ${g.year}">
@@ -720,12 +728,20 @@ registerScreen("6A",{title:"The Trail-Cam Archive",hideNav:true,
         <p class="small muted">${GALLERY.length} photos, five seasons (2022&ndash;2026).</p>
       </div>
       <div id="galleryReveal" class="card hidden">
-        <h2>What do you notice?</h2>
-        ${promptBox("What pattern do you notice across the five years?")}
-        ${textField("gal_pattern","Your note","firstInvestigation.gallery.patternNote")}
-        ${promptBox("What's one thing these photos can't prove on their own?")}
-        ${textField("gal_limit","Your note","firstInvestigation.gallery.limitationNote")}
-        <div class="end-note">This is where the current build ends. The next screen would bring both investigation teams together to compare records. <button class="btn-ghost" id="backToChoice" style="margin-left:4px">&larr; Back to the choice screen</button></div>
+        <p class="narrative-line">After the final image opens, Gracie returns to the earliest photographs.</p>
+        ${dialogue(
+          speak("Gracie","The recent records don't look quite like the first ones."),
+          alvarez("Then your team needs to describe exactly what changed. Report only what the photographs can support.")
+        )}
+        <h2>Prepare the Sightings Team Note</h2>
+        ${promptBox("What should the Sightings Team report to Room 12 about how the Ridge Den foxes have appeared or behaved over the five seasons? Use evidence from at least two trail-camera records.")}
+        ${textField("gal_pattern","Sightings Team note","firstInvestigation.gallery.patternNote")}
+        <div class="path-transition">The Sightings Team saves its note for Room 12. The photographs show what the cameras captured, but another team is examining evidence the cameras cannot provide.</div>
+        <div class="path-transition-actions">
+          <button class="btn btn-amber" id="continueFuture" disabled>Continue</button>
+          <button class="btn-ghost" id="backToChoice">&larr; Back to the choice screen</button>
+        </div>
+        <p class="path-transition-note">Convergence screens are not yet built in this preview.</p>
       </div>
     </div>`;
   },
@@ -787,7 +803,13 @@ registerScreen("6B",{title:"The Den-Monitoring Dashboard",hideNav:true,
   render(){
     const dash=state.firstInvestigation.dashboard;
     return `<div class="screen">
-      ${scene({stamp:"Field Station Terminal",title:"The Den-Monitoring Dashboard",sub:"Ridge Den stays on the chart. Pick another den to compare.",img:"Images/biologist-dashboard-terminal.png",alt:"A field laptop showing a simple chart, next to a clipboard of handwritten litter data."})}
+      ${scene({stamp:"Numbers Team",title:"The Den-Monitoring Dashboard"})}
+      <div class="card">
+        <p class="narrative-line">The Numbers Team receives five years of wildlife-monitoring records. The measurements were collected during the same part of each fox season so the committee could compare the dens over time.</p>
+        <p class="narrative-line">Ridge Den will remain on every graph. The team can compare it with Meadow Den or Quarry Den.</p>
+        ${dialogue(alvarez("A change at one den could mean something different from a change happening everywhere. Compare the records before you draw a conclusion."))}
+        <p class="narrative-line" style="margin-bottom:0"><strong>Choose a comparison den and examine all three measurements.</strong></p>
+      </div>
       <div class="card">
         <div class="dash-controls">
           <fieldset class="dash-group"><legend>Measurement</legend>
@@ -807,10 +829,20 @@ registerScreen("6B",{title:"The Den-Monitoring Dashboard",hideNav:true,
         </div>
       </div>
       <div id="dashReveal" class="card hidden">
-        <h2>What do the numbers show?</h2>
-        ${promptBox("What pattern do you notice across the three measurements?")}
-        ${textField("dash_claim","Your claim","firstInvestigation.dashboard.claim")}
-        <div class="end-note">This is where the current build ends. The next screen would bring both investigation teams together to compare records. <button class="btn-ghost" id="backToChoice" style="margin-left:4px">&larr; Back to the choice screen</button></div>
+        <p class="narrative-line">Nick studies the three graphs again.</p>
+        ${dialogue(
+          speak("Nick","The graphs don't all show exactly the same thing."),
+          alvarez("They don't need to. Look at the evidence together. What larger pattern does it show about Ridge Den?")
+        )}
+        <h2>Prepare the Numbers Team Note</h2>
+        ${promptBox("What should the Numbers Team report to Room 12 about how the Ridge Den foxes have changed over time and how Ridge Den compares with another den? Use evidence from at least two measurements.")}
+        ${textField("dash_claim","Numbers Team note","firstInvestigation.dashboard.claim")}
+        <div class="path-transition">The Numbers Team saves its note for Room 12. The measurements show patterns that photographs alone cannot confirm, but they do not show where the foxes have been traveling or how they have behaved near people.</div>
+        <div class="path-transition-actions">
+          <button class="btn btn-amber" id="continueFuture" disabled>Continue</button>
+          <button class="btn-ghost" id="backToChoice">&larr; Back to the choice screen</button>
+        </div>
+        <p class="path-transition-note">Convergence screens are not yet built in this preview.</p>
       </div>
     </div>`;
   },
@@ -828,7 +860,7 @@ registerScreen("6B",{title:"The Den-Monitoring Dashboard",hideNav:true,
       const dens=["Ridge Den",dash.compareDen];
       $("#chartWrap",root).innerHTML=chartSVG(dens,curVar)+
         `<div class="chart-legend">${dens.map(d=>`<span><i style="background:${DEN_COLOR[d]}"></i>${esc(d)}</span>`).join("")}</div>
-         <div class="var-note">${textField("dnote_"+curVar,"Your note on "+V.label.toLowerCase(),"firstInvestigation.dashboard."+V.note)}</div>`;
+         <div class="var-note">${textField("dnote_"+curVar,"Working note: "+V.label,"firstInvestigation.dashboard."+V.note)}</div>`;
       autoBindAll($("#chartWrap",root));
       if(!dash.variablesViewed.includes(curVar)){dash.variablesViewed.push(curVar);save();}
       refreshBadges();
