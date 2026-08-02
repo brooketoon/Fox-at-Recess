@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Fox at Recess: A Ridge Den Investigation</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --leaf:#3E8C5C;
@@ -21,11 +21,11 @@
   --shadow-sm:0 1px 3px rgba(30,30,20,.08);
   --shadow-md:0 6px 18px rgba(30,30,20,.12);
   --font-title:"Fredoka","Baloo 2",system-ui,Arial,sans-serif;
-  --font-interface:"Nunito",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
-  --font-body:"Nunito",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  --font-interface:"Lexend","Segoe UI",Roboto,-apple-system,Arial,sans-serif;
+  --font-body:"Lexend","Segoe UI",Roboto,-apple-system,Arial,sans-serif;
 }
 *{box-sizing:border-box;}
-html{-webkit-text-size-adjust:100%;}
+html{-webkit-text-size-adjust:100%;font-size:18px;}
 body{margin:0;background:var(--birch);color:var(--charcoal);font-family:var(--font-body);line-height:1.5;}
 h1,h2,h3,h4{font-family:var(--font-title);color:var(--leaf-deep);line-height:1.12;margin:0 0 8px;}
 p{margin:0 0 12px;}
@@ -59,12 +59,27 @@ main{max-width:760px;margin:0 auto;padding:22px 16px 90px;}
 .landing-top .eyebrow{margin:10px 0 2px;font-family:var(--font-interface);font-size:.78rem;letter-spacing:1px;text-transform:uppercase;color:#7c8c81;}
 .landing-top h1{font-size:2rem;}
 
-.hero-frame{position:relative;border-radius:20px;overflow:hidden;margin:18px 0;box-shadow:var(--shadow-md);background:linear-gradient(160deg,var(--leaf-deep),var(--leaf));}
-.hero-frame .hero-media{width:100%;height:250px;object-fit:cover;display:block;opacity:.88;}
-.hero-frame .hero-copy{padding:22px 24px 26px;color:#fff;}
-.hero-frame h2{color:#fff;font-size:1.7rem;margin:0 0 4px;}
-.hero-frame .hero-sub{font-style:italic;color:var(--amber);font-weight:700;margin:0 0 10px;}
-.hero-frame .hero-lead{color:#e4ece6;font-size:1.02rem;max-width:52ch;}
+.hero-frame{position:relative;border-radius:20px;overflow:hidden;margin:18px 0;box-shadow:var(--shadow-md);background:linear-gradient(160deg,var(--leaf-deep),var(--leaf));text-align:center;padding:28px 24px 30px;}
+.hero-frame .hero-media-wrap{max-width:60%;margin:0 auto 14px;}
+.hero-frame .hero-media{width:100%;border-radius:14px;display:block;box-shadow:var(--shadow-sm);}
+.hero-frame .hero-media.img-placeholder{aspect-ratio:16/10;}
+.hero-frame .hero-eyebrow{font-family:var(--font-interface);font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;font-weight:700;color:var(--amber);margin:0 0 8px;}
+.hero-frame h1{color:#fff;font-size:1.9rem;margin:0 0 10px;}
+.hero-frame .hero-lead{color:#e4ece6;font-size:1.05rem;max-width:560px;margin:0 auto 8px;}
+.tts-btn{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.32);color:#fff;font-family:var(--font-interface);font-weight:700;font-size:.78rem;border-radius:999px;padding:6px 15px;cursor:pointer;display:inline-flex;gap:6px;align-items:center;margin:2px 0 14px;}
+.tts-btn:hover{background:rgba(255,255,255,.22);}
+.obj-num{background:var(--rust);color:#fff;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-interface);font-weight:800;font-size:.85rem;flex:none;margin-bottom:6px;}
+.std-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:8px 0 4px;}
+.std-col{background:var(--sky);border-radius:10px;padding:12px 14px;}
+.std-col h4{font-size:.86rem;margin:0 0 6px;color:var(--leaf-deep);}
+.std-col p{font-size:.85rem;margin:0;color:#4b564e;}
+.framework-callout{background:#FDF3DC;border:1px solid #EBD693;border-radius:12px;padding:14px 16px;margin-top:16px;}
+.framework-callout h4{font-size:.82rem;text-transform:uppercase;letter-spacing:.6px;color:#8a6a0f;margin:0 0 6px;}
+.framework-callout p{margin:0;font-size:.9rem;color:#5c4d1e;}
+@media(max-width:640px){
+  .hero-frame .hero-media-wrap{max-width:88%;}
+  .std-grid{grid-template-columns:1fr;}
+}
 .btn{border:none;border-radius:26px;font-family:var(--font-interface);font-weight:800;padding:13px 26px;font-size:1rem;min-height:48px;display:inline-flex;align-items:center;gap:8px;}
 .btn-amber{background:var(--amber);color:#3a2c0e;box-shadow:0 3px 0 #b9852a;}
 .btn-amber:disabled{background:#e6ddc4;color:#a89b78;box-shadow:none;cursor:not-allowed;}
@@ -81,7 +96,8 @@ main{max-width:760px;margin:0 auto;padding:22px 16px 90px;}
 .collapse-head::-webkit-details-marker{display:none;}
 .collapse-body{padding:0 18px 18px;font-size:.92rem;color:#4b564e;}
 .obj-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0 14px;}
-.obj-card{background:var(--sky);border-radius:10px;padding:10px 12px;font-size:.85rem;}
+.obj-card{background:var(--sky);border-radius:10px;padding:12px 14px;font-size:.9rem;}
+.obj-card p{margin:0;color:#3d4a3f;}
 .sect-label{font-family:var(--font-interface);font-weight:800;font-size:.72rem;letter-spacing:1px;text-transform:uppercase;color:var(--rust-deep);margin:14px 0 6px;}
 .std-code{background:var(--leaf);color:#fff;border-radius:6px;padding:2px 8px;font-weight:800;font-size:.8rem;}
 
@@ -280,6 +296,27 @@ function imgFallback(img){
 }
 function nowISO(){return new Date().toISOString();}
 function fmtDate(iso){if(!iso)return "—";const d=new Date(iso);return d.toLocaleString();}
+/* ---------- Read-aloud ---------- */
+function ttsButton(text){
+  return `<button class="tts-btn" type="button" data-tts="${esc(text)}">&#128266; <span class="tts-label">Read aloud</span></button>`;
+}
+document.addEventListener("click",e=>{
+  const btn=e.target.closest("[data-tts]");
+  if(!btn)return;
+  if(typeof window.speechSynthesis==="undefined")return;
+  const label=btn.querySelector(".tts-label");
+  if(window.speechSynthesis.speaking){
+    window.speechSynthesis.cancel();
+    if(label)label.textContent="Read aloud";
+    return;
+  }
+  const utter=new SpeechSynthesisUtterance(btn.dataset.tts);
+  utter.rate=0.95;
+  utter.onend=()=>{if(label)label.textContent="Read aloud";};
+  utter.onerror=()=>{if(label)label.textContent="Read aloud";};
+  if(label)label.textContent="Stop";
+  window.speechSynthesis.speak(utter);
+});
 
 const LS_KEY="ridge_foxinvestigation_v1";
 function defaultState(){
@@ -511,32 +548,47 @@ const GALLERY=[
 registerScreen(1,{title:"Launch",hideNav:true,
   render(){
     const started=hasSave()&&state.navigation.currentScreen>1;
+    const objectives=[
+      "Distinguish evidence about where and how an animal appears from evidence about physical traits like body size or condition.",
+      "Compare observational evidence (photographs) with measured evidence (field data) to determine whether a pattern is real.",
+      "Analyze patterns across multiple records to identify a possible cause-and-effect relationship.",
+      "Explain how a change in an environment could affect the development of traits in a wild population.",
+      "Communicate scientific thinking through investigation-journal responses.",
+      "Make evidence-based decisions and reflect on how community science informs real town decisions."
+    ];
+    const objHtml=objectives.map((o,i)=>`<div class="obj-card"><div class="obj-num">${i+1}</div><p>${esc(o)}</p></div>`).join("");
+    const launchNarr="Recess is usually predictable. Kickball. Four square. The same arguments about whose turn is next. But today, something ran across the blacktop that was not supposed to be there. Gracie and her classmates had only seconds to see it before Mr. Alvarez hurried everyone inside. What they saw would lead Room 12 to a mystery stretching from the playground to the new houses on Ridge Trail.";
     return `<div class="screen">
-      <div class="landing-top">
-        <span class="sis-badge">Stories in Science</span>
-        <p class="eyebrow">Grade 5 &middot; Life Science</p>
-        <h1><strong>The Fox at Recess</strong>: <i>A Ridge Den Investigation</i></h1>
-      </div>
-
       <div class="hero-frame">
-        <img class="hero-media" src="Images/ridge-forest-dusk-hero.png" alt="A forested ridge above a small mountain town at dusk, silhouetted pines against a darkening sky." onerror="imgFallback(this)">
-        <div class="hero-copy">
-          <p class="hero-lead">Recess is usually predictable. Kickball. Four square. The same arguments about whose turn is next.</p>
-          <p class="hero-lead" style="margin-top:-6px">But today, something ran across the blacktop that was not supposed to be there.</p>
-          <p class="hero-lead" style="margin-top:-6px">Gracie and her classmates had only seconds to see it before Mr. Alvarez hurried everyone inside.</p>
-          <p class="hero-lead" style="margin-top:-6px">What they saw would lead Room 12 to a mystery stretching from the playground to the new houses on Ridge Trail.</p>
-          <button class="btn btn-amber" id="laBegin" style="margin-top:6px">${started?"Return to the Investigation":"See What Happened"}</button>
+        <div class="hero-media-wrap">
+          <img class="hero-media" src="Images/ridge-forest-dusk-hero.png" alt="A forested ridge above a small mountain town at dusk, silhouetted pines against a darkening sky." onerror="imgFallback(this)">
         </div>
+        <p class="hero-eyebrow">Stories in Science &middot; Grade 5 &middot; Life Science</p>
+        <h1><strong>The Fox at Recess</strong>: <i>A Ridge Den Investigation</i></h1>
+        ${ttsButton(launchNarr)}
+        <p class="hero-lead">Recess is usually predictable. Kickball. Four square. The same arguments about whose turn is next.</p>
+        <p class="hero-lead" style="margin-top:-6px">But today, something ran across the blacktop that was not supposed to be there.</p>
+        <p class="hero-lead" style="margin-top:-6px">Gracie and her classmates had only seconds to see it before Mr. Alvarez hurried everyone inside.</p>
+        <p class="hero-lead" style="margin-top:-6px">What they saw would lead Room 12 to a mystery stretching from the playground to the new houses on Ridge Trail.</p>
+        <button class="btn btn-amber" id="laBegin" style="margin-top:8px">${started?"Return to the Investigation":"See What Happened"}</button>
       </div>
 
       <details class="about-lesson">
         <summary class="collapse-head">Learning Objectives &amp; Instructional Alignment <span aria-hidden="true">&#9660;</span></summary>
         <div class="collapse-body">
-          <p>Students investigate evidence from a ridge fox den to construct an explanation for how environmental change can affect the development of traits in a wild population, using two independent evidence sources compared at a shared convergence point. <em>(Note: this build currently includes the Entry and Exploration layers only — Sensemaking, Application, and Reflection are not yet built.)</em></p>
-          <p class="sect-label">Standard</p>
-          <p><span class="std-code">5.L3U1.10</span> (Arizona Grade 5) &mdash; Construct an explanation based on evidence that changes in an environment can affect the development of traits in a population of organisms.</p>
-          <p class="sect-label">Science &amp; Engineering Practices</p>
-          <p>Analyzing and Interpreting Data &middot; Constructing Explanations &middot; Obtaining, Evaluating, and Communicating Information</p>
+          <p>Students investigate evidence from a ridge fox den to construct an explanation for how environmental change can affect the development of traits in a wild population, using two independent evidence sources compared at a shared convergence point. <em>(Note: this build currently includes the Entry and Exploration layers only &mdash; Sensemaking, Application, and Reflection are not yet built.)</em></p>
+          <p class="sect-label">Learning Objectives</p>
+          <div class="obj-grid">${objHtml}</div>
+          <p class="sect-label">Standards &amp; Practices</p>
+          <div class="std-grid">
+            <div class="std-col"><h4>&#128209; Arizona Science Standard</h4><p><span class="std-code">5.L3U1.10</span> &mdash; Construct an explanation based on evidence that changes in an environment can affect the development of traits in a population of organisms.</p></div>
+            <div class="std-col"><h4>&#9878;&#65039; Science &amp; Engineering Practices</h4><p>Analyzing and Interpreting Data &middot; Constructing Explanations &middot; Engaging in Argument from Evidence &middot; Obtaining, Evaluating, and Communicating Information</p></div>
+            <div class="std-col"><h4>&#128279; Crosscutting Concepts</h4><p>Cause and Effect &middot; Patterns &middot; Stability and Change</p></div>
+          </div>
+          <div class="framework-callout">
+            <h4>&#11088; Stories in Science Framework Alignment</h4>
+            <p>Students enter through a real classroom phenomenon in Room 12, choose an investigation pathway (trail-camera archive vs. field-data dashboard), analyze evidence as a team, and prepare a team note for the class before comparing findings with the other team at a shared convergence point.</p>
+          </div>
         </div>
       </details>
 
