@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Fox at Recess: A Ridge Den Investigation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --leaf:#3E8C5C;
+  --leaf-deep:#2C6B44;
+  --rust:#E2703A;
+  --rust-deep:#C25A28;
+  --amber:#FFC94D;
+  --birch:#FFFAF0;
+  --birch-card:#FFFFFF;
+  --moss:#7FAE6E;
+  --sky:#EAF4EF;
+  --charcoal:#2B2A26;
+  --shadow-sm:0 1px 3px rgba(30,30,20,.08);
+  --shadow-md:0 6px 18px rgba(30,30,20,.12);
+  --font-title:"Fredoka","Baloo 2",system-ui,Arial,sans-serif;
+  --font-interface:"Lexend","Segoe UI",Roboto,-apple-system,Arial,sans-serif;
+  --font-body:"Lexend","Segoe UI",Roboto,-apple-system,Arial,sans-serif;
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;font-size:18px;}
+body{margin:0;background:var(--birch);color:var(--charcoal);font-family:var(--font-body);line-height:1.5;}
+h1,h2,h3,h4{font-family:var(--font-title);color:var(--leaf-deep);line-height:1.12;margin:0 0 8px;}
+p{margin:0 0 12px;}
+button{font-family:var(--font-interface);cursor:pointer;}
+a{color:var(--rust-deep);}
+.hidden{display:none !important;}
+:focus-visible{outline:3px solid var(--rust);outline-offset:2px;}
+@media(prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important;}}
+
+/* ---------- Header ---------- */
+.app-header{position:sticky;top:0;z-index:40;background:var(--leaf-deep);border-bottom:3px solid var(--rust);}
+.app-header-inner{max-width:1000px;margin:0 auto;padding:12px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.brand{display:flex;flex-direction:column;line-height:1.2;}
+.brand .sis{font-family:var(--font-interface);font-weight:800;font-size:.72rem;letter-spacing:1.1px;text-transform:uppercase;color:var(--amber);}
+.brand .grade{font-family:var(--font-interface);font-size:.68rem;color:#b9c7bd;}
+.header-title{font-family:var(--font-title);font-weight:600;color:#fff;font-size:1.05rem;flex:1;min-width:120px;}
+.header-actions{display:flex;gap:8px;align-items:center;}
+.hbtn{background:transparent;border:1px solid #3c5548;color:#dfe9e2;border-radius:9px;padding:7px 12px;font-size:.8rem;font-weight:700;min-height:38px;}
+.hbtn:hover{background:#274438;}
+#backBtn{background:transparent;border:none;color:var(--rust-deep);font-family:var(--font-interface);font-weight:700;font-size:.9rem;padding:9px 12px;min-height:44px;border-radius:22px;}
+#backBtn:hover{background:var(--sky);}
+
+/* ---------- Layout ---------- */
+main{max-width:760px;margin:0 auto;padding:22px 16px 18px;}
+.screen{animation:fade .25s ease;}
+@keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+.card{background:var(--birch-card);border-radius:16px;padding:18px 20px;margin:0 0 18px;box-shadow:var(--shadow-sm);}
+
+/* ---------- Landing ---------- */
+.landing-top{text-align:center;padding:6px 0 4px;}
+.sis-badge{display:inline-block;background:var(--leaf);color:#fff;font-family:var(--font-interface);font-weight:800;font-size:.72rem;letter-spacing:1px;text-transform:uppercase;padding:6px 14px;border-radius:20px;}
+.landing-top .eyebrow{margin:10px 0 2px;font-family:var(--font-interface);font-size:.78rem;letter-spacing:1px;text-transform:uppercase;color:#7c8c81;}
+.landing-top h1{font-size:2rem;}
+
+.hero-frame{position:relative;border-radius:20px;overflow:hidden;margin:18px 0;box-shadow:var(--shadow-md);background:linear-gradient(160deg,var(--leaf-deep),var(--leaf));text-align:center;padding:28px 24px 30px;}
+.hero-frame .hero-media-wrap{max-width:60%;margin:0 auto 14px;}
+.hero-frame .hero-media{width:100%;border-radius:14px;display:block;box-shadow:var(--shadow-sm);}
+.hero-frame .hero-media.img-placeholder{aspect-ratio:16/10;}
+.hero-frame .hero-eyebrow{font-family:var(--font-interface);font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;font-weight:700;color:var(--amber);margin:0 0 8px;}
+.hero-frame h1{color:#fff;font-size:1.9rem;margin:0 0 10px;}
+.hero-frame .hero-lead{color:#e4ece6;font-size:1.05rem;max-width:560px;margin:0 auto 8px;}
+.tts-btn{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.32);color:#fff;font-family:var(--font-interface);font-weight:700;font-size:.78rem;border-radius:999px;padding:6px 15px;cursor:pointer;display:inline-flex;gap:6px;align-items:center;margin:2px 0 14px;}
+.tts-btn:hover{background:rgba(255,255,255,.22);}
+.obj-num{background:var(--rust);color:#fff;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-interface);font-weight:800;font-size:.85rem;flex:none;margin-bottom:6px;}
+.std-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:8px 0 4px;}
+.std-col{background:var(--sky);border-radius:10px;padding:12px 14px;}
+.std-col h4{font-size:.86rem;margin:0 0 6px;color:var(--leaf-deep);}
+.std-col p{font-size:.85rem;margin:0;color:#4b564e;}
+.framework-callout{background:#FDF3DC;border:1px solid #EBD693;border-radius:12px;padding:14px 16px;margin-top:16px;}
+.framework-callout h4{font-size:.82rem;text-transform:uppercase;letter-spacing:.6px;color:#8a6a0f;margin:0 0 6px;}
+.framework-callout p{margin:0;font-size:.9rem;color:#5c4d1e;}
+@media(max-width:640px){
+  .hero-frame .hero-media-wrap{max-width:88%;}
+  .std-grid{grid-template-columns:1fr;}
+}
+.btn{border:none;border-radius:26px;font-family:var(--font-interface);font-weight:800;padding:13px 26px;font-size:1rem;min-height:48px;display:inline-flex;align-items:center;gap:8px;}
+.btn-amber{background:var(--amber);color:#3a2c0e;box-shadow:0 3px 0 #b9852a;}
+.btn-amber:disabled{background:#e6ddc4;color:#a89b78;box-shadow:none;cursor:not-allowed;}
+.path-transition{background:var(--sky);border-radius:14px;padding:14px 16px;margin:0 0 14px;font-size:.94rem;color:#3d4a3f;}
+.path-transition-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 8px;}
+.path-transition-note{font-size:.78rem;color:#8a8270;font-style:italic;}
+.btn-amber:hover{filter:brightness(1.04);}
+.btn-rust{background:var(--rust-deep);color:#fff;box-shadow:0 3px 0 #6d3216;}
+.btn-outline{background:transparent;border:2px solid var(--leaf);color:var(--leaf-deep);font-weight:800;border-radius:26px;padding:11px 22px;}
+.btn-ghost{background:none;border:none;color:var(--rust-deep);font-weight:800;}
+
+.about-lesson{background:var(--birch-card);border-radius:14px;box-shadow:var(--shadow-sm);margin:0 0 16px;overflow:hidden;}
+.collapse-head{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;padding:15px 18px;font-family:var(--font-interface);font-weight:800;color:var(--leaf-deep);}
+.collapse-head::-webkit-details-marker{display:none;}
+.collapse-body{padding:0 18px 18px;font-size:.92rem;color:#4b564e;}
+.obj-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0 14px;}
+.obj-card{background:var(--sky);border-radius:10px;padding:12px 14px;font-size:.9rem;}
+.obj-card p{margin:0;color:#3d4a3f;}
+.sect-label{font-family:var(--font-interface);font-weight:800;font-size:.72rem;letter-spacing:1px;text-transform:uppercase;color:var(--rust-deep);margin:14px 0 6px;}
+.std-code{background:var(--leaf);color:#fff;border-radius:6px;padding:2px 8px;font-weight:800;font-size:.8rem;}
+
+.name-setup{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:6px 0 4px;font-size:.85rem;color:#5c6a5f;}
+.name-setup input{border:1px solid #d7ddd3;border-radius:9px;padding:8px 11px;font-family:var(--font-interface);font-size:.9rem;flex:1;min-width:160px;}
+.utility-row{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin-top:16px;padding-top:13px;border-top:1px solid #e6e0cf;font-family:var(--font-interface);font-size:.78rem;color:#948a72;}
+.utility-row .u-sep{color:#d9d0b8;}
+.utility-row button,.utility-row .u-code{background:none;border:none;padding:0;color:#948a72;font-weight:700;font-size:.78rem;min-height:auto;}
+.utility-row button:hover{color:var(--rust-deep);text-decoration:underline;}
+.landing-footer{text-align:center;font-size:.72rem;color:#a39c86;margin-top:16px;line-height:1.6;}
+
+/* ---------- Trail-cam framed scene (signature device) ---------- */
+.scene{position:relative;border-radius:18px;overflow:hidden;margin:0 0 18px;box-shadow:var(--shadow-md);background:linear-gradient(160deg,var(--leaf-deep),var(--leaf));}
+.scene .scene-media{width:100%;height:273px;object-fit:cover;display:block;opacity:.9;}
+.scene .scene-copy{padding:20px 22px 22px;color:#fff;}
+.scene h2{color:#fff;font-size:1.5rem;margin:6px 0 4px;}
+.scene .scene-sub{color:#dce9e0;font-size:.98rem;max-width:56ch;}
+.scene .stamp{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-interface);font-size:.68rem;font-weight:800;letter-spacing:1.1px;text-transform:uppercase;color:#fff;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.28);padding:4px 11px;border-radius:18px;}
+.hud{position:absolute;top:14px;left:14px;right:14px;display:flex;justify-content:space-between;pointer-events:none;}
+.hud .bracket{width:20px;height:20px;border-color:var(--amber);border-style:solid;opacity:.85;}
+.hud .bracket.tl{border-width:3px 0 0 3px;}
+.hud .bracket.tr{border-width:3px 3px 0 0;}
+.hud-tag{position:absolute;bottom:14px;right:16px;background:rgba(15,20,15,.55);color:#f0e6c8;font-family:'Courier New',monospace;font-size:.7rem;letter-spacing:.5px;padding:4px 9px;border-radius:5px;border:1px solid rgba(227,168,59,.4);}
+
+/* ---------- Dialogue / voices ---------- */
+.dialogue-block{background:var(--birch-card);border-left:4px solid var(--leaf);border-radius:12px;padding:14px 17px;margin:0 24px 16px;box-shadow:var(--shadow-sm);}
+@media(max-width:640px){.dialogue-block{margin-left:12px;margin-right:12px;}}
+.card>.dialogue-block:last-child{margin-bottom:0;}
+.dialogue{font-size:1.02rem;line-height:1.55;margin:0 0 9px;}
+.dialogue:last-child{margin-bottom:0;}
+.dialogue .sp{color:var(--rust-deep);font-weight:800;}
+.observation-emphasis{background:#F5F9F6;border:1px solid #D8E8DC;border-radius:9px;padding:10px 12px;margin:2px 0 4px;font-weight:500;}
+
+/* ---------- Phone / group-chat panel ---------- */
+.msg-panel{background:#4A4032;border-radius:16px;padding:16px 17px;margin:0 0 18px;box-shadow:var(--shadow-md);border:1px solid rgba(0,0,0,.15);}
+.msg-panel .cam-head{display:flex;align-items:center;gap:8px;font-family:'Courier New',monospace;color:var(--amber);font-size:.78rem;letter-spacing:.6px;margin-bottom:10px;}
+.msg-panel .cam-head .dot{width:8px;height:8px;border-radius:50%;background:#e14b3a;box-shadow:0 0 0 3px rgba(225,75,58,.25);}
+.msg-panel .cam-photo{width:100%;border-radius:10px;display:block;margin-bottom:9px;}
+.msg-panel .autolog{font-family:'Courier New',monospace;font-size:.76rem;color:#9fb0a5;background:#141c22;border-radius:7px;padding:8px 10px;margin-bottom:10px;}
+.chat-bubble{background:#26323e;color:#e7eef0;border-radius:4px 14px 14px 14px;padding:9px 13px;margin:6px 0;max-width:80%;font-size:.94rem;}
+.chat-bubble .who{display:block;font-size:.68rem;color:#7fa88f;font-weight:800;margin-bottom:2px;}
+
+/* ---------- Corkboard / case file ---------- */
+.case-file{background:#fbf3e2;border:1px solid #e8dcb8;border-left:6px solid var(--rust);border-radius:10px;padding:16px 18px;margin:0 0 18px;}
+.case-file .file-tab{display:inline-block;background:var(--rust);color:#fff;font-family:var(--font-interface);font-weight:800;font-size:.68rem;letter-spacing:1px;text-transform:uppercase;padding:4px 12px;border-radius:6px;margin-bottom:9px;}
+.alert-panel{background:#FDF0E4;border:1.5px solid var(--rust);border-radius:12px;padding:14px 17px;margin:0 0 18px;color:#7A3B15;font-size:.92rem;}
+.alert-panel strong{color:var(--rust-deep);}
+
+/* ---------- Prompts / fields ---------- */
+.prompt-box{display:block;background:var(--sky);border-left:4px solid var(--moss);border-radius:8px;padding:10px 14px;margin:0 0 8px;font-weight:700;color:var(--leaf-deep);font-size:.95rem;}
+.field-label{display:block;font-family:var(--font-interface);font-weight:800;font-size:.8rem;color:var(--leaf-deep);margin:4px 0 6px;}
+textarea,input[type=text]{width:100%;border:1px solid #d7ddd3;border-radius:10px;padding:11px 13px;font-family:var(--font-body);font-size:.95rem;color:var(--charcoal);resize:vertical;min-height:70px;}
+textarea:focus,input:focus{border-color:var(--rust);}
+
+/* ---------- Reveal action ---------- */
+.reveal-action{text-align:center;margin:6px 0 18px;}
+
+/* ---------- Station choice ---------- */
+.station-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.station-card{position:relative;text-align:left;background:var(--birch-card);border:1px solid #e3ddc9;border-radius:16px;overflow:hidden;box-shadow:var(--shadow-sm);cursor:pointer;transition:transform .12s,box-shadow .12s,border-color .12s;padding:0;display:flex;flex-direction:column;height:100%;}
+.station-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:var(--rust);}
+.station-card .st-top{height:8px;background:linear-gradient(90deg,var(--leaf),var(--rust));flex:none;}
+.station-card .st-body{padding:16px 16px 18px;display:flex;flex-direction:column;flex:1;}
+.station-card .st-kicker{font-family:var(--font-interface);font-size:.68rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--rust-deep);}
+.station-card h3{margin:6px 0 6px;font-size:1.15rem;}
+.station-card p{margin:0 0 12px;color:#5a6a5d;font-size:.9rem;}
+.station-card .st-open{display:inline-flex;align-items:center;gap:8px;background:var(--amber);color:#3a2c0e;font-family:var(--font-interface);font-weight:800;border-radius:22px;padding:9px 16px;font-size:.86rem;margin-top:auto;align-self:flex-start;}
+@media(max-width:640px){.station-grid{grid-template-columns:1fr;}}
+
+/* ---------- Photo gallery (Screen 5A) ---------- */
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:4px 0 6px;}
+.photo-tile{position:relative;border:none;padding:0;border-radius:11px;overflow:hidden;aspect-ratio:1/1;background:#4A4032;box-shadow:var(--shadow-sm);}
+.photo-tile .tile-img{width:100%;height:100%;object-fit:cover;display:block;opacity:.92;transition:opacity .12s;}
+.photo-tile:hover .tile-img{opacity:1;}
+.photo-tile .tile-year{position:absolute;bottom:6px;left:7px;background:rgba(15,20,15,.6);color:#f0e6c8;font-family:'Courier New',monospace;font-size:.66rem;padding:2px 6px;border-radius:4px;}
+.photo-tile .tile-seen{position:absolute;top:6px;right:7px;background:var(--moss);color:#fff;font-size:.62rem;font-weight:800;padding:2px 6px;border-radius:10px;display:none;}
+.photo-tile.seen .tile-seen{display:block;}
+@media(max-width:560px){.gallery-grid{grid-template-columns:repeat(2,1fr);}}
+
+/* ---------- Lightbox modal ---------- */
+.drawer-overlay{position:fixed;inset:0;background:rgba(20,20,15,.5);z-index:110;}
+.drawer{position:fixed;top:0;bottom:0;width:min(85vw,380px);background:var(--birch-card);box-shadow:var(--shadow-md);z-index:111;display:flex;flex-direction:column;transition:transform .22s ease;}
+.drawer.left{left:0;transform:translateX(-100%);border-radius:0 18px 18px 0;}
+.drawer.right{right:0;transform:translateX(100%);border-radius:18px 0 0 18px;}
+.drawer.open{transform:translateX(0);}
+.drawer-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:16px 18px;background:var(--leaf-deep);color:#fff;border-radius:inherit;border-bottom-left-radius:0;border-bottom-right-radius:0;}
+.drawer.left .drawer-head{border-radius:0 18px 0 0;}
+.drawer.right .drawer-head{border-radius:18px 0 0 0;}
+.drawer-head h2{color:#fff;font-size:1.15rem;margin:0;}
+.drawer-close{background:rgba(255,255,255,.18);border:none;color:#fff;border-radius:50%;width:34px;height:34px;font-size:1.1rem;flex:none;}
+.drawer-body{padding:16px 18px 24px;overflow-y:auto;flex:1;}
+.drawer-body dt{font-family:var(--font-title);font-weight:600;color:var(--rust-deep);font-size:1rem;margin:14px 0 3px;}
+.drawer-body dt:first-child{margin-top:0;}
+.drawer-body dd{margin:0 0 4px;font-size:.9rem;color:var(--charcoal);}
+.journal-empty{color:#8a8270;font-size:.92rem;font-style:italic;}
+.journal-entry{border-left:3px solid var(--moss);padding:2px 0 2px 12px;margin:0 0 16px;}
+.journal-entry .je-screen{font-family:var(--font-interface);font-weight:800;font-size:.66rem;letter-spacing:.8px;text-transform:uppercase;color:var(--rust-deep);}
+.journal-entry .je-q{font-weight:800;color:var(--charcoal);font-size:.9rem;margin:3px 0 5px;}
+.journal-entry .je-a{background:var(--sky);border-radius:8px;padding:8px 10px;font-size:.88rem;color:#3d4a3f;}
+.journal-entry .je-a.blank{color:#a39c86;font-style:italic;background:transparent;padding:0;}
+.journal-entry.decision .je-a{background:#FDF0E4;color:var(--rust-deep);font-weight:700;}
+.modal-box{background:var(--birch-card);border-radius:18px;max-width:480px;width:100%;max-height:88vh;overflow-y:auto;box-shadow:var(--shadow-md);}
+.modal-box .mb-photo-wrap{position:relative;background:#4A4032;}
+.modal-box .mb-photo{width:100%;display:block;max-height:300px;object-fit:cover;}
+.modal-box .mb-body{padding:18px 20px 20px;}
+.modal-box .mb-close{position:absolute;top:10px;right:10px;background:rgba(0,0,0,.5);color:#fff;border:none;border-radius:50%;width:34px;height:34px;font-size:1.1rem;}
+.modal-box .mb-year{font-family:'Courier New',monospace;color:var(--rust-deep);font-weight:700;font-size:.85rem;margin-bottom:6px;}
+.modal-box .mb-note{background:var(--sky);border-radius:9px;padding:10px 12px;font-size:.9rem;color:#3d4a3f;}
+.gallery-expand{background:var(--birch-card);border-radius:16px;overflow:hidden;box-shadow:var(--shadow-sm);margin-top:16px;animation:fade .2s ease;}
+.gallery-expand .ge-photo-wrap{position:relative;background:#4A4032;}
+.gallery-expand .ge-photo{width:100%;display:block;max-height:390px;object-fit:cover;}
+.gallery-expand .ge-close{position:absolute;top:10px;right:10px;background:rgba(0,0,0,.5);color:#fff;border:none;border-radius:50%;width:38px;height:38px;font-size:1.2rem;}
+.gallery-expand .ge-body{padding:18px 20px 20px;}
+.gallery-expand .ge-meta{font-family:'Courier New',monospace;color:var(--rust-deep);font-weight:700;font-size:.9rem;margin-bottom:8px;}
+.gallery-expand .ge-note{background:var(--sky);border-radius:10px;padding:12px 14px;font-size:.95rem;color:#3d4a3f;}
+.map-wrap2{position:relative;width:100%;aspect-ratio:4/3;border-radius:16px;overflow:hidden;background:var(--sky);box-shadow:var(--shadow-sm);}
+.map-wrap2 img{width:100%;height:100%;object-fit:cover;display:block;}
+.map-wrap2 img.img-placeholder{position:absolute;inset:0;width:100%;height:100%;}
+.map-point{position:absolute;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:3px;z-index:2;}
+.map-marker{width:42px;height:42px;min-width:42px;min-height:42px;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.32);display:flex;align-items:center;justify-content:center;font-family:var(--font-interface);font-weight:800;font-size:1rem;color:#fff;cursor:pointer;padding:0;}
+.map-marker:focus-visible{outline:3px solid var(--rust-deep);outline-offset:3px;}
+.map-marker[aria-pressed="true"]{box-shadow:0 0 0 4px rgba(255,255,255,.85),0 2px 10px rgba(0,0,0,.4);transform:scale(1.14);}
+.marker-school{background:var(--leaf-deep);}
+.marker-town{background:var(--leaf);}
+.marker-forest{background:#5b7a4a;}
+.marker-sighting{background:var(--rust-deep);}
+.marker-den{background:var(--rust);}
+.marker-camera{background:#3d4a56;}
+.map-point-label{background:rgba(255,255,255,.95);color:var(--charcoal);font-size:.66rem;font-weight:700;padding:2px 7px;border-radius:8px;white-space:nowrap;box-shadow:var(--shadow-sm);max-width:120px;overflow:hidden;text-overflow:ellipsis;}
+.map-legend{display:flex;flex-wrap:wrap;gap:10px 18px;margin:14px 0 4px;font-size:.86rem;}
+.map-legend span{display:inline-flex;align-items:center;gap:7px;font-weight:700;}
+.map-legend i{width:16px;height:16px;border-radius:50%;display:inline-block;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.25);}
+.map-info-panel{background:var(--birch-card);border:1px solid #e3ddc9;border-left:4px solid var(--rust);border-radius:12px;padding:14px 16px;margin-top:8px;min-height:56px;}
+.map-info-panel .mi-empty{color:#8a8270;font-style:italic;font-size:.9rem;margin:0;}
+.map-info-panel .mi-label{font-family:var(--font-interface);font-weight:800;color:var(--leaf-deep);margin-bottom:4px;}
+@media(max-width:480px){.map-point-label{font-size:.6rem;max-width:90px;}.map-marker{width:36px;height:36px;min-width:36px;min-height:36px;font-size:.88rem;}}
+
+/* ---------- Decision Point 1 convergence ---------- */
+.team-share-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0 0 18px;}
+.team-report{background:var(--birch-card);border:1px solid #e3ddc9;border-radius:14px;padding:16px 17px;box-shadow:var(--shadow-sm);}
+.team-report.yours{border-top:6px solid var(--leaf);}
+.team-report.shared{border-top:6px solid var(--rust);}
+.team-report .tr-kicker{font-family:var(--font-interface);font-size:.68rem;font-weight:800;letter-spacing:.9px;text-transform:uppercase;color:var(--rust-deep);margin-bottom:4px;}
+.team-report h3{font-size:1.12rem;margin:0 0 8px;}
+.team-report .tr-source{display:inline-block;background:var(--sky);color:var(--leaf-deep);border-radius:14px;padding:3px 9px;margin:0 0 9px;font-family:var(--font-interface);font-size:.7rem;font-weight:800;}
+.team-report .tr-text{margin:0;white-space:pre-wrap;color:#3d4a3f;font-size:.94rem;}
+.team-report .tr-text.blank{color:#8a8270;font-style:italic;}
+.convergence-report-img{display:block;width:100%;height:auto;min-height:180px;border-radius:12px;margin-top:4px;object-fit:cover;}
+.convergence-hold{background:#FDF3DC;border:1px solid #EBD693;border-radius:12px;padding:14px 16px;margin:0 0 18px;color:#5c4d1e;}
+.convergence-hold strong{color:#7a5b08;}
+@media(max-width:640px){.team-share-grid{grid-template-columns:1fr;}}
+
+/* ---------- Dashboard (Screen 5B) ---------- */
+.dash-controls{display:flex;gap:16px;flex-wrap:wrap;margin:4px 0 16px;}
+.dash-group legend{font-family:var(--font-interface);font-weight:800;font-size:.76rem;letter-spacing:.6px;text-transform:uppercase;color:var(--leaf-deep);margin-bottom:6px;padding:0;}
+.dash-group{border:none;padding:0;margin:0;}
+.chip-row{display:flex;gap:8px;flex-wrap:wrap;}
+.chip{background:var(--birch-card);border:1px solid #d7ddd3;border-radius:20px;padding:8px 15px;font-family:var(--font-interface);font-weight:700;font-size:.85rem;color:var(--charcoal);min-height:40px;}
+.chip.active{background:var(--leaf);border-color:var(--leaf);color:#fff;}
+.chip.rust.active{background:var(--rust-deep);border-color:var(--rust-deep);}
+.chart-wrap{background:var(--birch-card);border-radius:14px;padding:16px;box-shadow:var(--shadow-sm);margin-bottom:16px;}
+.chart-legend{display:flex;gap:22px;flex-wrap:wrap;margin:12px 0 4px;font-size:1rem;font-weight:700;}
+.chart-legend span{display:inline-flex;align-items:center;gap:9px;}
+.chart-legend i{width:22px;height:6px;border-radius:3px;display:inline-block;}
+.var-note{margin-top:10px;}
+.tracker{background:var(--birch-card);border-bottom:1px solid #e6e0cf;padding:12px 16px;}
+.tracker-inner{max-width:760px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.tracker-step{display:flex;align-items:flex-start;gap:10px;background:var(--sky);border-radius:12px;padding:10px 12px;}
+.tracker-step .ts-num{background:#d8e5dd;color:var(--leaf-deep);width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-interface);font-weight:800;font-size:.82rem;flex:none;}
+.tracker-step.done .ts-num{background:var(--leaf);color:#fff;}
+.tracker-step .ts-label{font-family:var(--font-interface);font-weight:800;font-size:.68rem;letter-spacing:.7px;text-transform:uppercase;color:#6d7d70;}
+.tracker-step .ts-value{font-size:.88rem;color:var(--charcoal);font-style:italic;}
+.tracker-step.done .ts-value{font-style:normal;font-weight:700;color:var(--leaf-deep);}
+.tracker-step.soon{opacity:.7;}
+@media(max-width:600px){.tracker-inner{grid-template-columns:1fr;}}
+.done-badges{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 4px;}
+.vbadge{font-size:.72rem;font-weight:800;padding:4px 10px;border-radius:14px;background:#eee7d4;color:#8a7d5c;}
+.vbadge.done{background:var(--moss);color:#fff;}
+
+.img-placeholder{background:repeating-linear-gradient(45deg,#F2ECDC,#F2ECDC 10px,#E9E1C8 10px,#E9E1C8 20px);border:2px dashed #C9BFA0;display:flex !important;flex-direction:column;align-items:center;justify-content:center;gap:5px;text-align:center;padding:12px;}
+.img-placeholder .ip-icon{font-size:1.7rem;line-height:1;}
+.img-placeholder .ip-label{font-family:var(--font-interface);font-weight:800;font-size:.7rem;letter-spacing:1px;text-transform:uppercase;color:#8a7d5c;}
+.img-placeholder .ip-path{font-family:'Courier New',monospace;font-size:.66rem;color:#a89b78;word-break:break-all;padding:0 6px;max-width:100%;}
+.narrative-line{font-size:1.02rem;line-height:1.55;color:var(--charcoal);margin:0 0 16px;}
+.scene-duo{display:flex;gap:16px;align-items:center;margin:0 0 16px;}
+.scene-duo .duo-img{flex:0 0 49%;max-width:286px;}
+.scene-duo .duo-img img,.scene-duo .duo-img .img-placeholder{width:100%;display:block;border-radius:14px;box-shadow:var(--shadow-sm);margin:0;}
+.scene-duo .duo-text{flex:1;min-width:0;}
+.scene-duo .duo-text .dialogue-block:last-child{margin-bottom:0;}
+@media(max-width:640px){.scene-duo{flex-direction:column;}.scene-duo .duo-img{flex:none;width:90%;max-width:338px;}}
+.email-compose{background:var(--birch-card);border:1px solid #e3ddc9;border-radius:14px;overflow:hidden;box-shadow:var(--shadow-sm);margin:0 0 4px;}
+.email-compose .ec-head{background:var(--sky);padding:12px 16px;font-size:.85rem;color:#4b564e;}
+.email-compose .ec-row{display:flex;gap:8px;margin:2px 0;}
+.email-compose .ec-label{font-weight:800;color:var(--leaf-deep);min-width:46px;}
+.email-compose .ec-subject{width:100%;border:none;border-bottom:1px solid #e3ddc9;padding:12px 16px;font-family:var(--font-interface);font-weight:700;font-size:.95rem;color:var(--charcoal);border-radius:0;}
+.email-compose .ec-body{width:100%;border:none;padding:14px 16px;min-height:130px;font-family:var(--font-body);font-size:.92rem;resize:vertical;color:var(--charcoal);border-radius:0;}
+.email-compose .ec-subject:focus,.email-compose .ec-body:focus{outline:2px solid var(--rust);outline-offset:-2px;}
+.reveal{animation:fade .25s ease;}
+.small{font-size:.85rem;}
+.muted{color:#7a8a7d;}
+.blank-note{color:#a39c86;font-style:italic;}
+.end-note{background:var(--sky);border-radius:12px;padding:14px 16px;margin-top:6px;font-size:.9rem;color:#3d4a3f;}
+
+.navbar{position:static;background:var(--birch-card);border-top:1px solid #e6e0cf;padding:10px 16px 18px;display:flex;justify-content:center;}
+.navbar-inner{max-width:728px;margin:0 auto;width:100%;display:flex;justify-content:space-between;align-items:center;}
+#continueBtn{background:var(--rust-deep);color:#fff;border:none;border-radius:24px;padding:12px 26px;font-family:var(--font-interface);font-weight:800;font-size:.95rem;min-height:46px;}
+#continueBtn:disabled{background:#d9d2bd;color:#a39c86;cursor:not-allowed;}
+body.has-navbar main{padding-bottom:18px;}
+
+@media(max-width:640px){
+  .hero-frame h2{font-size:1.4rem;}
+  .obj-grid{grid-template-columns:1fr;}
+  .scene .scene-media{height:208px;}
+}
+</style>
+</head>
+<body>
+
+<header class="app-header" role="banner">
+  <div class="app-header-inner">
+    <div class="brand">
+      <span class="sis">Stories in Science</span>
+      <span class="grade">Grade 5 &middot; Life Science</span>
+    </div>
+    <div class="header-title" id="headerTitle" aria-live="polite">Launch</div>
+    <div class="header-actions">
+      <button class="hbtn" id="glossaryBtn">Glossary</button>
+      <button class="hbtn" id="journalBtn">Journal</button>
+      <button class="hbtn" id="restartBtn">Restart</button>
+    </div>
+  </div>
+</header>
+
+<div class="tracker hidden" id="tracker"></div>
+<main id="stage" role="main"></main>
+<nav class="navbar hidden" id="navbar"><div class="navbar-inner"><button id="backBtn" aria-label="Go back">&larr; Back</button><button id="continueBtn" disabled>Continue</button></div></nav>
+<div id="modalRoot"></div>
+
+<script>
+/* ===================== Helpers ===================== */
+function $(sel,root){return (root||document).querySelector(sel);}
+function $$(sel,root){return Array.from((root||document).querySelectorAll(sel));}
+function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function imgFallback(img){
+  const src=img.getAttribute("src")||"";
+  const div=document.createElement("div");
+  div.className=img.className+" img-placeholder";
+  if(img.style&&img.style.cssText)div.style.cssText=img.style.cssText;
+  div.innerHTML=`<span class="ip-icon" aria-hidden="true">&#128444;&#65039;</span><span class="ip-label">Image pending</span><span class="ip-path">${esc(src)}</span>`;
+  img.replaceWith(div);
+}
+function nowISO(){return new Date().toISOString();}
+function fmtDate(iso){if(!iso)return "—";const d=new Date(iso);return d.toLocaleString();}
+/* ---------- Read-aloud ---------- */
+function ttsButton(text){
+  return `<button class="tts-btn" type="button" data-tts="${esc(text)}">&#128266; <span class="tts-label">Read aloud</span></button>`;
+}
+document.addEventListener("click",e=>{
+  const btn=e.target.closest("[data-tts]");
+  if(!btn)return;
+  if(typeof window.speechSynthesis==="undefined")return;
+  const label=btn.querySelector(".tts-label");
+  if(window.speechSynthesis.speaking){
+    window.speechSynthesis.cancel();
+    if(label)label.textContent="Read aloud";
+    return;
+  }
+  const utter=new SpeechSynthesisUtterance(btn.dataset.tts);
+  utter.rate=0.95;
+  utter.onend=()=>{if(label)label.textContent="Read aloud";};
+  utter.onerror=()=>{if(label)label.textContent="Read aloud";};
+  if(label)label.textContent="Stop";
+  window.speechSynthesis.speak(utter);
+});
+
+const LS_KEY="ridge_foxinvestigation_v1";
+function defaultState(){
+  return {
+    meta:{lessonTitle:"The Fox at Recess: A Ridge Den Investigation",lessonVersion:"0.2-partial",standard:"AZ 5.L3U1.10",studentLabel:"",sessionCode:"",startedAt:"",lastSavedAt:""},
+    navigation:{currentScreen:1,firstPath:""},
+    progress:{visitedScreens:[1]},
+    entry:{playgroundNote:"",homeNote:"",emailSubject:"Fox sighting near playground fence",emailBody:"",mapObservation:"",assignmentAccepted:false},
+    firstInvestigation:{
+      gallery:{photosViewed:[],patternNote:"",limitationNote:""},
+      dashboard:{variablesViewed:[],lengthNote:"",massNote:"",conditionNote:"",compareDen:"Meadow Den",claim:""},
+      convergence:{combinedClaim:""}
+    }
+  };
+}
+let state=null;
+function save(){try{state.meta.lastSavedAt=nowISO();localStorage.setItem(LS_KEY,JSON.stringify(state));}catch(e){}}
+function load(){try{const raw=localStorage.getItem(LS_KEY);if(raw)return JSON.parse(raw);}catch(e){}return null;}
+function hasSave(){try{return !!localStorage.getItem(LS_KEY);}catch(e){return false;}}
+function getSessionCode(){
+  if(!state.meta.sessionCode){
+    const A="ABCDEFGHJKLMNPQRSTUVWXYZ23456789";let c="";
+    for(let i=0;i<6;i++)c+=A.charAt(Math.floor(Math.random()*A.length));
+    state.meta.sessionCode=c;try{save();}catch(e){}
+  }
+  return state.meta.sessionCode;
+}
+function getPath(p){return p.split(".").reduce((o,k)=>(o==null?o:o[k]),state);}
+function setPath(p,val){
+  const parts=p.split(".");let o=state;
+  for(let i=0;i<parts.length-1;i++)o=o[parts[i]];
+  o[parts[parts.length-1]]=val;save();
+}
+function textField(id,label,path,placeholder){
+  const cur=getPath(path)||"";
+  return `<label class="field-label" for="${id}">${esc(label)}</label>
+    <textarea id="${id}" data-path="${path}" placeholder="${esc(placeholder||"")}">${esc(cur)}</textarea>`;
+}
+function autoBindAll(root){
+  $$("textarea[data-path],input[data-path]",root).forEach(el=>{
+    el.addEventListener("input",()=>setPath(el.dataset.path,el.value));
+  });
+}
+function promptBox(q){return `<span class="prompt-box">${esc(q)}</span>`;}
+function imageBlock(src,alt){return `<img class="img-block" src="${src}" alt="${esc(alt||"")}" style="width:100%;min-height:208px;border-radius:11px;display:block;margin:0 0 8px;object-fit:cover;" onerror="imgFallback(this)">`;}
+
+/* ---------- Narrative helpers ---------- */
+function scene(o){
+  const media=o.img?`<img class="scene-media" src="${o.img}" alt="${esc(o.alt||"")}" onerror="imgFallback(this)">`:"";
+  const hud=o.hud?`<div class="hud"><span class="bracket tl"></span><span class="bracket tr"></span></div>${o.hudTag?`<span class="hud-tag">${esc(o.hudTag)}</span>`:""}`:"";
+  return `<div class="scene">${media}${hud}<div class="scene-copy">
+    ${o.stamp?`<span class="stamp">${esc(o.stamp)}</span>`:""}
+    <h2>${esc(o.title)}</h2>
+    ${o.sub?`<p class="scene-sub">${esc(o.sub)}</p>`:""}
+  </div></div>`;
+}
+function speak(nameHtml,lines,verb){
+  const L=Array.isArray(lines)?lines:[lines];
+  let html=`<p class="dialogue"><span class="sp">${nameHtml}</span> ${esc(verb||"says")}: &ldquo;${esc(L[0])}&rdquo;</p>`;
+  for(let i=1;i<L.length;i++)html+=`<p class="dialogue">&ldquo;${esc(L[i])}&rdquo;</p>`;
+  return html;
+}
+function reed(lines){return speak("Dr. Reed",lines);}
+function alvarez(lines){return speak("Mr. Alvarez",lines);}
+function dialogue(){return `<div class="dialogue-block">${[].slice.call(arguments).join("")}</div>`;}
+function caseFile(tab,html){return `<div class="case-file"><span class="file-tab">${esc(tab)}</span>${html}</div>`;}
+function alertPanel(html){return `<div class="alert-panel">${html}</div>`;}
+
+/* ===================== Screen router ===================== */
+const SCREENS={};
+function registerScreen(n,def){SCREENS[n]=def;}
+function setContinue(ok){
+  const b=$("#continueBtn");
+  if(b)b.disabled=!ok;
+}
+function updateHeader(){
+  const n=state.navigation.currentScreen;
+  const def=SCREENS[n];
+  $("#headerTitle").textContent=(n===1)?"":(def&&def.title?def.title:("Screen "+n));
+  const nav=$("#navbar");
+  nav.classList.toggle("hidden",n===1);
+  document.body.classList.toggle("has-navbar",n!==1);
+  const backBtn=$("#backBtn");
+  if(backBtn)backBtn.style.visibility=(n===1)?"hidden":"visible";
+  const contBtn=$("#continueBtn");
+  if(contBtn)contBtn.style.display=(def&&def.hideNav)?"none":"";
+  updateTracker(n);
+}
+function updateTracker(n){
+  const t=$("#tracker");
+  if(!t)return;
+  t.classList.toggle("hidden",n===1);
+  if(n===1)return;
+  const p=state.navigation.firstPath;
+  const step1Done=!!p;
+  const step1Value=p==="gallery"?"Study the Sightings":p==="dashboard"?"Study the Numbers":"Awaiting your choice…";
+  t.innerHTML=`<div class="tracker-inner">
+    <div class="tracker-step ${step1Done?"done":""}"><span class="ts-num">${step1Done?"&#10003;":"1"}</span><div><div class="ts-label">Evidence Path</div><div class="ts-value">${esc(step1Value)}</div></div></div>
+    <div class="tracker-step soon"><span class="ts-num">2</span><div><div class="ts-label">Deeper Investigation</div><div class="ts-value">Coming soon</div></div></div>
+  </div>`;
+}
+function renderCurrent(){
+  const n=state.navigation.currentScreen;
+  const def=SCREENS[n];
+  const stage=$("#stage");
+  if(!def){stage.innerHTML="<p>Screen not found.</p>";return;}
+  stage.innerHTML=def.render();
+  updateHeader();
+  setContinue(true);
+  if(def.init)def.init(stage);
+}
+function goToScreen(n){
+  if(n==="8A"&&state.navigation.firstPath!=="gallery")n=7;
+  if(n==="8B"&&state.navigation.firstPath!=="dashboard")n=7;
+  if(n===9&&!state.navigation.firstPath)n=7;
+  $("#modalRoot").innerHTML="";
+  document.removeEventListener("keydown",escClose);
+  document.removeEventListener("keydown",escCloseDrawer);
+  state.navigation.currentScreen=n;
+  if(!state.progress)state.progress={visitedScreens:[]};
+  if(!state.progress.visitedScreens.includes(n))state.progress.visitedScreens.push(n);
+  save();renderCurrent();
+  window.scrollTo({top:0,behavior:(matchMedia("(prefers-reduced-motion:reduce)").matches?"auto":"smooth")});
+}
+const NUMERIC_ORDER=[1,2,3,4,5,6,7];
+function nextScreen(){
+  const n=state.navigation.currentScreen;
+  const i=NUMERIC_ORDER.indexOf(n);
+  if(i>-1 && i<NUMERIC_ORDER.length-1)goToScreen(NUMERIC_ORDER[i+1]);
+}
+function prevScreen(){
+  const n=state.navigation.currentScreen;
+  if(n===9){
+    if(state.navigation.firstPath==="gallery")goToScreen("8A");
+    else if(state.navigation.firstPath==="dashboard")goToScreen("8B");
+    else goToScreen(7);
+    return;
+  }
+  if(n==="8A"||n==="8B"){goToScreen(7);return;}
+  const i=NUMERIC_ORDER.indexOf(n);
+  if(i>0)goToScreen(NUMERIC_ORDER[i-1]);
+}
+$("#continueBtn").addEventListener("click",nextScreen);
+
+/* ---------- Modal ---------- */
+function openModal(bodyHtml,onMount){
+  const root=$("#modalRoot");
+  root.innerHTML=`<div class="modal-overlay" id="mOverlay"><div class="modal-box" role="dialog" aria-modal="true">${bodyHtml}</div></div>`;
+  const ov=$("#mOverlay",root);
+  ov.addEventListener("click",e=>{if(e.target===ov)closeModal();});
+  document.addEventListener("keydown",escClose);
+  if(onMount)onMount(root);
+}
+function escClose(e){if(e.key==="Escape")closeModal();}
+function closeModal(){$("#modalRoot").innerHTML="";document.removeEventListener("keydown",escClose);}
+
+/* ---------- Slide-out drawer (Glossary = left, Journal = right) ---------- */
+let drawerLastFocus=null;
+function openDrawer(side,titleText,bodyHtml){
+  const root=$("#modalRoot");
+  drawerLastFocus=document.activeElement;
+  root.innerHTML=`<div class="drawer-overlay" id="drOverlay"></div>
+    <div class="drawer ${side}" id="drPanel" role="dialog" aria-modal="true" aria-label="${esc(titleText)}">
+      <div class="drawer-head"><h2>${esc(titleText)}</h2><button class="drawer-close" id="drClose" aria-label="Close">&times;</button></div>
+      <div class="drawer-body">${bodyHtml}</div>
+    </div>`;
+  $("#drOverlay",root).addEventListener("click",closeDrawer);
+  $("#drClose",root).addEventListener("click",closeDrawer);
+  document.addEventListener("keydown",escCloseDrawer);
+  requestAnimationFrame(()=>{$("#drPanel",root).classList.add("open");});
+}
+function escCloseDrawer(e){if(e.key==="Escape")closeDrawer();}
+function closeDrawer(){
+  const panel=$("#drPanel");
+  if(!panel){$("#modalRoot").innerHTML="";return;}
+  panel.classList.remove("open");
+  document.removeEventListener("keydown",escCloseDrawer);
+  setTimeout(()=>{$("#modalRoot").innerHTML="";},200);
+  if(drawerLastFocus&&drawerLastFocus.focus)drawerLastFocus.focus();
+}
+
+/* ===================== Glossary (minimal) ===================== */
+const GLOSSARY=[
+  ["Litter size","The number of kits (baby foxes) born to a vixen in one season."],
+  ["Body condition","A simple 1–5 rating of how healthy and well-fed an animal looks."],
+  ["Trail camera","A weatherproof camera set up in the field that takes a photo automatically when it detects motion."],
+  ["Field data","Measurements collected by scientists directly in a natural habitat, not in a lab."]
+];
+function openGlossary(){
+  openDrawer("left","Glossary",`<dl>${GLOSSARY.map(([t,d])=>`<dt>${esc(t)}</dt><dd>${esc(d)}</dd>`).join("")}</dl>`);
+}
+
+/* ===================== Journal (only encountered prompts/decisions) ===================== */
+const JOURNAL_SCHEMA=[
+  {screen:3,label:"What evidence should Gracie record from the playground sighting and her experiences near Ridge Trail?",get:()=>state.entry.homeNote,type:"prompt"},
+  {screen:4,label:"Email to the Pinecrest Elementary Front Office",get:()=>{
+      const subj=(state.entry.emailSubject||"").trim();
+      const body=(state.entry.emailBody||"").trim();
+      return [subj?("Subject: "+subj):"",body].filter(Boolean).join(" — ");
+    },type:"prompt"},
+  {screen:6,label:"Pinecrest Map Note",get:()=>state.entry.mapObservation,type:"prompt"},
+  {screen:7,label:"Investigation team chosen",type:"decision",get:()=>{
+      const p=state.navigation.firstPath;
+      if(p==="gallery")return "Study the Sightings (trail-camera evidence)";
+      if(p==="dashboard")return "Study the Numbers (field measurements)";
+      return "";
+    },ready:()=>!!state.navigation.firstPath},
+  {screen:"8A",label:"Sightings Team note",get:()=>state.firstInvestigation.gallery.patternNote,type:"prompt",onlyIfPath:"gallery"},
+  {screen:"8B",label:"Working note: Litter size",get:()=>state.firstInvestigation.dashboard.lengthNote,type:"prompt",onlyIfPath:"dashboard",ready:()=>state.firstInvestigation.dashboard.variablesViewed.includes("litter")},
+  {screen:"8B",label:"Working note: Average kit weight",get:()=>state.firstInvestigation.dashboard.massNote,type:"prompt",onlyIfPath:"dashboard",ready:()=>state.firstInvestigation.dashboard.variablesViewed.includes("weight")},
+  {screen:"8B",label:"Working note: Body-condition score",get:()=>state.firstInvestigation.dashboard.conditionNote,type:"prompt",onlyIfPath:"dashboard",ready:()=>state.firstInvestigation.dashboard.variablesViewed.includes("condition")},
+  {screen:"8B",label:"Numbers Team note",get:()=>state.firstInvestigation.dashboard.claim,type:"prompt",onlyIfPath:"dashboard"},
+  {screen:9,label:"Room 12 convergence note",get:()=>state.firstInvestigation.convergence.combinedClaim,type:"prompt"}
+];
+function openJournal(){
+  const visited=state.progress&&state.progress.visitedScreens?state.progress.visitedScreens:[];
+  const entries=JOURNAL_SCHEMA.filter(e=>{
+    if(!visited.includes(e.screen))return false;
+    if(e.onlyIfPath&&state.navigation.firstPath!==e.onlyIfPath)return false;
+    if(e.ready&&!e.ready())return false;
+    return true;
+  });
+  let body;
+  if(!entries.length){
+    body=`<p class="journal-empty">Your journal will fill in as you work through the investigation.</p>`;
+  }else{
+    body=entries.map(e=>{
+      const val=(e.get()||"").toString().trim();
+      const answered=val.length>0;
+      const cls=e.type==="decision"?"journal-entry decision":"journal-entry";
+      return `<div class="${cls}"><div class="je-screen">Screen ${e.screen}</div><div class="je-q">${esc(e.label)}</div><div class="je-a${answered?"":" blank"}">${answered?esc(val):"Not answered yet"}</div></div>`;
+    }).join("");
+  }
+  openDrawer("right","Investigation Journal",body);
+}
+
+/* ===================== Data ===================== */
+const YEARS=[2022,2023,2024,2025,2026];
+const DENS=["Ridge Den","Meadow Den","Quarry Den"];
+const DEN_COLOR={"Ridge Den":"#E2703A","Meadow Den":"#2C6B44","Quarry Den":"#3E8C5C"};
+const litterSize={"Ridge Den":[5,5,4,3,2],"Meadow Den":[5,4,5,4,5],"Quarry Den":[4,4,4,5,4]};
+const kitWeight={"Ridge Den":[1.8,1.7,1.5,1.2,0.9],"Meadow Den":[1.8,1.8,1.7,1.8,1.9],"Quarry Den":[1.7,1.8,1.7,1.7,1.8]};
+const bodyCondition={"Ridge Den":[4.2,4.0,3.4,2.8,2.2],"Meadow Den":[4.1,4.2,4.0,4.1,4.2],"Quarry Den":[4.0,4.1,4.0,4.0,4.1]};
+const VARIABLES={
+  litter:{key:"litter",label:"Litter size",unit:"kits",data:litterSize,yMin:0,yMax:6,note:"lengthNote"},
+  weight:{key:"weight",label:"Average kit weight",unit:"kg",data:kitWeight,yMin:0,yMax:2.2,note:"massNote"},
+  condition:{key:"condition",label:"Body-condition score",unit:"(1–5 scale)",data:bodyCondition,yMin:0,yMax:5,note:"conditionNote"}
+};
+
+/* ===================== Pinecrest Map ===================== */
+/* Adjust map marker x/y percentages here after final map art is added. */
+const MAP_POINTS={
+  orientation:[
+    {id:"school",label:"Pinecrest Elementary",type:"school",x:22,y:77,desc:"Friday's fox sighting happened near the back playground fence."},
+    {id:"sighting",label:"Fox Sighting",type:"sighting",x:45,y:72,desc:"The X marks where students saw the fox cross the playground before it disappeared near the fence."},
+    {id:"ridgetrail",label:"Ridge Trail",type:"town",x:82,y:65,desc:"A new neighborhood built along the edge of the forested ridge. Gracie's family lives here."},
+    {id:"forest",label:"Forested Ridge",type:"forest",x:76,y:19,desc:"A large wooded area bordering the school, town, and Ridge Trail."},
+    {id:"townarea",label:"Pinecrest Town Area",type:"town",x:39,y:46,desc:"Most of Pinecrest's homes, stores, roads, and community buildings are located here."}
+  ],
+  sightings:[
+    {id:"ridgeden",label:"Ridge Den",type:"den",x:73,y:40,desc:"The committee has monitored this den area for five fox seasons."},
+    {id:"dencam",label:"Den Camera",type:"camera",x:78,y:43,desc:"Recorded fox activity at and near the Ridge Den entrance during multiple seasons."},
+    {id:"ridgepathcam",label:"Ridge Path Camera",type:"camera",x:66,y:49,desc:"Placed along an animal path between the den area and Ridge Trail."},
+    {id:"porchcam",label:"Porch Camera",type:"camera",x:81,y:70,desc:"Located beside a home in the Ridge Trail neighborhood."},
+    {id:"fencecam",label:"Fence-Line Camera",type:"camera",x:89,y:51,desc:"Located where the forest meets the subdivision construction boundary."}
+  ],
+  numbers:[
+    {id:"ridgeden",label:"Ridge Den",type:"den",x:73,y:40,desc:"Located near the forest edge closest to the Ridge Trail neighborhood."},
+    {id:"meadowden",label:"Meadow Den",type:"den",x:16,y:34,desc:"Located in a forest-and-meadow area farther from the new subdivision."},
+    {id:"quarryden",label:"Quarry Den",type:"den",x:48,y:20,desc:"Located near a rocky wooded area in another part of Pinecrest."}
+  ]
+};
+const MAP_IMAGE={
+  orientation:"images/pinecrest-town-map-orientation.png",
+  sightings:"images/pinecrest-town-map-reference.png",
+  numbers:"images/pinecrest-town-map-reference.png"
+};
+const MAP_LEGEND_LABELS={school:"School",town:"Town/location",forest:"Forest",sighting:"Fox sighting",den:"Den",camera:"Trail camera"};
+const MAP_GLYPH={school:"S",town:"T",forest:"F",sighting:"X",den:"D",camera:"C"};
+const MAP_ALT_TEXT={
+  orientation:"An unlabeled illustrated map of Pinecrest with interactive markers for Pinecrest Elementary, the town area, Ridge Trail, the forested ridge, and the fox sighting.",
+  sightings:"Map of Pinecrest with Pinecrest Elementary, Pinecrest Town, Forested Ridge, and Ridge Trail printed on the map for reference, plus interactive markers for Ridge Den and four trail-camera locations.",
+  numbers:"Map of Pinecrest with Pinecrest Elementary, Pinecrest Town, Forested Ridge, and Ridge Trail printed on the map for reference, plus interactive markers for Ridge Den, Meadow Den, and Quarry Den."
+};
+const MAP_DEFAULT_MESSAGE={
+  orientation:"Tap a location on the map to learn more.",
+  sightings:"Tap a den or camera marker to learn where the trail-camera evidence was collected.",
+  numbers:"Tap a den marker to learn where the field measurements were collected."
+};
+
+function renderPinecrestMap(layer){
+  const points=MAP_POINTS[layer]||[];
+  const legendTypes=[...new Set(points.map(p=>p.type))];
+  const mapSrc=MAP_IMAGE[layer]||MAP_IMAGE.orientation;
+  return `<div class="card">
+    <div class="map-wrap2">
+      <img src="${mapSrc}" alt="${esc(MAP_ALT_TEXT[layer]||"An illustrated map of Pinecrest.")}" onerror="imgFallback(this)">
+      ${points.map(p=>`<div class="map-point" style="left:${p.x}%;top:${p.y}%">
+        <button type="button" class="map-marker marker-${p.type}" data-id="${p.id}" aria-pressed="false" aria-label="${esc(p.label)}">${esc(MAP_GLYPH[p.type]||"?")}</button>
+        <span class="map-point-label">${esc(p.label)}</span>
+      </div>`).join("")}
+    </div>
+    <div class="map-legend">${legendTypes.map(t=>`<span><i class="marker-${t}"></i>${esc(MAP_LEGEND_LABELS[t]||t)}</span>`).join("")}</div>
+    <div class="map-info-panel" id="mapInfoPanel" aria-live="polite"><p class="mi-empty">${esc(MAP_DEFAULT_MESSAGE[layer]||"Tap a location on the map to learn more.")}</p></div>
+  </div>`;
+}
+function bindPinecrestMap(root,layer){
+  const points=MAP_POINTS[layer]||[];
+  $$(".map-marker",root).forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      $$(".map-marker",root).forEach(b=>b.setAttribute("aria-pressed","false"));
+      btn.setAttribute("aria-pressed","true");
+      const p=points.find(x=>x.id===btn.dataset.id);
+      const panel=$("#mapInfoPanel",root);
+      if(p&&panel)panel.innerHTML=`<div class="mi-label">${esc(p.label)}</div><p style="margin:0">${esc(p.desc)}</p>`;
+    });
+  });
+}
+
+const CONVERGENCE_REPORTS={
+  gallery:"Across five seasons, later camera records show foxes appearing closer to Ridge Trail homes and the construction edge. The later records also show smaller kits and more uneven-looking fur than the earliest records.",
+  dashboard:"At Ridge Den, litter size, average kit weight, and body-condition score decreased from 2022 to 2026. The same measurements at Meadow Den and Quarry Den stayed mostly steady."
+};
+
+const GALLERY=[
+  {id:"g1",year:2022,caption:"Den entrance, daytime",img:"images/trailcam-2022-a.png",note:"Four kits near the den entrance. Similar size. All four are gathered close together."},
+  {id:"g2",year:2022,caption:"Near Ridge Den, dusk",img:"images/trailcam-2022-b.png",note:"Adult vixen with a white-tipped tail returning toward the den carrying prey."},
+  {id:"g3",year:2023,caption:"Den entrance, daytime",img:"images/trailcam-2023-a.png",note:"New litter outside the den. Kits are staying close together near the den mouth."},
+  {id:"g4",year:2024,caption:"Den entrance, daytime",img:"images/trailcam-2024-a.png",note:"Several kits outside the den. One appears smaller than the others and is standing slightly apart."},
+  {id:"g5",year:2024,caption:"Ridge trail camera, daytime",img:"images/trailcam-2024-b.png",note:"Single kit passing very close to the camera."},
+  {id:"g6",year:2025,caption:"Near Ridge Den, daytime",img:"images/trailcam-2025-a.png",note:"Litter outside the den. Some kits appear smaller, and one or two have uneven-looking fur."},
+  {id:"g7",year:2026,caption:"Porch camera, night",img:"images/trailcam-2026-porch.png",note:"Motion alert: juvenile fox near porch step and bowl beside the house."},
+  {id:"g8",year:2026,caption:"Edge of Ridge Trail, daytime",img:"images/trailcam-2026-b.png",note:"Adult fox with white-tipped tail and two kits near a silt fence. Cleared ground is visible behind them."}
+];
+
+/* ===================== Screen 1 — Launch ===================== */
+registerScreen(1,{title:"Launch",hideNav:true,
+  render(){
+    const started=hasSave()&&state.navigation.currentScreen>1;
+    const objectives=[
+      "Distinguish evidence about where and how an animal appears from evidence about physical traits like body size or condition.",
+      "Compare observational evidence (photographs) with measured evidence (field data) to determine whether a pattern is real.",
+      "Analyze patterns across multiple records to identify a possible cause-and-effect relationship.",
+      "Explain how a change in an environment could affect the development of traits in a wild population.",
+      "Communicate scientific thinking through investigation-journal responses.",
+      "Make evidence-based decisions and reflect on how community science informs real town decisions."
+    ];
+    const objHtml=objectives.map((o,i)=>`<div class="obj-card"><div class="obj-num">${i+1}</div><p>${esc(o)}</p></div>`).join("");
+    const launchNarr="Recess is usually predictable. Kickball. Four square. The same arguments about whose turn is next. But today, something ran near the blacktop that was not supposed to be there. Gracie and her classmates had only seconds to see it before Mr. Alvarez hurried everyone inside. What they saw would lead Room 12 to a mystery stretching from the playground to the new houses on Ridge Trail.";
+    return `<div class="screen">
+      <div class="hero-frame">
+        <div class="hero-media-wrap">
+          <img class="hero-media" src="images/ridge-forest-dusk-hero.png" alt="A forested ridge above a small mountain town at dusk, silhouetted pines against a darkening sky." onerror="imgFallback(this)">
+        </div>
+        <p class="hero-eyebrow">Stories in Science &middot; Grade 5 &middot; Life Science</p>
+        <h1><strong>The Fox at Recess</strong>: <i>A Ridge Den Investigation</i></h1>
+        ${ttsButton(launchNarr)}
+        <p class="hero-lead">Recess is usually predictable. Kickball. Four square. The same arguments about whose turn is next.</p>
+        <p class="hero-lead" style="margin-top:-6px">But today, something ran near the blacktop that was not supposed to be there.</p>
+        <p class="hero-lead" style="margin-top:-6px">Gracie and her classmates had only seconds to see it before Mr. Alvarez hurried everyone inside.</p>
+        <p class="hero-lead" style="margin-top:-6px">What they saw would lead Room 12 to a mystery stretching from the playground to the new houses on Ridge Trail.</p>
+        <button class="btn btn-amber" id="laBegin" style="margin-top:8px">${started?"Return to the Investigation":"See What Happened"}</button>
+      </div>
+
+      <details class="about-lesson">
+        <summary class="collapse-head">Learning Objectives &amp; Instructional Alignment <span aria-hidden="true">&#9660;</span></summary>
+        <div class="collapse-body">
+          <p>Students investigate evidence from a ridge fox den to construct an explanation for how environmental change can affect the development of traits in a wild population, using two independent evidence sources compared at a shared convergence point. <em>(Note: this build currently includes the Entry and Exploration layers only , Sensemaking, Application, and Reflection are not yet built.)</em></p>
+          <p class="sect-label">Learning Objectives</p>
+          <div class="obj-grid">${objHtml}</div>
+          <p class="sect-label">Standards &amp; Practices</p>
+          <div class="std-grid">
+            <div class="std-col"><h4>&#128209; Arizona Science Standard</h4><p><span class="std-code">5.L3U1.10</span>, Construct an explanation based on evidence that changes in an environment can affect the development of traits in a population of organisms.</p></div>
+            <div class="std-col"><h4>&#9878;&#65039; Science &amp; Engineering Practices</h4><p>Analyzing and Interpreting Data &middot; Constructing Explanations &middot; Engaging in Argument from Evidence &middot; Obtaining, Evaluating, and Communicating Information</p></div>
+            <div class="std-col"><h4>&#128279; Crosscutting Concepts</h4><p>Cause and Effect &middot; Patterns &middot; Stability and Change</p></div>
+          </div>
+          <div class="framework-callout">
+            <h4>&#11088; Stories in Science Framework Alignment</h4>
+            <p>Students enter through a real classroom phenomenon in Room 12, choose an investigation pathway (trail-camera archive vs. field-data dashboard), analyze evidence as a team, and prepare a team note for the class before comparing findings with the other team at a shared convergence point.</p>
+          </div>
+        </div>
+      </details>
+
+      <div class="utility-row">
+        <button id="laRestart">Restart</button><span class="u-sep">&middot;</span>
+        <span class="u-code">Code: ${esc(getSessionCode())}</span>
+      </div>
+      <div class="landing-footer">&copy; 2026 Brooke Toon. Part of the Stories in Science Framework. This is a partial build (Entry + Exploration layers) for review.</div>
+    </div>`;
+  },
+  init(root){
+    function go(){
+      if(!state.meta.startedAt)state.meta.startedAt=nowISO();
+      const target=(hasSave()&&state.navigation.currentScreen>1)?state.navigation.currentScreen:2;
+      goToScreen(target);
+    }
+    $("#laBegin",root).addEventListener("click",go);
+    $("#laRestart",root).addEventListener("click",()=>{
+      if(confirm("Restart the investigation? This clears your saved progress.")){
+        localStorage.removeItem(LS_KEY);state=defaultState();goToScreen(1);
+      }
+    });
+  }
+});
+
+/* ===================== Screen 2 — The Alert ===================== */
+registerScreen(2,{title:"Recess",
+  render(){
+    return `<div class="screen">
+      ${scene({stamp:"Pinecrest Elementary",title:"Recess"})}
+      <div class="scene-duo">
+        <div class="duo-text">
+          ${dialogue(
+            `<p class="dialogue">Kickball was mid-inning. The four-square line was arguing about a do-over. Then, near the back fence, something moved low and fast near the blacktop.</p>`,
+            `<p class="dialogue observation-emphasis">Reddish coat. Pointed ears. Bushy tail. It crossed the open pavement, slipped under the fence beside the construction gate, and disappeared into the trees.</p>`
+          )}
+          ${dialogue(
+            speak("Gracie","Wait—was that—"),
+            speak("Nick","That's a fox!"),
+            speak("Mr. Alvarez","Everyone inside. Now.")
+          )}
+        </div>
+        <div class="duo-img">${imageBlock("images/playground-fox-sighting.png","A fox crossing an elementary school playground in daylight while kids nearby turn to look.")}</div>
+      </div>
+    </div>`;
+  },
+  init(root){autoBindAll(root);}
+});
+
+/* ===================== Screen 3 — Back in Class ===================== */
+registerScreen(3,{title:"Back in Class",
+  render(){
+    return `<div class="screen">
+      ${scene({stamp:"Pinecrest Elementary · Room 12",title:"Back in Class"})}
+      <div class="card">
+        <p class="narrative-line">The classroom buzzed with theories about what they had seen.</p>
+        <div class="scene-duo">
+          <div class="duo-img">${imageBlock("images/classroom-buzz.png","An elementary classroom buzzing with students talking excitedly after recess.")}</div>
+          <div class="duo-text">
+            ${dialogue(
+              alvarez("Before we decide why the fox was here, let's separate what we observed from what we're guessing."),
+              speak("Nick","It crossed the playground. What if it comes back?"),
+              speak("Gracie","I think I've seen it before. Something has been coming near our fence since we moved to Ridge Trail."),
+              alvarez("That may matter. But one sighting does not explain what is happening. We need more evidence.")
+            )}
+          </div>
+        </div>
+        <p class="narrative-line" style="margin-bottom:0">Gracie's curiosity grew. She opened her notebook and began recording what the class knew.</p>
+      </div>
+      <div class="card">
+        ${promptBox("What evidence should Gracie record from the playground sighting and her experiences near Ridge Trail?")}
+        ${textField("q_home","Write down your note","entry.homeNote","Type your thinking…")}
+      </div>
+    </div>`;
+  },
+  init(root){autoBindAll(root);}
+});
+
+/* ===================== Screen 4 — A Message About Ridge Den + decision ===================== */
+/* ===================== Screen 4 — Writing to the Front Office ===================== */
+registerScreen(4,{title:"Writing to the Front Office",
+  render(){
+    return `<div class="screen">
+      ${scene({stamp:"Pinecrest Elementary · Room 12",title:"Writing to the Front Office"})}
+      <div class="card">
+        <div class="scene-duo">
+          <div class="duo-text">
+            <p class="narrative-line">Mr. Alvarez decided the front office needed to know about the fox today, before heading into the weekend.</p>
+            ${dialogue(alvarez("Let's write this together. What does the office need to know?"))}
+          </div>
+          <div class="duo-img">${imageBlock("images/front-office.png","The Pinecrest Elementary front office.")}</div>
+        </div>
+      </div>
+      <div class="card">
+        ${promptBox("Write two or three sentences reporting what happened. Include only observations the class can support.")}
+        <div class="email-compose">
+          <div class="ec-head">
+            <div class="ec-row"><span class="ec-label">To:</span> Pinecrest Elementary Front Office</div>
+            <div class="ec-row"><span class="ec-label">From:</span> Mr. Alvarez, Room 12</div>
+          </div>
+          <input type="text" class="ec-subject" id="email_subject" data-path="entry.emailSubject" placeholder="Subject">
+          <textarea class="ec-body" id="email_body" data-path="entry.emailBody" placeholder="Two or three sentences of what the class observed…"></textarea>
+        </div>
+      </div>
+    </div>`;
+  },
+  init(root){
+    autoBindAll(root);
+    const subj=$("#email_subject",root);if(subj)subj.value=state.entry.emailSubject||"";
+    const body=$("#email_body",root);if(body)body.value=state.entry.emailBody||"";
+  }
+});
+
+/* ===================== Screen 5 — A Message About Ridge Den + decision ===================== */
+registerScreen(5,{title:"A Message About Ridge Den",
+  render(){
+    return `<div class="screen">
+      ${scene({stamp:"Room 12 · Smartboard",title:"A Message About Ridge Den"})}
+      <div class="card">
+        <p class="narrative-line">On Monday, Mr. Alvarez was surprised to find a reply to Friday's email in his inbox. The front office had forwarded Room 12's report to the Pinecrest Community Wildlife Action Committee.</p>
+        <div class="scene-duo">
+          <div class="duo-text">
+            ${dialogue(alvarez("The school sent Friday's sighting to the Pinecrest Community Wildlife Action Committee &mdash; Dr. Reed says it may connect to foxes the committee has tracked near Ridge Den."))}
+          </div>
+          <div class="duo-img">${imageBlock("images/message.png","A message from the Pinecrest Community Wildlife Action Committee.")}</div>
+        </div>
+        ${imageBlock("images/the-email.png","The Pinecrest Community Wildlife Action Committee's email reply to Room 12.")}
+        <p class="narrative-line" style="margin-bottom:0">Dr. Reed also attached a map of Pinecrest so Room 12 could see where the sighting happened.</p>
+      </div>
+    </div>`;
+  },
+  init(root){autoBindAll(root);}
+});
+
+/* ===================== Screen 6 — Mapping Pinecrest ===================== */
+registerScreen(6,{title:"Mapping Pinecrest",
+  render(){
+    return `<div class="screen">
+      ${scene({stamp:"Dr. Reed's Evidence Packet",title:"Mapping Pinecrest",sub:"Where did the sighting happen?"})}
+      <div class="card">
+        <p class="narrative-line">Dr. Reed had included a map of Pinecrest with the committee's message. It showed the school, the forested ridge, the new Ridge Trail neighborhood, and the place where the fox crossed the playground.</p>
+        ${dialogue(
+          speak("Gracie","That’s Ridge Trail. I live there—our house is near the edge of the trees."),
+          speak("Nick","So the fox could have come from near your neighborhood?"),
+          alvarez("It could have, but the map does not show which path the fox traveled. For now, record what the map actually shows.")
+        )}
+      </div>
+      ${renderPinecrestMap("orientation")}
+      <div class="card">
+        <h2>Pinecrest Map Note</h2>
+        ${promptBox("What do you notice about where the school, Ridge Trail, the forested area, and the fox sighting are located? What question does the map raise for you?")}
+        ${textField("map_note","Your map note","entry.mapObservation")}
+        <p class="narrative-line" style="margin-bottom:0">The map shows where the sighting happened, but it does not yet show where the committee collected its evidence.</p>
+      </div>
+    </div>`;
+  },
+  init(root){
+    bindPinecrestMap(root,"orientation");
+    autoBindAll(root);
+  }
+});
+
+/* ===================== Screen 7 — Decision Point 1 ===================== */
+registerScreen(7,{title:"Choose Your Evidence Path",
+  render(){
+    return `<div class="screen">
+      ${scene({stamp:"Room 12 · Investigation Teams",title:"Choose Your Evidence Path"})}
+      <div class="card">
+        <div class="scene-duo">
+          <div class="duo-img">${imageBlock("images/evidence-path.png","Mr. Alvarez introducing two evidence paths to Room 12.")}</div>
+          <div class="duo-text">
+            <p class="narrative-line">Mr. Alvarez explains that Dr. Reed's files contain two different kinds of evidence.</p>
+            <p class="narrative-line">Each of you will get to decide which evidence to examine. We will have two teams!</p>
+            <p class="narrative-line" style="margin-bottom:0">Each team will investigate one side of the problem, then return to Room 12 to share what it learned.</p>
+          </div>
+        </div>
+        ${dialogue(
+          speak("Mr. Alvarez","Which evidence will you two investigate first?","walks over to Gracie and Nick and says"),
+          speak("Gracie","What if you do one and I do the other?"),
+          speak("Nick","Great idea, Gracie! You pick first!","replies")
+        )}
+        ${promptBox("Which evidence should Gracie investigate first?")}
+      </div>
+      <div class="station-grid">
+        <button class="station-card" data-path="gallery">
+          <div class="st-top"></div>
+          <div class="st-body">
+            <span class="st-kicker">Trail-camera evidence</span>
+            <h3>Study the Sightings</h3>
+            <p>Compare five seasons of images to look for changes in where, when, and how the foxes appear.</p>
+            <span class="st-open">Open the Archive &rarr;</span>
+          </div>
+        </button>
+        <button class="station-card" data-path="dashboard">
+          <div class="st-top"></div>
+          <div class="st-body">
+            <span class="st-kicker">Field measurements</span>
+            <h3>Study the Numbers</h3>
+            <p>Compare five years of measurements from Ridge Den and two other dens.</p>
+            <span class="st-open">Open the Dashboard &rarr;</span>
+          </div>
+        </button>
+      </div>
+    </div>`;
+  },
+  init(root){
+    $$(".station-card",root).forEach(card=>card.addEventListener("click",()=>{
+      state.navigation.firstPath=card.dataset.path;save();
+      goToScreen(card.dataset.path==="gallery"?"8A":"8B");
+    }));
+  }
+});
+
+/* ===================== Screen 8A — Trail-Cam Archive ===================== */
+registerScreen("8A",{title:"The Trail-Cam Archive",hideNav:true,
+  render(){
+    return `<div class="screen">
+      ${scene({stamp:"Sightings Team",title:"The Trail-Cam Archive"})}
+      <div class="card">
+        <p class="narrative-line">Gracie joins the Sightings Team, while Nick heads to the Numbers Team. Once there, Gracie opens a camera-placement map from Dr. Reed's evidence packet. The new markers show where the trail-camera records were collected.</p>
+        ${dialogue(alvarez("Notice that the cameras were not all in the same place. Their locations may help your team interpret what each image shows."))}
+      </div>
+      ${renderPinecrestMap("sightings")}
+      <div class="card">
+        <p class="narrative-line" style="margin-bottom:0">Now examine the records from those camera locations in chronological order.</p>
+      </div>
+      <div class="card">
+        <p class="narrative-line">The Sightings Team receives a digital archive containing five seasons of trail-camera photographs from Ridge Den. Some cameras were placed near the den. Others recorded animal paths closer to Ridge Trail.</p>
+        ${dialogue(alvarez("Look at the photographs in order. One unusual image may not mean much by itself. Your team needs to determine whether the records show a pattern."))}
+        <p class="narrative-line" style="margin-bottom:0"><strong>Open all eight trail-camera records.</strong> Pay attention to what changes &mdash; and what stays the same.</p>
+      </div>
+      <div class="card">
+        <div class="gallery-grid" id="galleryGrid">
+          ${GALLERY.map(g=>`<button class="photo-tile" data-id="${g.id}" aria-label="Open photo from ${g.year}">
+            <img class="tile-img" src="${g.img}" alt="Trail-camera photo, ${g.year}" onerror="imgFallback(this)">
+            <span class="tile-year">${g.year}</span>
+            <span class="tile-seen">viewed</span>
+          </button>`).join("")}
+        </div>
+        <p class="small muted">${GALLERY.length} photos, five seasons (2022&ndash;2026).</p>
+        <div id="galleryExpand"></div>
+      </div>
+      <div id="galleryReveal" class="card hidden">
+        <p class="narrative-line">After the final image opens, Gracie returns to the earliest photographs.</p>
+        ${dialogue(
+          speak("Gracie","The recent records don't look quite like the first ones."),
+          alvarez("Then your team needs to describe exactly what changed. Report only what the photographs can support.")
+        )}
+        <h2>Prepare the Sightings Team Note</h2>
+        ${promptBox("What should the Sightings Team report to Room 12 about how the Ridge Den foxes have appeared or behaved over the five seasons? Use evidence from at least two trail-camera records.")}
+        ${textField("gal_pattern","Sightings Team note","firstInvestigation.gallery.patternNote")}
+        <div class="path-transition">The Sightings Team saves its note and returns to Room 12. The photographs show what the cameras captured, but the Numbers Team has evidence the cameras cannot provide.</div>
+        <div class="path-transition-actions">
+          <button class="btn btn-amber" id="continueConvergence">Return to Room 12 &rarr;</button>
+          <button class="btn-ghost" id="backToChoice">&larr; Back to the choice screen</button>
+        </div>
+      </div>
+    </div>`;
+  },
+  init(root){
+    bindPinecrestMap(root,"sightings");
+    const g=state.firstInvestigation.gallery;
+    function markSeen(id){
+      if(!g.photosViewed.includes(id)){g.photosViewed.push(id);save();}
+      const tile=$(`.photo-tile[data-id="${id}"]`,root);if(tile)tile.classList.add("seen");
+      if(g.photosViewed.length>=GALLERY.length){$("#galleryReveal",root).classList.remove("hidden");setContinue(true);}
+    }
+    function openPhoto(item){
+      $("#galleryExpand",root).innerHTML=`<div class="gallery-expand">
+        <div class="ge-photo-wrap">
+          <button class="ge-close" id="geClose" aria-label="Close">&times;</button>
+          <img class="ge-photo" src="${item.img}" alt="Trail-camera photo, ${item.year}" onerror="imgFallback(this)">
+        </div>
+        <div class="ge-body">
+          <div class="ge-meta">CAM LOG &middot; ${item.year} &middot; ${esc(item.caption)}</div>
+          <div class="ge-note">${esc(item.note)}</div>
+        </div>
+      </div>`;
+      $("#geClose",root).addEventListener("click",()=>{$("#galleryExpand",root).innerHTML="";});
+      markSeen(item.id);
+    }
+    $$(".photo-tile",root).forEach(tile=>{
+      const item=GALLERY.find(x=>x.id===tile.dataset.id);
+      tile.addEventListener("click",()=>openPhoto(item));
+      if(g.photosViewed.includes(item.id))tile.classList.add("seen");
+    });
+    autoBindAll(root);
+    const cc=$("#continueConvergence",root);if(cc)cc.addEventListener("click",()=>goToScreen(9));
+    const bc=$("#backToChoice",root);if(bc)bc.addEventListener("click",()=>goToScreen(7));
+    if(g.photosViewed.length>=GALLERY.length){$("#galleryReveal",root).classList.remove("hidden");}
+    else setContinue(false);
+  }
+});
+
+/* ===================== Screen 8B — Den-Monitoring Dashboard ===================== */
+function chartSVG(dens,varKey){
+  const V=VARIABLES[varKey];
+  const W=580,H=280,padL=46,padR=16,padT=22,padB=34;
+  const x=i=>padL+(i/(YEARS.length-1))*(W-padL-padR);
+  const y=v=>H-padB-((v-V.yMin)/(V.yMax-V.yMin))*(H-padT-padB);
+  let svg=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(V.label)} by year" style="width:100%;height:auto;font-family:var(--font-body),sans-serif;">`;
+  const gridSteps=4;
+  for(let s=0;s<=gridSteps;s++){
+    const v=V.yMin+(V.yMax-V.yMin)*(s/gridSteps);
+    svg+=`<line x1="${padL}" y1="${y(v)}" x2="${W-padR}" y2="${y(v)}" stroke="#e8e1cc" stroke-width="1"/>`;
+    svg+=`<text x="${padL-8}" y="${y(v)+4}" font-size="11" fill="#7a715c" text-anchor="end">${Math.round(v*10)/10}</text>`;
+  }
+  YEARS.forEach((yr,i)=>{
+    svg+=`<line x1="${x(i)}" y1="${padT}" x2="${x(i)}" y2="${H-padB}" stroke="#f0ebd9" stroke-width="1"/>`;
+    svg+=`<text x="${x(i)}" y="${H-padB+20}" font-size="12" fill="#5c6a5f" text-anchor="middle" font-weight="600">${yr}</text>`;
+  });
+  svg+=`<line x1="${padL}" y1="${H-padB}" x2="${W-padR}" y2="${H-padB}" stroke="#cfc9b4" stroke-width="1.5"/>`;
+  dens.forEach((den,di)=>{
+    const data=V.data[den];const color=DEN_COLOR[den];
+    const labelAbove=di===0;
+    let pts=data.map((v,i)=>`${x(i)},${y(v)}`).join(" ");
+    svg+=`<polyline points="${pts}" fill="none" stroke="${color}" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>`;
+    data.forEach((v,i)=>{
+      svg+=`<circle cx="${x(i)}" cy="${y(v)}" r="5.5" fill="${color}" stroke="#fff" stroke-width="1.5"><title>${esc(den)} — ${YEARS[i]}: ${v} ${esc(V.unit)}</title></circle>`;
+      svg+=`<text x="${x(i)}" y="${y(v)+(labelAbove?-11:18)}" font-size="12.5" font-weight="800" fill="${color}" text-anchor="middle">${v}</text>`;
+    });
+  });
+  svg+="</svg>";
+  return svg;
+}
+registerScreen("8B",{title:"The Den-Monitoring Dashboard",hideNav:true,
+  render(){
+    const dash=state.firstInvestigation.dashboard;
+    return `<div class="screen">
+      ${scene({stamp:"Numbers Team",title:"The Den-Monitoring Dashboard"})}
+      <div class="card">
+        <p class="narrative-line">Gracie joins the Numbers Team, while Nick heads to the Sightings Team. Once there, Gracie opens the committee's den-monitoring map. The new markers show the three dens included in the field records.</p>
+        ${dialogue(alvarez("Ridge Den is the focus of the current reports. Meadow Den and Quarry Den give your team something to compare it with."))}
+      </div>
+      ${renderPinecrestMap("numbers")}
+      <div class="card">
+        <p class="narrative-line" style="margin-bottom:0">Now compare the field measurements collected from these den areas.</p>
+      </div>
+      <div class="card">
+        <p class="narrative-line">The Numbers Team receives five years of wildlife-monitoring records. The measurements were collected during the same part of each fox season so the committee could compare the dens over time.</p>
+        <p class="narrative-line">Ridge Den will remain on every graph. The team can compare it with Meadow Den or Quarry Den.</p>
+        ${dialogue(alvarez("A change at one den could mean something different from a change happening everywhere. Compare the records before you draw a conclusion."))}
+        <p class="narrative-line" style="margin-bottom:0"><strong>Choose a comparison den and examine all three measurements.</strong></p>
+      </div>
+      <div class="card">
+        <div class="dash-controls">
+          <fieldset class="dash-group"><legend>Measurement</legend>
+            <div class="chip-row" id="varChips">
+              ${Object.values(VARIABLES).map(v=>`<button class="chip" data-var="${v.key}">${esc(v.label)}</button>`).join("")}
+            </div>
+          </fieldset>
+          <fieldset class="dash-group"><legend>Compare with</legend>
+            <div class="chip-row" id="denChips">
+              ${DENS.filter(d=>d!=="Ridge Den").map(d=>`<button class="chip rust" data-den="${esc(d)}">${esc(d)}</button>`).join("")}
+            </div>
+          </fieldset>
+        </div>
+        <div class="done-badges">${Object.values(VARIABLES).map(v=>`<span class="vbadge" data-vbadge="${v.key}">${esc(v.label)}</span>`).join("")}</div>
+        <div class="chart-wrap" id="chartWrap">
+          <p class="muted small">Choose a measurement above to load the chart.</p>
+        </div>
+      </div>
+      <div id="dashReveal" class="card hidden">
+        <p class="narrative-line">Nick studies the three graphs again.</p>
+        ${dialogue(
+          speak("Nick","The graphs don't all show exactly the same thing."),
+          alvarez("They don't need to. Look at the evidence together. What larger pattern does it show about Ridge Den?")
+        )}
+        <h2>Prepare the Numbers Team Note</h2>
+        ${promptBox("What should the Numbers Team report to Room 12 about how the Ridge Den foxes have changed over time and how Ridge Den compares with another den? Use evidence from at least two measurements.")}
+        ${textField("dash_claim","Numbers Team note","firstInvestigation.dashboard.claim")}
+        <div class="path-transition">The Numbers Team saves its note and returns to Room 12. The measurements show patterns that photographs alone cannot confirm, but the Sightings Team has evidence about where and how the foxes appeared.</div>
+        <div class="path-transition-actions">
+          <button class="btn btn-amber" id="continueConvergence">Return to Room 12 &rarr;</button>
+          <button class="btn-ghost" id="backToChoice">&larr; Back to the choice screen</button>
+        </div>
+      </div>
+    </div>`;
+  },
+  init(root){
+    bindPinecrestMap(root,"numbers");
+    const dash=state.firstInvestigation.dashboard;
+    let curVar=null;
+    function refreshBadges(){
+      Object.keys(VARIABLES).forEach(k=>{
+        $(`[data-vbadge="${k}"]`,root).classList.toggle("done",dash.variablesViewed.includes(k));
+      });
+    }
+    function draw(){
+      if(!curVar)return;
+      const V=VARIABLES[curVar];
+      const dens=["Ridge Den",dash.compareDen];
+      $("#chartWrap",root).innerHTML=chartSVG(dens,curVar)+
+        `<div class="chart-legend">${dens.map(d=>`<span><i style="background:${DEN_COLOR[d]}"></i>${esc(d)}</span>`).join("")}</div>
+         <div class="var-note">${textField("dnote_"+curVar,"Working note: "+V.label,"firstInvestigation.dashboard."+V.note)}</div>`;
+      autoBindAll($("#chartWrap",root));
+      if(!dash.variablesViewed.includes(curVar)){dash.variablesViewed.push(curVar);save();}
+      refreshBadges();
+      if(dash.variablesViewed.length>=3){$("#dashReveal",root).classList.remove("hidden");setContinue(true);}
+    }
+    $$("#varChips .chip",root).forEach(b=>b.addEventListener("click",()=>{
+      curVar=b.dataset.var;
+      $$("#varChips .chip",root).forEach(x=>x.classList.toggle("active",x===b));
+      draw();
+    }));
+    $$("#denChips .chip",root).forEach(b=>{
+      if(b.dataset.den===dash.compareDen)b.classList.add("active");
+      b.addEventListener("click",()=>{
+        dash.compareDen=b.dataset.den;save();
+        $$("#denChips .chip",root).forEach(x=>x.classList.toggle("active",x===b));
+        draw();
+      });
+    });
+    autoBindAll(root);
+    const cc=$("#continueConvergence",root);if(cc)cc.addEventListener("click",()=>goToScreen(9));
+    const bc=$("#backToChoice",root);if(bc)bc.addEventListener("click",()=>goToScreen(7));
+    refreshBadges();
+    if(dash.variablesViewed.length){
+      curVar=dash.variablesViewed[dash.variablesViewed.length-1];
+      const btn=$(`#varChips [data-var="${curVar}"]`,root);if(btn)btn.classList.add("active");
+      draw();
+    }
+  }
+});
+
+/* ===================== Screen 9 — Decision Point 1 Convergence ===================== */
+registerScreen(9,{title:"Put the Evidence Together",hideNav:true,
+  render(){
+    const choseSightings=state.navigation.firstPath==="gallery";
+    const studentSightings=(state.firstInvestigation.gallery.patternNote||"").trim();
+    const studentNumbers=(state.firstInvestigation.dashboard.claim||"").trim();
+    const sightingsClass=choseSightings?"yours":"shared";
+    const numbersClass=choseSightings?"shared":"yours";
+    const sightingsOwn=choseSightings;
+    const numbersOwn=!choseSightings;
+    return `<div class="screen">
+      ${scene({stamp:"Room 12 · Team Share",title:"Put the Evidence Together",sub:"What changed at Ridge Den?"})}
+      <div class="card">
+        <p class="narrative-line" style="margin-bottom:6px">Both teams are ready to share their findings.</p>
+        <p class="narrative-line">Mr. Alvarez places their reports side by side so the class can compare what each type of evidence adds.</p>
+        ${dialogue(
+          speak("Gracie","The teams found different kinds of changes."),
+          speak("Nick","The photographs show where and how the foxes appeared. The measurements show whether Ridge Den changed differently from the other dens."),
+          alvarez("Put one finding from each team together. Explain what changed, not why it changed.")
+        )}
+      </div>
+      <div class="team-share-grid">
+        <section class="team-report ${sightingsClass}" aria-labelledby="sightingsReportTitle">
+          <div class="tr-kicker">Trail-camera evidence</div>
+          <h3 id="sightingsReportTitle">Sightings Team Report</h3>
+          <span class="tr-source">${sightingsOwn?"Your team's note":"Shared by the other team"}</span>
+          ${sightingsOwn
+            ? `<p class="tr-text${studentSightings?"":" blank"}">${studentSightings?esc(studentSightings):"No Sightings Team note was entered."}</p>`
+            : `<img class="convergence-report-img" src="images/sightings-team.png" alt="Sightings Team Report shared by the other team." onerror="imgFallback(this)">`
+          }
+        </section>
+        <section class="team-report ${numbersClass}" aria-labelledby="numbersReportTitle">
+          <div class="tr-kicker">Field measurements</div>
+          <h3 id="numbersReportTitle">Numbers Team Report</h3>
+          <span class="tr-source">${numbersOwn?"Your team's note":"Shared by the other team"}</span>
+          ${numbersOwn
+            ? `<p class="tr-text${studentNumbers?"":" blank"}">${studentNumbers?esc(studentNumbers):"No Numbers Team note was entered."}</p>`
+            : `<img class="convergence-report-img" src="images/numbers-team.png" alt="Numbers Team Report shared by the other team." onerror="imgFallback(this)">`
+          }
+        </section>
+      </div>
+      <div class="card">
+        <h2>Room 12 Convergence Note</h2>
+        ${promptBox("What can Room 12 conclude about what changed at Ridge Den? Use one finding from the Sightings Team and one finding from the Numbers Team.")}
+        ${textField("convergence_claim","Your combined evidence statement","firstInvestigation.convergence.combinedClaim","Use one finding from each team.")}
+      </div>
+      <div class="convergence-hold"><strong>Hold the cause for now:</strong> These records help Room 12 establish what changed. The next investigation will ask what environmental conditions might explain the pattern.</div>
+      <div class="end-note">Decision Point 1 is complete. The deeper investigation will continue from this page in the next lesson build.</div>
+    </div>`;
+  },
+  init(root){autoBindAll(root);}
+});
+
+/* ===================== Boot ===================== */
+function normalizeState(){
+  if(!state.entry)state.entry={};
+  if(typeof state.entry.mapObservation!=="string")state.entry.mapObservation="";
+  if(!state.navigation)state.navigation={currentScreen:1,firstPath:""};
+  if(!state.firstInvestigation)state.firstInvestigation={};
+  if(!state.firstInvestigation.gallery)state.firstInvestigation.gallery={photosViewed:[],patternNote:"",limitationNote:""};
+  if(!Array.isArray(state.firstInvestigation.gallery.photosViewed))state.firstInvestigation.gallery.photosViewed=[];
+  if(typeof state.firstInvestigation.gallery.patternNote!=="string")state.firstInvestigation.gallery.patternNote="";
+  if(!state.firstInvestigation.dashboard)state.firstInvestigation.dashboard={variablesViewed:[],lengthNote:"",massNote:"",conditionNote:"",compareDen:"Meadow Den",claim:""};
+  if(!Array.isArray(state.firstInvestigation.dashboard.variablesViewed))state.firstInvestigation.dashboard.variablesViewed=[];
+  if(typeof state.firstInvestigation.dashboard.claim!=="string")state.firstInvestigation.dashboard.claim="";
+  if(!state.firstInvestigation.convergence)state.firstInvestigation.convergence={combinedClaim:""};
+  if(typeof state.firstInvestigation.convergence.combinedClaim!=="string")state.firstInvestigation.convergence.combinedClaim="";
+  if(!state.progress)state.progress={visitedScreens:[]};
+  if(!Array.isArray(state.progress.visitedScreens))state.progress.visitedScreens=[];
+  /* Migrate legacy screen keys from before the map + Decision Point 1 restructure. */
+  if(state.navigation.currentScreen==="6A"){
+    state.navigation.currentScreen=(state.navigation.firstPath==="gallery")?"8A":7;
+  }else if(state.navigation.currentScreen==="6B"){
+    state.navigation.currentScreen=(state.navigation.firstPath==="dashboard")?"8B":7;
+  }
+  const n=state.navigation.currentScreen;
+  if(n==="8A"&&state.navigation.firstPath!=="gallery")state.navigation.currentScreen=7;
+  if(n==="8B"&&state.navigation.firstPath!=="dashboard")state.navigation.currentScreen=7;
+  if(n===9&&!state.navigation.firstPath)state.navigation.currentScreen=7;
+}
+function boot(){
+  state=load()||defaultState();
+  normalizeState();
+  if(!SCREENS[state.navigation.currentScreen])state.navigation.currentScreen=1;
+  if(!state.progress.visitedScreens.includes(state.navigation.currentScreen))state.progress.visitedScreens.push(state.navigation.currentScreen);
+  save();
+  renderCurrent();
+}
+$("#glossaryBtn").addEventListener("click",openGlossary);
+$("#journalBtn").addEventListener("click",openJournal);
+$("#restartBtn").addEventListener("click",()=>{
+  if(confirm("Restart the investigation? This clears your saved progress.")){
+    localStorage.removeItem(LS_KEY);state=defaultState();goToScreen(1);
+  }
+});
+$("#backBtn").addEventListener("click",prevScreen);
+boot();
+</script>
+</body>
+</html>
