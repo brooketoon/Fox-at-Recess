@@ -245,6 +245,7 @@ textarea:focus,input:focus{border-color:var(--rust);}
 .team-report .tr-source{display:inline-block;background:var(--sky);color:var(--leaf-deep);border-radius:14px;padding:3px 9px;margin:0 0 9px;font-family:var(--font-interface);font-size:.7rem;font-weight:800;}
 .team-report .tr-text{margin:0;white-space:pre-wrap;color:#3d4a3f;font-size:.94rem;}
 .team-report .tr-text.blank{color:#8a8270;font-style:italic;}
+.convergence-report-img{display:block;width:100%;height:auto;min-height:180px;border-radius:12px;margin-top:4px;object-fit:cover;}
 .convergence-hold{background:#FDF3DC;border:1px solid #EBD693;border-radius:12px;padding:14px 16px;margin:0 0 18px;color:#5c4d1e;}
 .convergence-hold strong{color:#7a5b08;}
 @media(max-width:640px){.team-share-grid{grid-template-columns:1fr;}}
@@ -922,11 +923,17 @@ registerScreen(7,{title:"Choose Your Evidence Path",
         <div class="scene-duo">
           <div class="duo-img">${imageBlock("images/evidence-path.png","Mr. Alvarez introducing two evidence paths to Room 12.")}</div>
           <div class="duo-text">
-            <p class="narrative-line">Mr. Alvarez explains that Dr. Reed's files contain two different kinds of evidence. Each team will investigate one side of the problem, then return to Room 12 to share what it learned.</p>
+            <p class="narrative-line">Mr. Alvarez explains that Dr. Reed's files contain two different kinds of evidence.</p>
+            <p class="narrative-line">Each of you will get to decide which evidence to examine. We will have two teams!</p>
+            <p class="narrative-line" style="margin-bottom:0">Each team will investigate one side of the problem, then return to Room 12 to share what it learned.</p>
           </div>
         </div>
-        ${caseFile("Room 12's Assignment",`<p style="margin:0">Determine what has changed about the Ridge Den foxes. Do not decide why yet&mdash;first, establish the pattern.</p>`)}
-        ${dialogue(alvarez("Which evidence should your team investigate first?"))}
+        ${dialogue(
+          speak("Mr. Alvarez","Which evidence will you two investigate first?","walks over to Gracie and Nick and says"),
+          speak("Gracie","What if you do one and I do the other?"),
+          speak("Nick","Great idea, Gracie! You pick first!","replies")
+        )}
+        ${promptBox("Which evidence should Gracie investigate first?")}
       </div>
       <div class="station-grid">
         <button class="station-card" data-path="gallery">
@@ -964,7 +971,7 @@ registerScreen("8A",{title:"The Trail-Cam Archive",hideNav:true,
     return `<div class="screen">
       ${scene({stamp:"Sightings Team",title:"The Trail-Cam Archive"})}
       <div class="card">
-        <p class="narrative-line">The Sightings Team opens a camera-placement map from Dr. Reed's evidence packet. The new markers show where the trail-camera records were collected.</p>
+        <p class="narrative-line">Gracie joins the Sightings Team, while Nick heads to the Numbers Team. Once there, Gracie opens a camera-placement map from Dr. Reed's evidence packet. The new markers show where the trail-camera records were collected.</p>
         ${dialogue(alvarez("Notice that the cameras were not all in the same place. Their locations may help your team interpret what each image shows."))}
       </div>
       ${renderPinecrestMap("sightings")}
@@ -1076,7 +1083,7 @@ registerScreen("8B",{title:"The Den-Monitoring Dashboard",hideNav:true,
     return `<div class="screen">
       ${scene({stamp:"Numbers Team",title:"The Den-Monitoring Dashboard"})}
       <div class="card">
-        <p class="narrative-line">The Numbers Team opens the committee's den-monitoring map. The new markers show the three dens included in the field records.</p>
+        <p class="narrative-line">Gracie joins the Numbers Team, while Nick heads to the Sightings Team. Once there, Gracie opens the committee's den-monitoring map. The new markers show the three dens included in the field records.</p>
         ${dialogue(alvarez("Ridge Den is the focus of the current reports. Meadow Den and Quarry Den give your team something to compare it with."))}
       </div>
       ${renderPinecrestMap("numbers")}
@@ -1176,10 +1183,10 @@ registerScreen(9,{title:"Put the Evidence Together",hideNav:true,
     const choseSightings=state.navigation.firstPath==="gallery";
     const studentSightings=(state.firstInvestigation.gallery.patternNote||"").trim();
     const studentNumbers=(state.firstInvestigation.dashboard.claim||"").trim();
-    const sightingsText=choseSightings?studentSightings:CONVERGENCE_REPORTS.gallery;
-    const numbersText=choseSightings?CONVERGENCE_REPORTS.dashboard:studentNumbers;
     const sightingsClass=choseSightings?"yours":"shared";
     const numbersClass=choseSightings?"shared":"yours";
+    const sightingsOwn=choseSightings;
+    const numbersOwn=!choseSightings;
     return `<div class="screen">
       ${scene({stamp:"Room 12 · Team Share",title:"Put the Evidence Together",sub:"What changed at Ridge Den?"})}
       <div class="card">
@@ -1194,14 +1201,20 @@ registerScreen(9,{title:"Put the Evidence Together",hideNav:true,
         <section class="team-report ${sightingsClass}" aria-labelledby="sightingsReportTitle">
           <div class="tr-kicker">Trail-camera evidence</div>
           <h3 id="sightingsReportTitle">Sightings Team Report</h3>
-          <span class="tr-source">${choseSightings?"Your team's note":"Shared by the other team"}</span>
-          <p class="tr-text${sightingsText?"":" blank"}">${sightingsText?esc(sightingsText):"No Sightings Team note was entered."}</p>
+          <span class="tr-source">${sightingsOwn?"Your team's note":"Shared by the other team"}</span>
+          ${sightingsOwn
+            ? `<p class="tr-text${studentSightings?"":" blank"}">${studentSightings?esc(studentSightings):"No Sightings Team note was entered."}</p>`
+            : `<img class="convergence-report-img" src="images/sightings-team.png" alt="Sightings Team Report shared by the other team." onerror="imgFallback(this)">`
+          }
         </section>
         <section class="team-report ${numbersClass}" aria-labelledby="numbersReportTitle">
           <div class="tr-kicker">Field measurements</div>
           <h3 id="numbersReportTitle">Numbers Team Report</h3>
-          <span class="tr-source">${choseSightings?"Shared by the other team":"Your team's note"}</span>
-          <p class="tr-text${numbersText?"":" blank"}">${numbersText?esc(numbersText):"No Numbers Team note was entered."}</p>
+          <span class="tr-source">${numbersOwn?"Your team's note":"Shared by the other team"}</span>
+          ${numbersOwn
+            ? `<p class="tr-text${studentNumbers?"":" blank"}">${studentNumbers?esc(studentNumbers):"No Numbers Team note was entered."}</p>`
+            : `<img class="convergence-report-img" src="images/numbers-team.png" alt="Numbers Team Report shared by the other team." onerror="imgFallback(this)">`
+          }
         </section>
       </div>
       <div class="card">
