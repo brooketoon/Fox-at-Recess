@@ -577,12 +577,12 @@ registerScreen(1,{title:"Launch",hideNav:true,
       <details class="about-lesson">
         <summary class="collapse-head">Learning Objectives &amp; Instructional Alignment <span aria-hidden="true">&#9660;</span></summary>
         <div class="collapse-body">
-          <p>Students investigate evidence from a ridge fox den to construct an explanation for how environmental change can affect the development of traits in a wild population, using two independent evidence sources compared at a shared convergence point. <em>(Note: this build currently includes the Entry and Exploration layers only &mdash; Sensemaking, Application, and Reflection are not yet built.)</em></p>
+          <p>Students investigate evidence from a ridge fox den to construct an explanation for how environmental change can affect the development of traits in a wild population, using two independent evidence sources compared at a shared convergence point. <em>(Note: this build currently includes the Entry and Exploration layers only , Sensemaking, Application, and Reflection are not yet built.)</em></p>
           <p class="sect-label">Learning Objectives</p>
           <div class="obj-grid">${objHtml}</div>
           <p class="sect-label">Standards &amp; Practices</p>
           <div class="std-grid">
-            <div class="std-col"><h4>&#128209; Arizona Science Standard</h4><p><span class="std-code">5.L3U1.10</span> &mdash; Construct an explanation based on evidence that changes in an environment can affect the development of traits in a population of organisms.</p></div>
+            <div class="std-col"><h4>&#128209; Arizona Science Standard</h4><p><span class="std-code">5.L3U1.10</span>, Construct an explanation based on evidence that changes in an environment can affect the development of traits in a population of organisms.</p></div>
             <div class="std-col"><h4>&#9878;&#65039; Science &amp; Engineering Practices</h4><p>Analyzing and Interpreting Data &middot; Constructing Explanations &middot; Engaging in Argument from Evidence &middot; Obtaining, Evaluating, and Communicating Information</p></div>
             <div class="std-col"><h4>&#128279; Crosscutting Concepts</h4><p>Cause and Effect &middot; Patterns &middot; Stability and Change</p></div>
           </div>
@@ -675,7 +675,7 @@ registerScreen(4,{title:"Writing to the Front Office",
     return `<div class="screen">
       ${scene({stamp:"Pinecrest Elementary · Room 12",title:"Writing to the Front Office"})}
       <div class="card">
-        <p class="narrative-line">Mr. Alvarez decided the front office needed to know about the fox &mdash; today, before dismissal.</p>
+        <p class="narrative-line">Mr. Alvarez decided the front office needed to know about the fox today, before dismissal.</p>
         ${dialogue(alvarez("Let's write this together. What does the office need to know?"))}
       </div>
       <div class="card">
@@ -711,13 +711,13 @@ registerScreen(5,{title:"A Message About Ridge Den",hideNav:true,
           </div>
           <div class="duo-img">${imageBlock("images/message.png","A message from the Pinecrest Community Wildlife Action Committee.")}</div>
         </div>
-        ${caseFile("From the Committee",`<p style="margin:0">Room 12,<br><br>The location of yesterday's sighting matches the area used by the Ridge Den foxes, which our committee has tracked for five seasons. Recent reports suggest that something may be changing.<br><br>We would like Room 12 to help as a citizen-science team by comparing our records before Thursday's meeting.<br><br>&mdash; Dr. Marcus Reed<br>President, Pinecrest Community Wildlife Action Committee</p>`)}
+        ${caseFile("From the Committee",`<p style="margin:0">Room 12,<br><br>The location of yesterday's sighting matches the area used by the Ridge Den foxes, which our committee has tracked for five seasons. Recent reports suggest that something may be changing.<br><br>We would like Room 12 to help as a citizen-science team by comparing our records before Thursday's meeting.<br><br>, Dr. Marcus Reed<br>President, Pinecrest Community Wildlife Action Committee</p>`)}
         ${alertPanel(`<strong>Thursday's meeting:</strong> The committee will recommend whether the school needs new safety steps and whether the town should add protections near Ridge Trail.`)}
       </div>
       <div class="reveal-action"><button class="btn btn-amber" id="acceptBtn">Join the Investigation</button></div>
       <div id="assignPanel" class="hidden">
         <div class="card">
-          ${caseFile("Room 12's Assignment",`<p style="margin:0">Determine what has changed about the Ridge Den foxes. Do not decide why yet&mdash;first, establish the pattern.</p>`)}
+          ${caseFile("Room 12's Assignment",`<p style="margin:0">Determine what has changed about the Ridge Den foxes. Do not decide why yet,first, establish the pattern.</p>`)}
           <p class="narrative-line">Mr. Alvarez tells the class they will split into two investigation teams.</p>
           ${dialogue(alvarez("Which evidence should your team investigate first?"))}
         </div>
@@ -768,7 +768,7 @@ registerScreen("6A",{title:"The Trail-Cam Archive",hideNav:true,
       <div class="card">
         <p class="narrative-line">The Sightings Team receives a digital archive containing five seasons of trail-camera photographs from Ridge Den. Some cameras were placed near the den. Others recorded animal paths closer to Ridge Trail.</p>
         ${dialogue(alvarez("Look at the photographs in order. One unusual image may not mean much by itself. Your team needs to determine whether the records show a pattern."))}
-        <p class="narrative-line" style="margin-bottom:0"><strong>Open all eight trail-camera records.</strong> Pay attention to what changes&mdash;and what stays the same.</p>
+        <p class="narrative-line" style="margin-bottom:0"><strong>Open all eight trail-camera records.</strong> Pay attention to what changes,and what stays the same.</p>
       </div>
       <div class="card">
         <div class="gallery-grid" id="galleryGrid">
