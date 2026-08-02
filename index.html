@@ -45,7 +45,8 @@ a{color:var(--rust-deep);}
 .header-actions{display:flex;gap:8px;align-items:center;}
 .hbtn{background:transparent;border:1px solid #3c5548;color:#dfe9e2;border-radius:9px;padding:7px 12px;font-size:.8rem;font-weight:700;min-height:38px;}
 .hbtn:hover{background:#274438;}
-#backBtn{background:transparent;border:none;color:#cfe0d5;font-weight:700;font-size:.85rem;padding:7px 10px;min-height:38px;}
+#backBtn{background:transparent;border:none;color:var(--rust-deep);font-family:var(--font-interface);font-weight:700;font-size:.9rem;padding:9px 12px;min-height:44px;border-radius:22px;}
+#backBtn:hover{background:var(--sky);}
 
 /* ---------- Layout ---------- */
 main{max-width:760px;margin:0 auto;padding:22px 16px 90px;}
@@ -246,8 +247,8 @@ textarea:focus,input:focus{border-color:var(--rust);}
 .blank-note{color:#a39c86;font-style:italic;}
 .end-note{background:var(--sky);border-radius:12px;padding:14px 16px;margin-top:6px;font-size:.9rem;color:#3d4a3f;}
 
-.navbar{position:fixed;left:0;right:0;bottom:0;background:var(--birch-card);border-top:1px solid #e6e0cf;box-shadow:0 -3px 14px rgba(20,25,20,.08);padding:10px 16px;z-index:30;display:flex;justify-content:flex-end;}
-.navbar-inner{max-width:760px;margin:0 auto;width:100%;display:flex;justify-content:flex-end;}
+.navbar{position:fixed;left:0;right:0;bottom:0;background:var(--birch-card);border-top:1px solid #e6e0cf;box-shadow:0 -3px 14px rgba(20,25,20,.08);padding:10px 16px;z-index:30;display:flex;justify-content:center;}
+.navbar-inner{max-width:760px;margin:0 auto;width:100%;display:flex;justify-content:space-between;align-items:center;}
 #continueBtn{background:var(--rust-deep);color:#fff;border:none;border-radius:24px;padding:12px 26px;font-family:var(--font-interface);font-weight:800;font-size:.95rem;min-height:46px;}
 #continueBtn:disabled{background:#d9d2bd;color:#a39c86;cursor:not-allowed;}
 body.has-navbar main{padding-bottom:100px;}
@@ -267,7 +268,6 @@ body.has-navbar main{padding-bottom:100px;}
       <span class="sis">Stories in Science</span>
       <span class="grade">Grade 5 &middot; Life Science</span>
     </div>
-    <button id="backBtn" aria-label="Go back">&larr; Back</button>
     <div class="header-title" id="headerTitle" aria-live="polite">Launch</div>
     <div class="header-actions">
       <button class="hbtn" id="glossaryBtn">Glossary</button>
@@ -278,7 +278,7 @@ body.has-navbar main{padding-bottom:100px;}
 </header>
 
 <main id="stage" role="main"></main>
-<nav class="navbar hidden" id="navbar"><div class="navbar-inner"><button id="continueBtn" disabled>Continue</button></div></nav>
+<nav class="navbar hidden" id="navbar"><div class="navbar-inner"><button id="backBtn" aria-label="Go back">&larr; Back</button><button id="continueBtn" disabled>Continue</button></div></nav>
 <div id="modalRoot"></div>
 
 <script>
@@ -394,13 +394,14 @@ function setContinue(ok){
 function updateHeader(){
   const n=state.navigation.currentScreen;
   const def=SCREENS[n];
-  $(".app-header").style.display=(n===1)?"none":"";
-  $("#headerTitle").textContent=def&&def.title?def.title:("Screen "+n);
-  $("#backBtn").style.visibility=(n===1)?"hidden":"visible";
+  $("#headerTitle").textContent=(n===1)?"":(def&&def.title?def.title:("Screen "+n));
   const nav=$("#navbar");
-  const hide=def&&def.hideNav;
-  nav.classList.toggle("hidden",!!hide);
-  document.body.classList.toggle("has-navbar",!hide);
+  nav.classList.toggle("hidden",n===1);
+  document.body.classList.toggle("has-navbar",n!==1);
+  const backBtn=$("#backBtn");
+  if(backBtn)backBtn.style.visibility=(n===1)?"hidden":"visible";
+  const contBtn=$("#continueBtn");
+  if(contBtn)contBtn.style.display=(def&&def.hideNav)?"none":"";
 }
 function renderCurrent(){
   const n=state.navigation.currentScreen;
