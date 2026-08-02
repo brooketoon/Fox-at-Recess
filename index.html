@@ -535,14 +535,14 @@ const VARIABLES={
 };
 
 const GALLERY=[
-  {id:"g1",year:2022,img:"Images/trailcam-2022-a.png",note:"Four kits at the den entrance. Similar size, steady on their feet."},
-  {id:"g2",year:2022,img:"Images/trailcam-2022-b.png",note:"Whitetip returning to the den with prey. Routine hunting pass."},
-  {id:"g3",year:2023,img:"Images/trailcam-2023-a.png",note:"New litter's first appearance outside the den. Kits keeping close together."},
-  {id:"g4",year:2024,img:"Images/trailcam-2024-a.png",note:"One kit noticeably smaller than its littermates."},
-  {id:"g5",year:2024,img:"Images/trailcam-2024-b.png",note:"A kit crossing within a few feet of the camera — closer than prior logs."},
-  {id:"g6",year:2025,img:"Images/trailcam-2025-a.png",note:"Litter appears thin. Patchy coat visible on two kits."},
-  {id:"g7",year:2026,img:"Images/trailcam-2026-porch.png",note:"Motion alert, 11:42 PM. Subject: juvenile fox. Distance from structure: ~6 ft."},
-  {id:"g8",year:2026,img:"Images/trailcam-2026-b.png",note:"Whitetip and two kits along the new subdivision fence line."}
+  {id:"g1",year:2022,img:"images/trailcam-2022-a.png",note:"Four kits at the den entrance. Similar size, steady on their feet."},
+  {id:"g2",year:2022,img:"images/trailcam-2022-b.png",note:"Whitetip returning to the den with prey. Routine hunting pass."},
+  {id:"g3",year:2023,img:"images/trailcam-2023-a.png",note:"New litter's first appearance outside the den. Kits keeping close together."},
+  {id:"g4",year:2024,img:"images/trailcam-2024-a.png",note:"One kit noticeably smaller than its littermates."},
+  {id:"g5",year:2024,img:"images/trailcam-2024-b.png",note:"A kit crossing within a few feet of the camera — closer than prior logs."},
+  {id:"g6",year:2025,img:"images/trailcam-2025-a.png",note:"Litter appears thin. Patchy coat visible on two kits."},
+  {id:"g7",year:2026,img:"images/trailcam-2026-porch.png",note:"Motion alert, 11:42 PM. Subject: juvenile fox. Distance from structure: ~6 ft."},
+  {id:"g8",year:2026,img:"images/trailcam-2026-b.png",note:"Whitetip and two kits along the new subdivision fence line."}
 ];
 
 /* ===================== Screen 1 — Launch ===================== */
@@ -562,7 +562,7 @@ registerScreen(1,{title:"Launch",hideNav:true,
     return `<div class="screen">
       <div class="hero-frame">
         <div class="hero-media-wrap">
-          <img class="hero-media" src="Images/ridge-forest-dusk-hero.png" alt="A forested ridge above a small mountain town at dusk, silhouetted pines against a darkening sky." onerror="imgFallback(this)">
+          <img class="hero-media" src="images/ridge-forest-dusk-hero.png" alt="A forested ridge above a small mountain town at dusk, silhouetted pines against a darkening sky." onerror="imgFallback(this)">
         </div>
         <p class="hero-eyebrow">Stories in Science &middot; Grade 5 &middot; Life Science</p>
         <h1><strong>The Fox at Recess</strong>: <i>A Ridge Den Investigation</i></h1>
@@ -632,7 +632,7 @@ registerScreen(2,{title:"Recess",
             speak("Mr. Alvarez","Everyone inside. Now.")
           )}
         </div>
-        <div class="duo-img">${imageBlock("Images/playground-fox-sighting.png","A fox crossing an elementary school playground in daylight while kids nearby turn to look.")}</div>
+        <div class="duo-img">${imageBlock("images/playground-fox-sighting.png","A fox crossing an elementary school playground in daylight while kids nearby turn to look.")}</div>
       </div>
     </div>`;
   },
@@ -647,7 +647,7 @@ registerScreen(3,{title:"Back in Class",
       <div class="card">
         <p class="narrative-line">The classroom buzzed with theories about what they had seen.</p>
         <div class="scene-duo">
-          <div class="duo-img">${imageBlock("Images/classroom-buzz.png","An elementary classroom buzzing with students talking excitedly after recess.")}</div>
+          <div class="duo-img">${imageBlock("images/classroom-buzz.png","An elementary classroom buzzing with students talking excitedly after recess.")}</div>
           <div class="duo-text">
             ${dialogue(
               alvarez("Before we decide why the fox was here, let's separate what we observed from what we're guessing."),
@@ -709,7 +709,7 @@ registerScreen(5,{title:"A Message About Ridge Den",hideNav:true,
           <div class="duo-text">
             ${dialogue(alvarez("The school sent yesterday's sighting to the Pinecrest Community Wildlife Action Committee. Dr. Reed says it may connect to foxes the committee has tracked near Ridge Den."))}
           </div>
-          <div class="duo-img">${imageBlock("Images/message.png","A message from the Pinecrest Community Wildlife Action Committee.")}</div>
+          <div class="duo-img">${imageBlock("images/message.png","A message from the Pinecrest Community Wildlife Action Committee.")}</div>
         </div>
         ${caseFile("From the Committee",`<p style="margin:0">Room 12,<br><br>The location of yesterday's sighting matches the area used by the Ridge Den foxes, which our committee has tracked for five seasons. Recent reports suggest that something may be changing.<br><br>We would like Room 12 to help as a citizen-science team by comparing our records before Thursday's meeting.<br><br>&mdash; Dr. Marcus Reed<br>President, Pinecrest Community Wildlife Action Committee</p>`)}
         ${alertPanel(`<strong>Thursday's meeting:</strong> The committee will recommend whether the school needs new safety steps and whether the town should add protections near Ridge Trail.`)}
