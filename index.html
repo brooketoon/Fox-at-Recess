@@ -485,7 +485,7 @@ function openGlossary(){
 /* ===================== Journal (only encountered prompts/decisions) ===================== */
 const JOURNAL_SCHEMA=[
   {screen:3,label:"What evidence should Gracie record from the playground sighting and her experiences near Ridge Trail?",get:()=>state.entry.homeNote,type:"prompt"},
-  {screen:4,label:"Email to the front office",get:()=>{
+  {screen:4,label:"Email to the Pinecrest Elementary Front Office",get:()=>{
       const subj=(state.entry.emailSubject||"").trim();
       const body=(state.entry.emailBody||"").trim();
       return [subj?("Subject: "+subj):"",body].filter(Boolean).join(" — ");
@@ -682,7 +682,7 @@ registerScreen(4,{title:"Writing to the Front Office",
         ${promptBox("Write two or three sentences reporting what happened. Include only observations the class can support.")}
         <div class="email-compose">
           <div class="ec-head">
-            <div class="ec-row"><span class="ec-label">To:</span> Front Office</div>
+            <div class="ec-row"><span class="ec-label">To:</span> Pinecrest Elementary Front Office</div>
             <div class="ec-row"><span class="ec-label">From:</span> Mr. Alvarez, Room 12</div>
           </div>
           <input type="text" class="ec-subject" id="email_subject" data-path="entry.emailSubject" placeholder="Subject">
