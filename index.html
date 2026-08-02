@@ -719,7 +719,7 @@ registerScreen(1,{title:"Launch",hideNav:true,
       "Make evidence-based decisions and reflect on how community science informs real town decisions."
     ];
     const objHtml=objectives.map((o,i)=>`<div class="obj-card"><div class="obj-num">${i+1}</div><p>${esc(o)}</p></div>`).join("");
-    const launchNarr="Recess is usually predictable. Kickball. Four square. The same arguments about whose turn is next. But today, something ran across the blacktop that was not supposed to be there. Gracie and her classmates had only seconds to see it before Mr. Alvarez hurried everyone inside. What they saw would lead Room 12 to a mystery stretching from the playground to the new houses on Ridge Trail.";
+    const launchNarr="Recess is usually predictable. Kickball. Four square. The same arguments about whose turn is next. But today, something ran near the blacktop that was not supposed to be there. Gracie and her classmates had only seconds to see it before Mr. Alvarez hurried everyone inside. What they saw would lead Room 12 to a mystery stretching from the playground to the new houses on Ridge Trail.";
     return `<div class="screen">
       <div class="hero-frame">
         <div class="hero-media-wrap">
@@ -729,7 +729,7 @@ registerScreen(1,{title:"Launch",hideNav:true,
         <h1><strong>The Fox at Recess</strong>: <i>A Ridge Den Investigation</i></h1>
         ${ttsButton(launchNarr)}
         <p class="hero-lead">Recess is usually predictable. Kickball. Four square. The same arguments about whose turn is next.</p>
-        <p class="hero-lead" style="margin-top:-6px">But today, something ran across the blacktop that was not supposed to be there.</p>
+        <p class="hero-lead" style="margin-top:-6px">But today, something ran near the blacktop that was not supposed to be there.</p>
         <p class="hero-lead" style="margin-top:-6px">Gracie and her classmates had only seconds to see it before Mr. Alvarez hurried everyone inside.</p>
         <p class="hero-lead" style="margin-top:-6px">What they saw would lead Room 12 to a mystery stretching from the playground to the new houses on Ridge Trail.</p>
         <button class="btn btn-amber" id="laBegin" style="margin-top:8px">${started?"Return to the Investigation":"See What Happened"}</button>
@@ -784,7 +784,7 @@ registerScreen(2,{title:"Recess",
       <div class="scene-duo">
         <div class="duo-text">
           ${dialogue(
-            `<p class="dialogue">Kickball was mid-inning. The four-square line was arguing about a do-over. Then, near the back fence, something moved low and fast across the blacktop.</p>`,
+            `<p class="dialogue">Kickball was mid-inning. The four-square line was arguing about a do-over. Then, near the back fence, something moved low and fast near the blacktop.</p>`,
             `<p class="dialogue">Reddish coat. Pointed ears. Bushy tail. It crossed the open pavement, slipped under the fence beside the construction gate, and disappeared into the trees.</p>`
           )}
           ${dialogue(
