@@ -124,8 +124,9 @@ main{max-width:760px;margin:0 auto;padding:22px 16px 18px;}
 .hud-tag{position:absolute;bottom:14px;right:16px;background:rgba(15,20,15,.55);color:#f0e6c8;font-family:'Courier New',monospace;font-size:.7rem;letter-spacing:.5px;padding:4px 9px;border-radius:5px;border:1px solid rgba(227,168,59,.4);}
 
 /* ---------- Dialogue / voices ---------- */
+.observation-block{background:var(--birch-card);border-left:4px solid var(--leaf);border-radius:12px;padding:14px 17px;margin:0 0 16px;box-shadow:var(--shadow-sm);}
 .dialogue-block{background:var(--birch-card);border-left:4px solid var(--leaf);border-radius:12px;padding:14px 17px;margin:0 24px 16px;box-shadow:var(--shadow-sm);}
-@media(max-width:640px){.dialogue-block{margin-left:12px;margin-right:12px;}}
+@media(max-width:640px){.dialogue-block{margin-left:18px;margin-right:18px;}}
 .card>.dialogue-block:last-child{margin-bottom:0;}
 .dialogue{font-size:1.02rem;line-height:1.55;margin:0 0 9px;}
 .dialogue:last-child{margin-bottom:0;}
@@ -160,6 +161,8 @@ textarea:focus,input:focus{border-color:var(--rust);}
 .station-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
 .station-card{position:relative;text-align:left;background:var(--birch-card);border:1px solid #e3ddc9;border-radius:16px;overflow:hidden;box-shadow:var(--shadow-sm);cursor:pointer;transition:transform .12s,box-shadow .12s,border-color .12s;padding:0;display:flex;flex-direction:column;height:100%;}
 .station-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:var(--rust);}
+.station-card.selected{border:3px solid var(--leaf);box-shadow:0 0 0 3px rgba(62,140,92,.16),var(--shadow-md);transform:none;}
+.station-card.selected .st-open{background:var(--leaf);color:#fff;box-shadow:none;}
 .station-card .st-top{height:8px;background:linear-gradient(90deg,var(--leaf),var(--rust));flex:none;}
 .station-card .st-body{padding:16px 16px 18px;display:flex;flex-direction:column;flex:1;}
 .station-card .st-kicker{font-family:var(--font-interface);font-size:.68rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--rust-deep);}
@@ -235,6 +238,55 @@ textarea:focus,input:focus{border-color:var(--rust);}
 .map-info-panel .mi-empty{color:#8a8270;font-style:italic;font-size:.9rem;margin:0;}
 .map-info-panel .mi-label{font-family:var(--font-interface);font-weight:800;color:var(--leaf-deep);margin-bottom:4px;}
 @media(max-width:480px){.map-point-label{font-size:.6rem;max-width:90px;}.map-marker{width:36px;height:36px;min-width:36px;min-height:36px;font-size:.88rem;}}
+
+
+/* ---------- Decision Point 2 interactives ---------- */
+.timeline-shell{background:var(--birch-card);border-radius:16px;padding:18px 20px;margin:0 0 18px;box-shadow:var(--shadow-sm);}
+.timeline-top{display:flex;justify-content:space-between;align-items:flex-end;gap:14px;flex-wrap:wrap;margin-bottom:12px;}
+.timeline-year-label{font-family:var(--font-title);font-size:1.45rem;color:var(--leaf-deep);margin:0;}
+.timeline-progress{font-family:var(--font-interface);font-size:.78rem;font-weight:800;color:#6b796e;background:var(--sky);padding:5px 10px;border-radius:999px;}
+.timeline-image-wrap{position:relative;width:100%;aspect-ratio:4/3;border-radius:14px;overflow:hidden;background:var(--sky);box-shadow:var(--shadow-sm);}
+.timeline-image-wrap img,.timeline-image-wrap .img-placeholder{width:100%;height:100%;object-fit:cover;display:block;margin:0;}
+.timeline-controls{margin-top:15px;}
+.timeline-range{width:100%;accent-color:var(--rust-deep);cursor:pointer;}
+.timeline-years{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:10px;}
+.timeline-year-btn{border:1px solid #d7ddd3;background:#fff;color:var(--charcoal);border-radius:12px;padding:9px 5px;font-family:var(--font-interface);font-weight:800;font-size:.78rem;min-height:42px;position:relative;}
+.timeline-year-btn.active{background:var(--leaf-deep);border-color:var(--leaf-deep);color:#fff;}
+.timeline-year-btn.viewed:not(.active)::after{content:"✓";position:absolute;top:-6px;right:-5px;width:18px;height:18px;border-radius:50%;background:var(--moss);color:#fff;font-size:.65rem;display:flex;align-items:center;justify-content:center;border:2px solid #fff;}
+.timeline-look{background:#FDF3DC;border:1px solid #EBD693;border-radius:12px;padding:13px 15px;margin:14px 0 0;}
+.timeline-look strong{color:#7a5b08;}
+.timeline-look ul{margin:7px 0 0 20px;padding:0;columns:2;column-gap:30px;}
+.timeline-look li{margin:3px 0;font-size:.88rem;color:#5c4d1e;}
+
+.identifier-wrap{position:relative;width:100%;aspect-ratio:4/3;border-radius:16px;overflow:hidden;background:var(--sky);box-shadow:var(--shadow-sm);}
+.identifier-wrap>img,.identifier-wrap>.img-placeholder{width:100%;height:100%;object-fit:cover;display:block;margin:0;}
+.clue-hotspot{position:absolute;transform:translate(-50%,-50%);width:42px;height:42px;border-radius:50%;border:3px solid #fff;background:var(--rust-deep);color:#fff;font-family:var(--font-interface);font-weight:800;font-size:.9rem;box-shadow:0 2px 8px rgba(0,0,0,.34);padding:0;z-index:3;}
+.clue-hotspot:hover{transform:translate(-50%,-50%) scale(1.07);}
+.clue-hotspot.selected-correct{background:var(--leaf-deep);}
+.clue-hotspot.selected-distractor{background:#716b5f;}
+.clue-hotspot.selected-correct::after{content:"✓";position:absolute;right:-6px;top:-8px;width:19px;height:19px;border-radius:50%;background:var(--amber);color:#3a2c0e;border:2px solid #fff;font-size:.65rem;display:flex;align-items:center;justify-content:center;}
+.identifier-status{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;margin:13px 0 8px;}
+.identifier-count{font-family:var(--font-interface);font-weight:800;font-size:.8rem;color:var(--leaf-deep);background:var(--sky);border-radius:999px;padding:6px 11px;}
+.identifier-feedback{background:var(--birch-card);border:1px solid #e3ddc9;border-left:4px solid var(--rust);border-radius:12px;padding:13px 15px;min-height:68px;}
+.identifier-feedback.correct{border-left-color:var(--leaf);}
+.identifier-feedback .if-title{font-family:var(--font-interface);font-weight:800;color:var(--leaf-deep);margin-bottom:3px;}
+.food-record-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:10px 0 14px;}
+.food-record{border:1px solid #e3ddc9;border-radius:14px;background:var(--birch-card);padding:0;overflow:hidden;text-align:left;box-shadow:var(--shadow-sm);}
+.food-record:hover{border-color:var(--rust);}
+.food-record.viewed{border:3px solid var(--moss);}
+.food-record img,.food-record .img-placeholder{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;margin:0;border-radius:0;}
+.food-record-copy{padding:12px 14px;}
+.food-record-copy strong{display:block;color:var(--leaf-deep);margin-bottom:3px;}
+.food-record-copy span{font-size:.82rem;color:#6b796e;}
+.food-record-detail{background:var(--sky);border-radius:12px;padding:13px 15px;margin-top:8px;min-height:58px;}
+.dp2-complete{background:var(--sky);border-radius:14px;padding:14px 16px;margin-top:14px;color:#3d4a3f;font-size:.9rem;}
+@media(max-width:640px){
+  .timeline-look ul{columns:1;}
+  .timeline-years{gap:5px;}
+  .timeline-year-btn{font-size:.68rem;padding:8px 2px;}
+  .clue-hotspot{width:38px;height:38px;font-size:.78rem;}
+  .food-record-grid{grid-template-columns:1fr;}
+}
 
 /* ---------- Decision Point 1 convergence ---------- */
 .team-share-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0 0 18px;}
@@ -377,14 +429,18 @@ document.addEventListener("click",e=>{
 const LS_KEY="ridge_foxinvestigation_v1";
 function defaultState(){
   return {
-    meta:{lessonTitle:"The Fox at Recess: A Ridge Den Investigation",lessonVersion:"0.2-partial",standard:"AZ 5.L3U1.10",studentLabel:"",sessionCode:"",startedAt:"",lastSavedAt:""},
-    navigation:{currentScreen:1,firstPath:""},
+    meta:{lessonTitle:"The Fox at Recess: A Ridge Den Investigation",lessonVersion:"0.4-dp2-interactives",standard:"AZ 5.L3U1.10",studentLabel:"",sessionCode:"",startedAt:"",lastSavedAt:""},
+    navigation:{currentScreen:1,firstPath:"",secondPath:""},
     progress:{visitedScreens:[1]},
     entry:{playgroundNote:"",homeNote:"",emailSubject:"Fox sighting near playground fence",emailBody:"",mapObservation:"",assignmentAccepted:false},
     firstInvestigation:{
       gallery:{photosViewed:[],patternNote:"",limitationNote:""},
       dashboard:{variablesViewed:[],lengthNote:"",massNote:"",conditionNote:"",compareDen:"Meadow Den",claim:""},
       convergence:{combinedClaim:""}
+    },
+    secondInvestigation:{
+      habitat:{yearsViewed:[],teamNote:"",selectedYear:2022},
+      food:{selectedHotspots:[],foundCorrect:[],viewedRecords:[],teamNote:""}
     }
   };
 }
@@ -467,11 +523,15 @@ function updateTracker(n){
   t.classList.toggle("hidden",n===1);
   if(n===1)return;
   const p=state.navigation.firstPath;
+  const p2=state.navigation.secondPath;
   const step1Done=!!p;
   const step1Value=p==="gallery"?"Study the Sightings":p==="dashboard"?"Study the Numbers":"Awaiting your choice…";
+  const step2Done=!!p2;
+  const step2Value=p2==="habitat"?"Track the Changing Habitat":p2==="food"?"Follow the Food Trail":((n===10||n===11)?"Awaiting your choice…":"Coming soon");
+  const step2Class=step2Done?"done":((n===10||n===11||n==="12A"||n==="12B")?"":"soon");
   t.innerHTML=`<div class="tracker-inner">
     <div class="tracker-step ${step1Done?"done":""}"><span class="ts-num">${step1Done?"&#10003;":"1"}</span><div><div class="ts-label">Evidence Path</div><div class="ts-value">${esc(step1Value)}</div></div></div>
-    <div class="tracker-step soon"><span class="ts-num">2</span><div><div class="ts-label">Deeper Investigation</div><div class="ts-value">Coming soon</div></div></div>
+    <div class="tracker-step ${step2Class}"><span class="ts-num">${step2Done?"&#10003;":"2"}</span><div><div class="ts-label">Deeper Investigation</div><div class="ts-value">${esc(step2Value)}</div></div></div>
   </div>`;
 }
 function renderCurrent(){
@@ -487,7 +547,9 @@ function renderCurrent(){
 function goToScreen(n){
   if(n==="8A"&&state.navigation.firstPath!=="gallery")n=7;
   if(n==="8B"&&state.navigation.firstPath!=="dashboard")n=7;
-  if(n===9&&!state.navigation.firstPath)n=7;
+  if((n===9||n===10||n===11||n==="12A"||n==="12B")&&!state.navigation.firstPath)n=7;
+  if(n==="12A"&&state.navigation.secondPath!=="habitat")n=11;
+  if(n==="12B"&&state.navigation.secondPath!=="food")n=11;
   $("#modalRoot").innerHTML="";
   document.removeEventListener("keydown",escClose);
   document.removeEventListener("keydown",escCloseDrawer);
@@ -500,11 +562,16 @@ function goToScreen(n){
 const NUMERIC_ORDER=[1,2,3,4,5,6,7];
 function nextScreen(){
   const n=state.navigation.currentScreen;
+  if(n===9){goToScreen(10);return;}
+  if(n===10){goToScreen(11);return;}
   const i=NUMERIC_ORDER.indexOf(n);
   if(i>-1 && i<NUMERIC_ORDER.length-1)goToScreen(NUMERIC_ORDER[i+1]);
 }
 function prevScreen(){
   const n=state.navigation.currentScreen;
+  if(n==="12A"||n==="12B"){goToScreen(11);return;}
+  if(n===11){goToScreen(10);return;}
+  if(n===10){goToScreen(9);return;}
   if(n===9){
     if(state.navigation.firstPath==="gallery")goToScreen("8A");
     else if(state.navigation.firstPath==="dashboard")goToScreen("8B");
@@ -585,13 +652,22 @@ const JOURNAL_SCHEMA=[
   {screen:"8B",label:"Working note: Average kit weight",get:()=>state.firstInvestigation.dashboard.massNote,type:"prompt",onlyIfPath:"dashboard",ready:()=>state.firstInvestigation.dashboard.variablesViewed.includes("weight")},
   {screen:"8B",label:"Working note: Body-condition score",get:()=>state.firstInvestigation.dashboard.conditionNote,type:"prompt",onlyIfPath:"dashboard",ready:()=>state.firstInvestigation.dashboard.variablesViewed.includes("condition")},
   {screen:"8B",label:"Numbers Team note",get:()=>state.firstInvestigation.dashboard.claim,type:"prompt",onlyIfPath:"dashboard"},
-  {screen:9,label:"Room 12 convergence note",get:()=>state.firstInvestigation.convergence.combinedClaim,type:"prompt"}
+  {screen:9,label:"Room 12 convergence note",get:()=>state.firstInvestigation.convergence.combinedClaim,type:"prompt"},
+  {screen:11,label:"Deeper investigation chosen",type:"decision",get:()=>{
+      const p=state.navigation.secondPath;
+      if(p==="habitat")return "Track the Changing Habitat";
+      if(p==="food")return "Follow the Food Trail";
+      return "";
+    },ready:()=>!!state.navigation.secondPath},
+  {screen:"12A",label:"Habitat Team note",get:()=>state.secondInvestigation.habitat.teamNote,type:"prompt",onlyIfSecondPath:"habitat"},
+  {screen:"12B",label:"Food Access Team note",get:()=>state.secondInvestigation.food.teamNote,type:"prompt",onlyIfSecondPath:"food"}
 ];
 function openJournal(){
   const visited=state.progress&&state.progress.visitedScreens?state.progress.visitedScreens:[];
   const entries=JOURNAL_SCHEMA.filter(e=>{
     if(!visited.includes(e.screen))return false;
     if(e.onlyIfPath&&state.navigation.firstPath!==e.onlyIfPath)return false;
+    if(e.onlyIfSecondPath&&state.navigation.secondPath!==e.onlyIfSecondPath)return false;
     if(e.ready&&!e.ready())return false;
     return true;
   });
@@ -785,10 +861,10 @@ registerScreen(2,{title:"Recess",
       ${scene({stamp:"Pinecrest Elementary",title:"Recess"})}
       <div class="scene-duo">
         <div class="duo-text">
-          ${dialogue(
-            `<p class="dialogue">Kickball was mid-inning. The four-square line was arguing about a do-over. Then, near the back fence, something moved low and fast near the blacktop.</p>`,
-            `<p class="dialogue observation-emphasis">Reddish coat. Pointed ears. Bushy tail. It crossed the open pavement, slipped under the fence beside the construction gate, and disappeared into the trees.</p>`
-          )}
+          <div class="observation-block">
+            <p class="dialogue">Kickball was mid-inning. The four-square line was arguing about a do-over. Then, near the back fence, something moved low and fast near the blacktop.</p>
+            <p class="dialogue observation-emphasis">Reddish coat. Pointed ears. Bushy tail. It crossed the open pavement, slipped under the fence beside the construction gate, and disappeared into the trees.</p>
+          </div>
           ${dialogue(
             speak("Gracie","Wait—was that—"),
             speak("Nick","That's a fox!"),
@@ -1179,7 +1255,7 @@ registerScreen("8B",{title:"The Den-Monitoring Dashboard",hideNav:true,
 });
 
 /* ===================== Screen 9 — Decision Point 1 Convergence ===================== */
-registerScreen(9,{title:"Put the Evidence Together",hideNav:true,
+registerScreen(9,{title:"Put the Evidence Together",
   render(){
     const choseSightings=state.navigation.firstPath==="gallery";
     const studentSightings=(state.firstInvestigation.gallery.patternNote||"").trim();
@@ -1224,18 +1300,271 @@ registerScreen(9,{title:"Put the Evidence Together",hideNav:true,
         ${promptBox("What can Room 12 conclude about what changed at Ridge Den? Use one finding from the Sightings Team and one finding from the Numbers Team.")}
         ${textField("convergence_claim","Your combined evidence statement","firstInvestigation.convergence.combinedClaim","Use one finding from each team.")}
       </div>
-      <div class="convergence-hold"><strong>Hold the cause for now:</strong> These records help Room 12 establish what changed. The next investigation will ask what environmental conditions might explain the pattern.</div>
-      <div class="end-note">Decision Point 1 is complete. The deeper investigation will continue from this page in the next lesson build.</div>
+      <div class="card">
+        <p class="narrative-line">Mr. Alvarez reviews Room 12's combined evidence one more time.</p>
+        ${dialogue(alvarez("I'll send Room 12's findings to Dr. Reed before I head home today."))}
+      </div>
     </div>`;
   },
   init(root){autoBindAll(root);}
+});
+
+/* ===================== Screen 10 — Bridge to Decision Point 2 ===================== */
+registerScreen(10,{title:"A New Question",
+  render(){
+    return `<div class="screen">
+      ${scene({stamp:"Wednesday Morning · Room 12",title:"A New Question",sub:"Two days later"})}
+      <div class="card">
+        <div class="scene-duo">
+          <div class="duo-img">${imageBlock("images/follow-up-message.png","A follow-up message from Dr. Reed to Room 12.")}</div>
+          <div class="duo-text">
+            <p class="narrative-line">Two days later, Mr. Alvarez finds another message from Dr. Reed in his inbox. The committee has reviewed Room 12's evidence.</p>
+          </div>
+        </div>
+        ${dialogue(
+          reed("Your findings helped us understand what has changed at Ridge Den. Now the committee needs help investigating why those changes may be happening."),
+          speak("Gracie","So we found the pattern. Now we need evidence that could explain it."),
+          alvarez("Exactly. Dr. Reed sent two new evidence files about environmental conditions around Ridge Den.")
+        )}
+      </div>
+    </div>`;
+  },
+  init(root){autoBindAll(root);}
+});
+
+/* ===================== Screen 11 — Decision Point 2 Setup ===================== */
+registerScreen(11,{title:"Choose the Next Evidence",hideNav:true,
+  render(){
+    return `<div class="screen">
+      ${scene({stamp:"Room 12 · Deeper Investigation",title:"Choose the Next Evidence",sub:"What environmental conditions might explain the pattern?"})}
+      <div class="card">
+        <div class="scene-duo">
+          <div class="duo-img">${imageBlock("images/deeper-investigation.png","Mr. Alvarez introducing two environmental evidence files to Gracie and Nick.")}</div>
+          <div class="duo-text">
+            <p class="narrative-line">Dr. Reed's second evidence packet contains two investigations.</p>
+            <p class="narrative-line">One examines how the land around Ridge Den has changed.</p>
+            <p class="narrative-line" style="margin-bottom:0">The other follows where the foxes may be finding food.</p>
+          </div>
+        </div>
+        ${dialogue(
+          alvarez("You and Nick will split up again. Which environmental condition should Gracie investigate?"),
+          speak("Gracie","We'll compare what we find afterward."),
+          speak("Nick","I'll take the other file.")
+        )}
+        ${promptBox("Which evidence should Gracie investigate?")}
+      </div>
+      <div class="station-grid">
+        <button class="station-card" data-second-path="habitat">
+          <div class="st-top"></div>
+          <div class="st-body">
+            <span class="st-kicker">Habitat evidence</span>
+            <h3>Track the Changing Habitat</h3>
+            <p>Compare the same area across five years to investigate how the land around Ridge Den has changed.</p>
+            <span class="st-open">Open the Habitat File &rarr;</span>
+          </div>
+        </button>
+        <button class="station-card" data-second-path="food">
+          <div class="st-top"></div>
+          <div class="st-body">
+            <span class="st-kicker">Food-access evidence</span>
+            <h3>Follow the Food Trail</h3>
+            <p>Identify possible food sources near homes, then examine records showing whether foxes returned.</p>
+            <span class="st-open">Open the Food File &rarr;</span>
+          </div>
+        </button>
+      </div>
+    </div>`;
+  },
+  init(root){
+    $$(".station-card[data-second-path]",root).forEach(card=>card.addEventListener("click",()=>{
+      state.navigation.secondPath=card.dataset.secondPath;
+      save();
+      goToScreen(card.dataset.secondPath==="habitat"?"12A":"12B");
+    }));
+  }
+});
+
+/* ===================== Decision Point 2 Data ===================== */
+const HABITAT_YEARS=[2022,2023,2024,2025,2026];
+const HABITAT_IMAGES={
+  2022:"images/habitat-2022.png",
+  2023:"images/habitat-2023.png",
+  2024:"images/habitat-2024.png",
+  2025:"images/habitat-2025.png",
+  2026:"images/habitat-2026.png"
+};
+
+/* Adjust food-scene hotspot x/y percentages here after the final art is added. */
+const FOOD_HOTSPOTS=[
+  {id:"dog-bowl",number:1,x:74,y:72,label:"Outdoor dog-food bowl",correct:true,feedback:"An outdoor pet-food bowl can provide a strong smell and an easy food source for a fox."},
+  {id:"trash",number:2,x:87,y:50,label:"Unsecured trash",correct:true,feedback:"Food scraps in an open or loosely closed trash container can attract wildlife."},
+  {id:"compost",number:3,x:18,y:63,label:"Compost or food scraps",correct:true,feedback:"Fruit and food scraps in an uncovered compost area can be available to wildlife."},
+  {id:"birdseed",number:4,x:38,y:35,label:"Spilled birdseed",correct:true,feedback:"Spilled seed can attract small animals and leave food on the ground, which may draw foxes to the area."},
+  {id:"bicycle",number:5,x:55,y:73,label:"Bicycle",correct:false,feedback:"A bicycle may be part of the neighborhood scene, but it does not provide food for a fox."},
+  {id:"hose",number:6,x:28,y:82,label:"Garden hose",correct:false,feedback:"A garden hose is not a food source, although water nearby could still be part of the environment."},
+  {id:"flower-pot",number:7,x:66,y:41,label:"Flower pot",correct:false,feedback:"The flower pot itself does not provide the kind of food evidence this team is investigating."},
+  {id:"toy",number:8,x:48,y:59,label:"Outdoor toy",correct:false,feedback:"An outdoor toy is not likely to attract a fox as a food source."}
+];
+const FOOD_CORRECT_IDS=FOOD_HOTSPOTS.filter(h=>h.correct).map(h=>h.id);
+const FOOD_RECORDS=[
+  {id:"record-1",img:"images/food-trail-camera-1.png",title:"Follow-Up Record 1",note:"A fox was captured near a Ridge Trail porch and outdoor bowl at night."},
+  {id:"record-2",img:"images/food-trail-camera-2.png",title:"Follow-Up Record 2",note:"Another camera record from the same area shows a fox returning again later."}
+];
+
+/* ===================== Screen 12A — Habitat Timeline ===================== */
+registerScreen("12A",{title:"Track the Changing Habitat",hideNav:true,
+  render(){
+    const habitat=state.secondInvestigation.habitat;
+    const selected=HABITAT_YEARS.includes(Number(habitat.selectedYear))?Number(habitat.selectedYear):2022;
+    const allViewed=HABITAT_YEARS.every(y=>habitat.yearsViewed.includes(y));
+    return `<div class="screen">
+      ${scene({stamp:"Habitat Team",title:"Track the Changing Habitat",sub:"How did the area around Ridge Den change?"})}
+      <div class="card">
+        <p class="narrative-line">Gracie joins the Habitat Team. Nick opens the Food Trail file.</p>
+        <p class="narrative-line">The Habitat Team begins by comparing maps of the Ridge Den area across five years. Dr. Reed wants the team to investigate how the land around the den has changed over time.</p>
+        ${dialogue(alvarez("Look carefully across the years. Focus on what changes around Ridge Den and how those changes might affect the foxes' habitat."))}
+      </div>
+      <section class="timeline-shell" aria-labelledby="habitatTimelineTitle">
+        <div class="timeline-top">
+          <div><div class="sect-label" style="margin:0 0 3px">Habitat timeline</div><h2 class="timeline-year-label" id="habitatTimelineTitle">Year <span id="habitatYearLabel">${selected}</span></h2></div>
+          <span class="timeline-progress" id="habitatProgress">${habitat.yearsViewed.length} of 5 years viewed</span>
+        </div>
+        <div class="timeline-image-wrap" id="habitatImageWrap"></div>
+        <div class="timeline-controls">
+          <label class="field-label" for="habitatRange">Move through the timeline</label>
+          <input class="timeline-range" id="habitatRange" type="range" min="2022" max="2026" step="1" value="${selected}" aria-valuemin="2022" aria-valuemax="2026" aria-valuenow="${selected}">
+          <div class="timeline-years" id="habitatYearButtons">
+            ${HABITAT_YEARS.map(y=>`<button type="button" class="timeline-year-btn ${y===selected?"active":""} ${habitat.yearsViewed.includes(y)?"viewed":""}" data-year="${y}" aria-pressed="${y===selected}">${y}</button>`).join("")}
+          </div>
+        </div>
+        <div class="timeline-look"><strong>What to look for:</strong><ul><li>forest cover</li><li>cleared land</li><li>roads and houses</li><li>distance from Ridge Den</li></ul></div>
+      </section>
+      <div id="habitatReveal" class="card ${allViewed?"":"hidden"}">
+        <p class="narrative-line">Gracie studies the 2022 and 2026 maps again.</p>
+        ${dialogue(
+          speak("Gracie","The area around Ridge Den does not look the same anymore."),
+          alvarez("Then your team should describe what changed in the habitat and how that could affect the foxes.")
+        )}
+        <h2>Habitat Team Note</h2>
+        ${promptBox("What changed in the habitat around Ridge Den from 2022 to 2026, and how could those changes affect where the foxes travel or find natural food? Use at least two pieces of evidence from the timeline.")}
+        ${textField("habitat_team_note","Your Habitat Team note","secondInvestigation.habitat.teamNote","Use evidence from at least two years.")}
+        <div class="dp2-complete">Your Habitat Team note is saved. The class will compare this evidence with the Food Access Team's findings in the next section.</div>
+      </div>
+    </div>`;
+  },
+  init(root){
+    const habitat=state.secondInvestigation.habitat;
+    const wrap=$("#habitatImageWrap",root);
+    function renderYear(year){
+      year=Number(year);
+      habitat.selectedYear=year;
+      if(!habitat.yearsViewed.includes(year))habitat.yearsViewed.push(year);
+      save();
+      wrap.innerHTML=`<img src="${HABITAT_IMAGES[year]}" alt="Illustrated view of the Ridge Den habitat in ${year}." onerror="imgFallback(this)">`;
+      $("#habitatYearLabel",root).textContent=year;
+      const range=$("#habitatRange",root);range.value=year;range.setAttribute("aria-valuenow",year);
+      $$(".timeline-year-btn",root).forEach(btn=>{
+        const y=Number(btn.dataset.year);
+        btn.classList.toggle("active",y===year);
+        btn.classList.toggle("viewed",habitat.yearsViewed.includes(y));
+        btn.setAttribute("aria-pressed",String(y===year));
+      });
+      $("#habitatProgress",root).textContent=`${habitat.yearsViewed.length} of 5 years viewed`;
+      if(HABITAT_YEARS.every(y=>habitat.yearsViewed.includes(y)))$("#habitatReveal",root).classList.remove("hidden");
+    }
+    $("#habitatRange",root).addEventListener("input",e=>renderYear(e.target.value));
+    $$(".timeline-year-btn",root).forEach(btn=>btn.addEventListener("click",()=>renderYear(btn.dataset.year)));
+    autoBindAll(root);
+    renderYear(habitat.selectedYear||2022);
+  }
+});
+
+/* ===================== Screen 12B — Food Source Identifier ===================== */
+registerScreen("12B",{title:"Follow the Food Trail",hideNav:true,
+  render(){
+    const food=state.secondInvestigation.food;
+    const allClues=FOOD_CORRECT_IDS.every(id=>food.foundCorrect.includes(id));
+    const allRecords=FOOD_RECORDS.every(r=>food.viewedRecords.includes(r.id));
+    return `<div class="screen">
+      ${scene({stamp:"Food Access Team",title:"Follow the Food Trail",sub:"What might draw foxes toward homes?"})}
+      <div class="card">
+        <p class="narrative-line">Gracie joins the Food Access Team. Nick opens the Habitat file.</p>
+        <p class="narrative-line">The Food Access Team begins by examining a Ridge Trail neighborhood scene. Dr. Reed wants the team to investigate what food sources might be attracting foxes near homes.</p>
+        ${dialogue(alvarez("Identify which items in the scene could provide food or attract a fox. Then examine the follow-up records to see whether foxes may be returning."))}
+      </div>
+      <div class="card">
+        <h2>Search the Ridge Trail Scene</h2>
+        <p class="narrative-line">Select the numbered locations. Find all four clues that could make food available to foxes.</p>
+        <div class="identifier-wrap" id="foodScene">
+          <img src="images/food-trail-scene.png" alt="A Ridge Trail yard and porch scene with possible food sources and ordinary outdoor objects." onerror="imgFallback(this)">
+          ${FOOD_HOTSPOTS.map(h=>`<button type="button" class="clue-hotspot ${food.foundCorrect.includes(h.id)?"selected-correct":food.selectedHotspots.includes(h.id)?"selected-distractor":""}" style="left:${h.x}%;top:${h.y}%" data-hotspot="${h.id}" aria-label="Examine location ${h.number}" aria-pressed="${food.selectedHotspots.includes(h.id)}">${h.number}</button>`).join("")}
+        </div>
+        <div class="identifier-status"><span class="identifier-count" id="foodClueCount">${food.foundCorrect.length} of 4 food clues found</span><span class="small muted">Not every numbered item is a food clue.</span></div>
+        <div class="identifier-feedback" id="foodFeedback" aria-live="polite"><p class="mi-empty" style="margin:0">Select a numbered location to examine it.</p></div>
+      </div>
+      <div id="foodFollowup" class="card ${allClues?"":"hidden"}">
+        <h2>Follow-Up Records</h2>
+        <p class="narrative-line">The team found possible food sources. Now open both camera records to check whether foxes returned to the area.</p>
+        <div class="food-record-grid">
+          ${FOOD_RECORDS.map(r=>`<button type="button" class="food-record ${food.viewedRecords.includes(r.id)?"viewed":""}" data-record="${r.id}" aria-pressed="${food.viewedRecords.includes(r.id)}">
+            <img src="${r.img}" alt="${esc(r.title)} from a Ridge Trail porch camera." onerror="imgFallback(this)">
+            <span class="food-record-copy"><strong>${esc(r.title)}</strong><span>${food.viewedRecords.includes(r.id)?"Viewed ✓":"Open record"}</span></span>
+          </button>`).join("")}
+        </div>
+        <div class="food-record-detail" id="foodRecordDetail" aria-live="polite">Open a record to read the camera note.</div>
+      </div>
+      <div id="foodReveal" class="card ${allClues&&allRecords?"":"hidden"}">
+        ${dialogue(
+          speak("Gracie","If food is easy to find near homes, the foxes might keep coming back."),
+          alvarez("Then your team should explain what evidence suggests food near homes could affect where the foxes go and how often they return.")
+        )}
+        <h2>Food Access Team Note</h2>
+        ${promptBox("What evidence suggests that food near Ridge Trail homes could affect where the foxes go and how often they return? Use at least two pieces of evidence.")}
+        ${textField("food_team_note","Your Food Access Team note","secondInvestigation.food.teamNote","Use evidence from the scene and camera records.")}
+        <div class="dp2-complete">Your Food Access Team note is saved. The class will compare this evidence with the Habitat Team's findings in the next section.</div>
+      </div>
+    </div>`;
+  },
+  init(root){
+    const food=state.secondInvestigation.food;
+    function refreshClueProgress(){
+      $("#foodClueCount",root).textContent=`${food.foundCorrect.length} of 4 food clues found`;
+      if(FOOD_CORRECT_IDS.every(id=>food.foundCorrect.includes(id)))$("#foodFollowup",root).classList.remove("hidden");
+    }
+    $$(".clue-hotspot",root).forEach(btn=>btn.addEventListener("click",()=>{
+      const clue=FOOD_HOTSPOTS.find(h=>h.id===btn.dataset.hotspot);
+      if(!food.selectedHotspots.includes(clue.id))food.selectedHotspots.push(clue.id);
+      if(clue.correct&&!food.foundCorrect.includes(clue.id))food.foundCorrect.push(clue.id);
+      save();
+      btn.setAttribute("aria-pressed","true");
+      btn.classList.toggle("selected-correct",clue.correct);
+      btn.classList.toggle("selected-distractor",!clue.correct);
+      const panel=$("#foodFeedback",root);
+      panel.classList.toggle("correct",clue.correct);
+      panel.innerHTML=`<div class="if-title">${clue.correct?"Food clue found":"Not a food clue"}: ${esc(clue.label)}</div><p style="margin:0">${esc(clue.feedback)}</p>`;
+      refreshClueProgress();
+    }));
+    $$(".food-record",root).forEach(btn=>btn.addEventListener("click",()=>{
+      const record=FOOD_RECORDS.find(r=>r.id===btn.dataset.record);
+      if(!food.viewedRecords.includes(record.id))food.viewedRecords.push(record.id);
+      save();
+      btn.classList.add("viewed");
+      btn.setAttribute("aria-pressed","true");
+      const copy=$(".food-record-copy span",btn);if(copy)copy.textContent="Viewed ✓";
+      $("#foodRecordDetail",root).innerHTML=`<strong>${esc(record.title)}</strong><p style="margin:4px 0 0">${esc(record.note)}</p>`;
+      if(FOOD_RECORDS.every(r=>food.viewedRecords.includes(r.id)))$("#foodReveal",root).classList.remove("hidden");
+    }));
+    autoBindAll(root);
+    refreshClueProgress();
+  }
 });
 
 /* ===================== Boot ===================== */
 function normalizeState(){
   if(!state.entry)state.entry={};
   if(typeof state.entry.mapObservation!=="string")state.entry.mapObservation="";
-  if(!state.navigation)state.navigation={currentScreen:1,firstPath:""};
+  if(!state.navigation)state.navigation={currentScreen:1,firstPath:"",secondPath:""};
+  if(typeof state.navigation.secondPath!=="string")state.navigation.secondPath="";
   if(!state.firstInvestigation)state.firstInvestigation={};
   if(!state.firstInvestigation.gallery)state.firstInvestigation.gallery={photosViewed:[],patternNote:"",limitationNote:""};
   if(!Array.isArray(state.firstInvestigation.gallery.photosViewed))state.firstInvestigation.gallery.photosViewed=[];
@@ -1245,6 +1574,18 @@ function normalizeState(){
   if(typeof state.firstInvestigation.dashboard.claim!=="string")state.firstInvestigation.dashboard.claim="";
   if(!state.firstInvestigation.convergence)state.firstInvestigation.convergence={combinedClaim:""};
   if(typeof state.firstInvestigation.convergence.combinedClaim!=="string")state.firstInvestigation.convergence.combinedClaim="";
+  if(!state.secondInvestigation)state.secondInvestigation={};
+  if(!state.secondInvestigation.habitat)state.secondInvestigation.habitat={yearsViewed:[],teamNote:"",selectedYear:2022};
+  if(!Array.isArray(state.secondInvestigation.habitat.yearsViewed))state.secondInvestigation.habitat.yearsViewed=[];
+  state.secondInvestigation.habitat.yearsViewed=state.secondInvestigation.habitat.yearsViewed.map(Number).filter(y=>HABITAT_YEARS.includes(y));
+  if(typeof state.secondInvestigation.habitat.teamNote!=="string")state.secondInvestigation.habitat.teamNote="";
+  if(!HABITAT_YEARS.includes(Number(state.secondInvestigation.habitat.selectedYear)))state.secondInvestigation.habitat.selectedYear=2022;
+  else state.secondInvestigation.habitat.selectedYear=Number(state.secondInvestigation.habitat.selectedYear);
+  if(!state.secondInvestigation.food)state.secondInvestigation.food={selectedHotspots:[],foundCorrect:[],viewedRecords:[],teamNote:""};
+  if(!Array.isArray(state.secondInvestigation.food.selectedHotspots))state.secondInvestigation.food.selectedHotspots=[];
+  if(!Array.isArray(state.secondInvestigation.food.foundCorrect))state.secondInvestigation.food.foundCorrect=[];
+  if(!Array.isArray(state.secondInvestigation.food.viewedRecords))state.secondInvestigation.food.viewedRecords=[];
+  if(typeof state.secondInvestigation.food.teamNote!=="string")state.secondInvestigation.food.teamNote="";
   if(!state.progress)state.progress={visitedScreens:[]};
   if(!Array.isArray(state.progress.visitedScreens))state.progress.visitedScreens=[];
   /* Migrate legacy screen keys from before the map + Decision Point 1 restructure. */
@@ -1256,7 +1597,9 @@ function normalizeState(){
   const n=state.navigation.currentScreen;
   if(n==="8A"&&state.navigation.firstPath!=="gallery")state.navigation.currentScreen=7;
   if(n==="8B"&&state.navigation.firstPath!=="dashboard")state.navigation.currentScreen=7;
-  if(n===9&&!state.navigation.firstPath)state.navigation.currentScreen=7;
+  if((n===9||n===10||n===11||n==="12A"||n==="12B")&&!state.navigation.firstPath)state.navigation.currentScreen=7;
+  if(n==="12A"&&state.navigation.secondPath!=="habitat")state.navigation.currentScreen=11;
+  if(n==="12B"&&state.navigation.secondPath!=="food")state.navigation.currentScreen=11;
 }
 function boot(){
   state=load()||defaultState();
