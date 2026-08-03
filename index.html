@@ -288,6 +288,177 @@ textarea:focus,input:focus{border-color:var(--rust);}
   .food-record-grid{grid-template-columns:1fr;}
 }
 
+
+/* ---------- Final investigation sequence ---------- */
+.dp2-share-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0 0 18px;}
+.dp2-share-card{background:var(--birch-card);border:1px solid #e3ddc9;border-radius:14px;padding:16px 17px;box-shadow:var(--shadow-sm);}
+.dp2-share-card.yours{border-top:6px solid var(--leaf);}
+.dp2-share-card.shared{border-top:6px solid var(--rust);}
+.dp2-share-card .share-kicker{font-family:var(--font-interface);font-size:.68rem;font-weight:800;letter-spacing:.9px;text-transform:uppercase;color:var(--rust-deep);margin-bottom:4px;}
+.dp2-share-card h3{font-size:1.12rem;margin:0 0 8px;}
+.dp2-share-card .share-source{display:inline-block;background:var(--sky);color:var(--leaf-deep);border-radius:14px;padding:3px 9px;margin:0 0 9px;font-family:var(--font-interface);font-size:.7rem;font-weight:800;}
+.dp2-share-card .share-text{margin:0;white-space:pre-wrap;color:#3d4a3f;font-size:.94rem;}
+
+.loop-builder{background:var(--birch-card);border-radius:16px;padding:18px 20px;margin:0 0 18px;box-shadow:var(--shadow-sm);}
+.loop-order{display:grid;gap:10px;margin:12px 0 16px;}
+.loop-step{display:grid;grid-template-columns:38px 1fr auto;gap:11px;align-items:center;background:var(--sky);border:1px solid #d7e4dc;border-radius:13px;padding:10px 11px;}
+.loop-step-num{width:34px;height:34px;border-radius:50%;background:var(--leaf-deep);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-interface);font-weight:800;}
+.loop-step-text{font-size:.91rem;color:#35453a;font-weight:600;}
+.loop-move{display:flex;gap:5px;}
+.loop-move button{border:1px solid #cfd8d1;background:#fff;color:var(--leaf-deep);width:34px;height:34px;border-radius:9px;font-weight:900;}
+.loop-move button:disabled{opacity:.35;cursor:not-allowed;}
+.model-choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0;}
+.model-choice-group{background:#FDF3DC;border:1px solid #EBD693;border-radius:12px;padding:13px 15px;}
+.model-choice-group legend{font-family:var(--font-title);font-weight:700;color:#7a5b08;padding:0 5px;}
+.model-radio{display:block;background:#fff;border:1px solid #e5d8ad;border-radius:10px;padding:9px 10px;margin:7px 0;font-size:.86rem;cursor:pointer;}
+.model-radio input{margin-right:8px;}
+.model-feedback{border-left:4px solid var(--rust);background:#FDF0E4;border-radius:10px;padding:12px 14px;margin:12px 0 0;color:#6e421e;}
+.model-feedback.correct{border-left-color:var(--leaf);background:var(--sky);color:#30483a;}
+.completed-loop{background:linear-gradient(135deg,#eef7f1,#fff9ea);border:1px solid #cfe1d5;border-radius:15px;padding:16px;margin:14px 0;}
+.completed-loop-row{display:flex;align-items:center;gap:7px;flex-wrap:wrap;justify-content:center;}
+.completed-loop-node{background:#fff;border:2px solid var(--leaf);border-radius:12px;padding:9px 11px;font-size:.8rem;font-weight:700;color:var(--leaf-deep);max-width:150px;text-align:center;}
+.completed-loop-arrow{font-weight:900;color:var(--rust-deep);font-size:1.15rem;}
+.loop-back{text-align:center;margin-top:9px;font-size:.8rem;color:#6b796e;font-weight:700;}
+
+/* Constructible feedback-loop modeler */
+.loop-build-intro{font-size:.96rem;color:#4c594f;margin:0 0 16px;}
+.loop-build-layout{display:grid;grid-template-columns:minmax(220px,280px) minmax(0,1fr);gap:18px;align-items:start;margin:12px 0 18px;}
+.loop-evidence-bank{background:#f8faf9;border:1px solid #dce3de;border-radius:15px;padding:16px;}
+.loop-evidence-bank h3{margin-bottom:10px;color:var(--rust-deep);}
+.loop-bank-list{display:grid;gap:9px;}
+.loop-bank-chip{width:100%;border:1px solid #cfd8d1;background:#fff;color:#303a33;border-radius:999px;padding:10px 13px;text-align:left;font-family:var(--font-interface);font-size:.82rem;font-weight:700;box-shadow:var(--shadow-sm);cursor:grab;}
+.loop-bank-chip:active{cursor:grabbing;}
+.loop-bank-chip .chip-tag{display:block;color:var(--rust-deep);font-size:.62rem;letter-spacing:.7px;text-transform:uppercase;margin-bottom:2px;}
+.loop-bank-chip.is-used{display:none;}
+.loop-bank-tip{font-size:.76rem;color:#859087;margin:12px 0 0;}
+.loop-reset-btn{margin-top:12px;border:1px solid #cfd8d1;background:transparent;color:#5e6a61;border-radius:999px;padding:9px 14px;font-weight:800;}
+.loop-model-panel{background:#f8faf9;border:1px solid #dce3de;border-radius:15px;padding:14px;min-width:0;}
+.loop-cycle-stage{position:relative;width:100%;max-width:610px;aspect-ratio:1/1;margin:0 auto;}
+.loop-cycle-svg{position:absolute;inset:7%;width:86%;height:86%;overflow:visible;pointer-events:none;}
+.loop-cycle-svg>path{fill:none;stroke:#c7cfd4;stroke-width:2.2;}
+.loop-drop-zone{position:absolute;width:38%;min-height:21%;transform:translate(-50%,-50%);border:2px dashed #c8d0d6;background:rgba(255,255,255,.96);border-radius:14px;padding:12px 13px;display:flex;flex-direction:column;justify-content:center;box-shadow:var(--shadow-sm);transition:border-color .12s,background .12s,transform .12s;}
+.loop-drop-zone.drag-over{border-color:var(--rust);background:#fff7ed;transform:translate(-50%,-50%) scale(1.02);}
+.loop-drop-zone[data-slot="0"]{left:50%;top:16%;}
+.loop-drop-zone[data-slot="1"]{left:82%;top:50%;}
+.loop-drop-zone[data-slot="2"]{left:50%;top:84%;}
+.loop-drop-zone[data-slot="3"]{left:18%;top:50%;}
+.loop-slot-label{font-family:var(--font-interface);font-size:.66rem;letter-spacing:.7px;text-transform:uppercase;color:#909aa4;font-weight:800;margin-bottom:5px;}
+.loop-slot-empty{color:#9ca5ae;font-size:.86rem;}
+.loop-placed-chip{position:relative;border:none;background:transparent;color:#334239;font-family:var(--font-interface);font-size:.78rem;font-weight:750;line-height:1.35;text-align:left;padding:0 25px 0 0;cursor:grab;}
+.loop-remove-chip{position:absolute;top:-5px;right:-4px;width:24px;height:24px;border:none;border-radius:50%;background:#edf1ee;color:#69756c;font-size:.9rem;font-weight:900;line-height:1;}
+.loop-sequence-note{text-align:center;color:#8a96a0;font-size:.78rem;margin:2px 0 8px;}
+.loop-builder .model-justification{margin-top:16px;}
+.loop-builder .model-justification textarea{min-height:120px;}
+.loop-completion-hint{font-size:.78rem;color:#7d887f;margin-top:7px;}
+@media(max-width:760px){
+  .loop-build-layout{grid-template-columns:1fr;}
+  .loop-evidence-bank{order:2;}
+  .loop-model-panel{order:1;}
+}
+@media(max-width:520px){
+  .loop-cycle-stage{aspect-ratio:1/1.12;}
+  .loop-drop-zone{width:42%;min-height:23%;padding:9px 10px;}
+  .loop-drop-zone[data-slot="0"]{top:15%;}
+  .loop-drop-zone[data-slot="1"]{left:79%;top:50%;}
+  .loop-drop-zone[data-slot="2"]{top:85%;}
+  .loop-drop-zone[data-slot="3"]{left:21%;top:50%;}
+  .loop-placed-chip{font-size:.68rem;line-height:1.25;padding-right:20px;}
+  .loop-slot-label{font-size:.58rem;}
+  .loop-slot-empty{font-size:.72rem;}
+}
+
+.recommendation-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0 16px;}
+.rec-action{border:2px solid #d9dfda;background:#fff;border-radius:13px;padding:13px 14px;text-align:left;min-height:108px;display:flex;flex-direction:column;gap:5px;}
+.rec-action[aria-pressed="true"]{border-color:var(--leaf);background:var(--sky);box-shadow:0 0 0 3px rgba(62,140,92,.12);}
+.rec-action .rec-tag{font-size:.66rem;text-transform:uppercase;letter-spacing:.8px;font-weight:800;color:var(--rust-deep);}
+.rec-action strong{color:var(--leaf-deep);font-size:.92rem;}
+.evidence-builder{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:12px 0 16px;}
+.evidence-box{border:1px solid #e3ddc9;border-radius:12px;padding:13px 14px;background:#fff;}
+.evidence-box h3{font-size:1rem;margin-bottom:8px;}
+.evidence-option{display:block;background:var(--sky);border-radius:9px;padding:9px 10px;margin:7px 0;font-size:.84rem;cursor:pointer;}
+.evidence-option input{margin-right:7px;}
+.rec-requirements{font-size:.8rem;color:#6b796e;margin:8px 0 12px;}
+.recommendation-preview{background:#f7f5ee;border:1px solid #d9d4c4;border-radius:16px;padding:14px;margin:18px 0 0;box-shadow:var(--shadow-sm);}
+.rec-build-status{margin:10px 0 0;padding:11px 13px;border-radius:10px;font-size:.86rem;line-height:1.45;}
+.rec-build-status.info{background:var(--sky);color:#3d4a3f;}
+.rec-build-status.error{background:#FDF0E4;border:1px solid #E9B38D;color:#7A3B15;}
+.rec-build-status.success{background:#EAF4EF;border:1px solid #BFD9C8;color:var(--leaf-deep);font-weight:700;}
+
+.recommendation-preview>h3{margin:0 0 10px;}
+.video-meeting{background:#25332d;border-radius:16px;padding:12px;margin:0 0 18px;box-shadow:var(--shadow-md);}
+.video-meeting-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;color:#dce8e0;font-family:var(--font-interface);font-size:.72rem;font-weight:800;padding:2px 4px 10px;}
+.video-live{display:inline-flex;align-items:center;gap:7px;}
+.video-live::before{content:"";width:9px;height:9px;border-radius:50%;background:#ef5d4f;box-shadow:0 0 0 3px rgba(239,93,79,.22);}
+.video-tile{background:linear-gradient(145deg,#eef4ef,#dbe8df);border-radius:12px;padding:18px;display:grid;grid-template-columns:72px 1fr;gap:16px;align-items:center;min-height:150px;}
+.video-avatar{width:72px;height:72px;border-radius:50%;background:var(--leaf-deep);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-title);font-size:1.35rem;font-weight:700;border:4px solid rgba(255,255,255,.85);box-shadow:var(--shadow-sm);}
+.video-speaker{font-family:var(--font-interface);font-weight:800;color:var(--rust-deep);font-size:.8rem;margin-bottom:5px;}
+.video-quote{margin:0;color:#304438;font-size:.98rem;line-height:1.55;}
+.video-caption{font-size:.72rem;color:#738178;margin-top:7px;}
+.recommendation-document{background:#fff;border:1px solid #d7ddd3;border-radius:12px;overflow:hidden;box-shadow:0 8px 24px rgba(38,49,41,.12);}
+.rec-doc-header{background:linear-gradient(135deg,var(--leaf-deep),var(--leaf));color:#fff;padding:22px 24px 20px;border-bottom:5px solid var(--amber);}
+.rec-doc-kicker{font-family:var(--font-interface);font-weight:800;font-size:.68rem;letter-spacing:1.1px;text-transform:uppercase;color:var(--amber);margin-bottom:5px;}
+.rec-doc-header h3{color:#fff;font-size:1.5rem;margin:0 0 5px;}
+.rec-doc-header p{margin:0;color:#e5eee8;font-size:.86rem;}
+.rec-doc-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-bottom:1px solid #e4e8e4;background:#f7faf8;}
+.rec-doc-meta div{padding:12px 15px;border-right:1px solid #e4e8e4;font-size:.8rem;color:#415046;}
+.rec-doc-meta div:last-child{border-right:none;}
+.rec-doc-meta span{display:block;font-family:var(--font-interface);font-size:.62rem;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:#7b897f;margin-bottom:3px;}
+.rec-doc-body{padding:20px 22px 22px;}
+.rec-doc-section{margin:0 0 18px;}
+.rec-doc-section:last-child{margin-bottom:0;}
+.rec-doc-section h4{font-size:1rem;color:var(--leaf-deep);margin:0 0 8px;padding-bottom:5px;border-bottom:2px solid #e7eee9;}
+.rec-action-list{margin:0;padding-left:22px;}
+.rec-action-list li{margin:7px 0;padding-left:3px;}
+.rec-evidence-pair{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.rec-evidence-card{background:var(--sky);border-radius:10px;padding:12px 13px;border-left:4px solid var(--moss);}
+.rec-evidence-card strong{display:block;color:var(--leaf-deep);font-family:var(--font-interface);font-size:.76rem;margin-bottom:4px;}
+.rec-evidence-card p,.rec-doc-reasoning{margin:0;color:#3d4a3f;font-size:.88rem;line-height:1.55;white-space:pre-wrap;}
+.rec-doc-closing{background:#fff7e6;border:1px solid #ecd79d;border-radius:10px;padding:11px 13px;color:#66531b;font-size:.82rem;}
+.committee-reply{background:#fff;border:1px solid #d9dfda;border-left:5px solid var(--leaf);border-radius:12px;padding:15px 17px;margin:0 0 16px;box-shadow:var(--shadow-sm);}
+.committee-reply .reply-label{font-family:var(--font-interface);font-size:.68rem;font-weight:800;letter-spacing:.9px;text-transform:uppercase;color:var(--rust-deep);margin-bottom:6px;}
+.committee-reply p{margin:0;line-height:1.55;}
+@media(max-width:640px){
+  .video-tile{grid-template-columns:56px 1fr;padding:14px;gap:12px;}
+  .video-avatar{width:56px;height:56px;font-size:1.05rem;}
+  .rec-doc-meta{grid-template-columns:1fr;}
+  .rec-doc-meta div{border-right:none;border-bottom:1px solid #e4e8e4;}
+  .rec-doc-meta div:last-child{border-bottom:none;}
+  .rec-evidence-pair{grid-template-columns:1fr;}
+  .rec-doc-header,.rec-doc-body{padding-left:16px;padding-right:16px;}
+}
+
+.reflection-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px;}
+.reflection-card{background:var(--birch-card);border-radius:14px;padding:16px;box-shadow:var(--shadow-sm);}
+.quiz-shell{margin-top:18px;}
+.quiz-choice-card{background:#fff;border:1px solid #dfe2e6;border-radius:16px;padding:18px 20px;box-shadow:var(--shadow-sm);}
+.quiz-segmented{display:inline-grid;grid-template-columns:1fr 1fr;border:2px solid #cbd3df;border-radius:999px;overflow:hidden;max-width:520px;width:100%;}
+.quiz-toggle{border:none;background:#fff;color:#24324a;padding:11px 18px;font-family:var(--font-interface);font-weight:800;font-size:.9rem;min-height:48px;}
+.quiz-toggle.active{background:#1fa99e;color:#fff;}
+.quiz-panel{margin-top:16px;}
+.quiz-question{background:#fff;border:1px solid #dfe2e6;border-radius:16px;padding:18px 20px;margin:0 0 16px;box-shadow:var(--shadow-sm);}
+.quiz-qnum{font-family:var(--font-interface);font-size:.72rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#8997ad;margin-bottom:8px;}
+.quiz-prompt{font-family:var(--font-title);font-size:1.08rem;color:#302974;line-height:1.4;margin:0 0 12px;}
+.quiz-option{display:flex;align-items:flex-start;gap:10px;background:#f8f9fb;border:2px solid #dfe4eb;border-radius:11px;padding:10px 12px;margin:8px 0;cursor:pointer;font-size:.9rem;}
+.quiz-option:has(input:checked){border-color:#1fa99e;background:#eefaf8;}
+.quiz-option input{margin-top:4px;flex:none;}
+.quiz-option.disabled{cursor:default;}
+.quiz-feedback{border-radius:11px;padding:11px 13px;margin-top:11px;font-size:.85rem;}
+.quiz-feedback.correct{background:#edf8f1;border-left:4px solid var(--leaf);color:#31513e;}
+.quiz-feedback.incorrect{background:#fff1e7;border-left:4px solid var(--rust);color:#6e421e;}
+.quiz-score{background:#edf8f1;border:2px solid var(--leaf);border-radius:14px;padding:15px 17px;margin:14px 0;font-weight:700;color:var(--leaf-deep);}
+.quiz-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:14px;}
+.export-panel{background:#fff;border:1px solid #dfe2e6;border-radius:16px;padding:18px 20px;margin-top:18px;box-shadow:var(--shadow-sm);}
+.export-btn{background:#ffb632;color:#3a2c0e;border:none;border-radius:12px;padding:13px 18px;font-family:var(--font-interface);font-weight:900;font-size:.92rem;}
+.je-a{white-space:pre-wrap;}
+@media(max-width:700px){
+  .dp2-share-grid,.model-choice-grid,.recommendation-grid,.evidence-builder,.reflection-grid{grid-template-columns:1fr;}
+  .loop-step{grid-template-columns:34px 1fr;}
+  .loop-move{grid-column:2;justify-content:flex-end;}
+  .completed-loop-row{flex-direction:column;}
+  .completed-loop-arrow{transform:rotate(90deg);}
+  .quiz-segmented{grid-template-columns:1fr; border-radius:18px;}
+}
+
 /* ---------- Decision Point 1 convergence ---------- */
 .team-share-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0 0 18px;}
 .team-report{background:var(--birch-card);border:1px solid #e3ddc9;border-radius:14px;padding:16px 17px;box-shadow:var(--shadow-sm);}
@@ -429,7 +600,7 @@ document.addEventListener("click",e=>{
 const LS_KEY="ridge_foxinvestigation_v1";
 function defaultState(){
   return {
-    meta:{lessonTitle:"The Fox at Recess: A Ridge Den Investigation",lessonVersion:"0.4-dp2-record-update",standard:"AZ 5.L3U1.10",studentLabel:"",sessionCode:"",startedAt:"",lastSavedAt:""},
+    meta:{lessonTitle:"The Fox at Recess: A Ridge Den Investigation",lessonVersion:"1.1-constructible-feedback-model",standard:"AZ 5.L3U1.10",studentLabel:"",sessionCode:"",startedAt:"",lastSavedAt:""},
     navigation:{currentScreen:1,firstPath:"",secondPath:""},
     progress:{visitedScreens:[1]},
     entry:{playgroundNote:"",homeNote:"",emailSubject:"Fox sighting near playground fence",emailBody:"",mapObservation:"",assignmentAccepted:false},
@@ -440,8 +611,16 @@ function defaultState(){
     },
     secondInvestigation:{
       habitat:{yearsViewed:[],teamNote:"",selectedYear:2022},
-      food:{selectedHotspots:[],foundCorrect:[],viewedRecords:[],teamNote:""}
-    }
+      food:{selectedHotspots:[],foundCorrect:[],viewedRecords:[],teamNote:""},
+      convergence:{combinedExplanation:""}
+    },
+    feedbackModel:{
+      slots:["","","",""],
+      explanation:""
+    },
+    recommendation:{actions:[],habitatEvidence:"",foodEvidence:"",reasoning:"",finalText:""},
+    reflection:{evidenceStrength:"",humanChoices:""},
+    quiz:{choice:"",answers:{},submitted:false,score:0,attempts:[]}
   };
 }
 let state=null;
@@ -502,7 +681,7 @@ const SCREENS={};
 function registerScreen(n,def){SCREENS[n]=def;}
 function setContinue(ok){
   const b=$("#continueBtn");
-  if(b)b.disabled=!ok;
+  if(b)b.disabled=false;
 }
 function updateHeader(){
   const n=state.navigation.currentScreen;
@@ -547,9 +726,10 @@ function renderCurrent(){
 function goToScreen(n){
   if(n==="8A"&&state.navigation.firstPath!=="gallery")n=7;
   if(n==="8B"&&state.navigation.firstPath!=="dashboard")n=7;
-  if((n===9||n===10||n===11||n==="12A"||n==="12B")&&!state.navigation.firstPath)n=7;
+  if((n===9||n===10||n===11||n==="12A"||n==="12B"||n===13||n===14||n===15||n===16||n===17)&&!state.navigation.firstPath)n=7;
   if(n==="12A"&&state.navigation.secondPath!=="habitat")n=11;
   if(n==="12B"&&state.navigation.secondPath!=="food")n=11;
+  if((n===13||n===14||n===15||n===16||n===17)&&!state.navigation.secondPath)n=11;
   $("#modalRoot").innerHTML="";
   document.removeEventListener("keydown",escClose);
   document.removeEventListener("keydown",escCloseDrawer);
@@ -564,11 +744,20 @@ function nextScreen(){
   const n=state.navigation.currentScreen;
   if(n===9){goToScreen(10);return;}
   if(n===10){goToScreen(11);return;}
+  if(n===13){goToScreen(14);return;}
+  if(n===14){goToScreen(15);return;}
+  if(n===15){goToScreen(16);return;}
+  if(n===16){goToScreen(17);return;}
   const i=NUMERIC_ORDER.indexOf(n);
   if(i>-1 && i<NUMERIC_ORDER.length-1)goToScreen(NUMERIC_ORDER[i+1]);
 }
 function prevScreen(){
   const n=state.navigation.currentScreen;
+  if(n===17){goToScreen(16);return;}
+  if(n===16){goToScreen(15);return;}
+  if(n===15){goToScreen(14);return;}
+  if(n===14){goToScreen(13);return;}
+  if(n===13){goToScreen(state.navigation.secondPath==="habitat"?"12A":"12B");return;}
   if(n==="12A"||n==="12B"){goToScreen(11);return;}
   if(n===11){goToScreen(10);return;}
   if(n===10){goToScreen(9);return;}
@@ -626,7 +815,10 @@ const GLOSSARY=[
   ["Litter size","The number of kits (baby foxes) born to a vixen in one season."],
   ["Body condition","A simple 1–5 rating of how healthy and well-fed an animal looks."],
   ["Trail camera","A weatherproof camera set up in the field that takes a photo automatically when it detects motion."],
-  ["Field data","Measurements collected by scientists directly in a natural habitat, not in a lab."]
+  ["Field data","Measurements collected by scientists directly in a natural habitat, not in a lab."],
+  ["Environmental condition","A feature of an organism's surroundings, such as food, temperature, water, shelter, or human activity."],
+  ["Inherited trait","A characteristic passed from parents to offspring through genes."],
+  ["Feedback loop","A pattern in which one change leads to effects that circle back and strengthen or continue the pattern."]
 ];
 function openGlossary(){
   openDrawer("left","Glossary",`<dl>${GLOSSARY.map(([t,d])=>`<dt>${esc(t)}</dt><dd>${esc(d)}</dd>`).join("")}</dl>`);
@@ -660,17 +852,37 @@ const JOURNAL_SCHEMA=[
       return "";
     },ready:()=>!!state.navigation.secondPath},
   {screen:"12A",label:"Habitat Team note",get:()=>state.secondInvestigation.habitat.teamNote,type:"prompt",onlyIfSecondPath:"habitat"},
-  {screen:"12B",label:"Food Access Team note",get:()=>state.secondInvestigation.food.teamNote,type:"prompt",onlyIfSecondPath:"food"}
+  {screen:"12B",label:"Food Access Team note",get:()=>state.secondInvestigation.food.teamNote,type:"prompt",onlyIfSecondPath:"food"},
+  {screen:13,label:"DP2 convergence explanation",get:()=>state.secondInvestigation.convergence.combinedExplanation,type:"prompt"},
+  {screen:15,label:"Feedback-loop model",get:()=>{
+      const steps=(state.feedbackModel.slots||[]).map((id,i)=>{
+        const card=FEEDBACK_STEPS.find(s=>s.id===id);
+        return card?`Step ${i+1}: ${card.text}`:"";
+      }).filter(Boolean);
+      return [steps.length?steps.join(" → "):"",state.feedbackModel.explanation||""].filter(Boolean).join("\n");
+    },type:"prompt",ready:()=>Array.isArray(state.feedbackModel.slots)&&state.feedbackModel.slots.length===4&&state.feedbackModel.slots.every(Boolean)&&(state.feedbackModel.explanation||"").trim().length>=15},
+  {screen:16,label:"Recommendation to Dr. Reed and the committee",get:()=>state.recommendation.finalText,type:"prompt",ready:()=>!!state.recommendation.finalText},
+  {screen:17,label:"Reflection: combining evidence",get:()=>state.reflection.evidenceStrength,type:"prompt"},
+  {screen:17,label:"Reflection: human choices and wildlife",get:()=>state.reflection.humanChoices,type:"prompt"},
+  {screen:17,label:"Optional standards quiz",get:()=>{
+      if(state.quiz.choice==="skip")return "Quiz skipped.";
+      if(state.quiz.choice==="take"&&state.quiz.submitted)return `Quiz completed: ${state.quiz.score} of ${QUIZ_QUESTIONS.length} correct.`;
+      if(state.quiz.choice==="take")return "Quiz selected but not yet submitted.";
+      return "No quiz choice made.";
+    },type:"decision",ready:()=>!!state.quiz.choice}
 ];
-function openJournal(){
+function getJournalEntries(){
   const visited=state.progress&&state.progress.visitedScreens?state.progress.visitedScreens:[];
-  const entries=JOURNAL_SCHEMA.filter(e=>{
+  return JOURNAL_SCHEMA.filter(e=>{
     if(!visited.includes(e.screen))return false;
     if(e.onlyIfPath&&state.navigation.firstPath!==e.onlyIfPath)return false;
     if(e.onlyIfSecondPath&&state.navigation.secondPath!==e.onlyIfSecondPath)return false;
     if(e.ready&&!e.ready())return false;
     return true;
   });
+}
+function openJournal(){
+  const entries=getJournalEntries();
   let body;
   if(!entries.length){
     body=`<p class="journal-empty">Your journal will fill in as you work through the investigation.</p>`;
@@ -683,6 +895,37 @@ function openJournal(){
     }).join("");
   }
   openDrawer("right","Investigation Journal",body);
+}
+function journalQuizDetails(){
+  if(state.quiz.choice==="skip")return `<section><h2>Optional Standards Quiz</h2><p>The student chose to skip the optional quiz.</p></section>`;
+  if(state.quiz.choice!=="take")return `<section><h2>Optional Standards Quiz</h2><p>No quiz choice was recorded.</p></section>`;
+  if(!state.quiz.submitted)return `<section><h2>Optional Standards Quiz</h2><p>The quiz was selected but not submitted.</p></section>`;
+  const rows=QUIZ_QUESTIONS.map((q,i)=>{
+    const selected=Number(state.quiz.answers[q.id]);
+    const option=q.options[selected];
+    const correct=selected===q.answer;
+    const feedback=correct?option.feedback:`${option.feedback} Nudge: ${q.nudge}`;
+    return `<div class="quiz-entry"><h3>Question ${i+1}</h3><p><strong>${esc(q.prompt)}</strong></p><p>Response: ${esc(option?option.text:"No response")}</p><p>${correct?"Correct":"Incorrect"} — ${esc(feedback)}</p></div>`;
+  }).join("");
+  return `<section><h2>Optional Standards Quiz</h2><p><strong>Score: ${state.quiz.score} of ${QUIZ_QUESTIONS.length}</strong></p>${rows}</section>`;
+}
+function downloadJournal(){
+  const entries=getJournalEntries();
+  const entryHtml=entries.map(e=>{
+    const val=(e.get()||"").toString().trim()||"Not answered";
+    return `<section><h2>${esc(e.label)}</h2><p>${esc(val).replace(/\n/g,"<br>")}</p></section>`;
+  }).join("");
+  const title=esc(state.meta.lessonTitle);
+  const student=esc(state.meta.studentLabel||"Student");
+  const code=esc(getSessionCode());
+  const html=`<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title} — Investigation Journal</title><style>body{font-family:Arial,sans-serif;max-width:850px;margin:32px auto;padding:0 24px;color:#292b2a;line-height:1.55}h1{color:#2C6B44}h2{color:#2C6B44;font-size:1.15rem;border-bottom:1px solid #dce5df;padding-bottom:5px}section{margin:24px 0}.meta{background:#eef7f1;border-radius:10px;padding:12px 15px}.quiz-entry{border-left:4px solid #E2703A;padding-left:13px;margin:18px 0}.quiz-entry h3{margin-bottom:5px}@media print{body{margin:0;max-width:none}}</style></head><body><h1>${title}</h1><div class="meta"><strong>${student}</strong><br>Session code: ${code}<br>Standard: ${esc(state.meta.standard)}<br>Exported: ${esc(new Date().toLocaleString())}</div>${entryHtml}${journalQuizDetails()}</body></html>`;
+  const blob=new Blob([html],{type:"text/html;charset=utf-8"});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement("a");
+  a.href=url;
+  a.download=`Fox_at_Recess_Investigation_Journal_${getSessionCode()}.html`;
+  document.body.appendChild(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),1000);
 }
 
 /* ===================== Data ===================== */
@@ -1449,6 +1692,7 @@ registerScreen("12A",{title:"Track the Changing Habitat",hideNav:true,
         ${promptBox("What changed in the habitat around Ridge Den from 2022 to 2026, and how could those changes affect where the foxes travel or find natural food? Use at least two pieces of evidence from the timeline.")}
         ${textField("habitat_team_note","Your Habitat Team note","secondInvestigation.habitat.teamNote","Use evidence from at least two years.")}
         <div class="dp2-complete">Your Habitat Team note is saved. The class will compare this evidence with the Food Access Team's findings in the next section.</div>
+        <div class="reveal-action"><button class="btn btn-rust" type="button" id="habitatToConvergence">Share with Room 12 &rarr;</button></div>
       </div>
     </div>`;
   },
@@ -1475,6 +1719,7 @@ registerScreen("12A",{title:"Track the Changing Habitat",hideNav:true,
     $("#habitatRange",root).addEventListener("input",e=>renderYear(e.target.value));
     $$(".timeline-year-btn",root).forEach(btn=>btn.addEventListener("click",()=>renderYear(btn.dataset.year)));
     autoBindAll(root);
+    const shareBtn=$("#habitatToConvergence",root);if(shareBtn)shareBtn.addEventListener("click",()=>goToScreen(13));
     renderYear(habitat.selectedYear||2022);
   }
 });
@@ -1522,6 +1767,7 @@ registerScreen("12B",{title:"Follow the Food Trail",hideNav:true,
         ${promptBox("What evidence suggests that food near Ridge Trail homes could affect where the foxes go and how often they return? Use at least two pieces of evidence.")}
         ${textField("food_team_note","Your Food Access Team note","secondInvestigation.food.teamNote","Use evidence from the scene and camera records.")}
         <div class="dp2-complete">Your Food Access Team note is saved. The class will compare this evidence with the Habitat Team's findings in the next section.</div>
+        <div class="reveal-action"><button class="btn btn-rust" type="button" id="foodToConvergence">Share with Room 12 &rarr;</button></div>
       </div>
     </div>`;
   },
@@ -1555,7 +1801,477 @@ registerScreen("12B",{title:"Follow the Food Trail",hideNav:true,
       if(FOOD_RECORDS.every(r=>food.viewedRecords.includes(r.id)))$("#foodReveal",root).classList.remove("hidden");
     }));
     autoBindAll(root);
+    const shareBtn=$("#foodToConvergence",root);if(shareBtn)shareBtn.addEventListener("click",()=>goToScreen(13));
     refreshClueProgress();
+  }
+});
+
+/* ===================== Final Sequence Data ===================== */
+const DP2_SHARED_REPORTS={
+  habitat:"From 2022 to 2026, development expanded toward Ridge Den. Forest cover and the natural buffer became smaller, while cleared land, roads, and houses increased. These changes could affect where foxes find cover and natural food.",
+  food:"The Ridge Trail scene contained several accessible food sources. Camera records also showed fox activity at the same porch and bowl three nights apart, supporting the idea that successful food access can lead to repeated visits."
+};
+const FEEDBACK_STEPS=[
+  {id:"explore",tag:"Behavior",text:"Foxes visit areas near homes."},
+  {id:"find",tag:"Food access",text:"Foxes find accessible food near people."},
+  {id:"return",tag:"Learned behavior",text:"Successful food access encourages return visits."},
+  {id:"reward",tag:"Feedback effect",text:"Repeated visits create more chances to find food."},
+  {id:"habitat",tag:"Outside pressure",text:"Habitat around Ridge Den changes."},
+  {id:"condition",tag:"Possible outcome",text:"Kit growth or body condition may change."}
+];
+const RECOMMENDATION_ACTIONS=[
+  {id:"pet-food",category:"food",tag:"Food access",title:"Bring pet-food and water bowls indoors at night.",sentence:"bring pet-food and water bowls indoors at night"},
+  {id:"secure-waste",category:"food",tag:"Food access",title:"Secure trash and compost and clean up spilled seed.",sentence:"secure trash and compost and clean up spilled seed"},
+  {id:"habitat-buffer",category:"habitat",tag:"Habitat",title:"Protect and restore a vegetated buffer near Ridge Den.",sentence:"protect and restore a vegetated buffer near Ridge Den"},
+  {id:"community",category:"community",tag:"Community behavior",title:"Ask residents not to feed or approach foxes and to report repeated visits.",sentence:"ask residents not to feed or approach foxes and to report repeated visits"}
+];
+const HABITAT_EVIDENCE_OPTIONS=[
+  {id:"buffer",text:"From 2022 to 2026, development moved closer to Ridge Den and the forest buffer became smaller."},
+  {id:"fragment",text:"Cleared land, roads, and houses broke up parts of the habitat around Ridge Den."}
+];
+const FOOD_EVIDENCE_OPTIONS=[
+  {id:"sources",text:"The Ridge Trail scene contained several accessible food sources, including pet food, trash, compost, and spilled seed."},
+  {id:"repeat",text:"Camera records showed fox activity at the same porch and bowl three nights apart."}
+];
+const QUIZ_QUESTIONS=[
+  {id:"q1",prompt:"Two bean plants came from seeds of the same variety and were about the same height when an investigation began. Plant 1 received eight hours of sunlight and regular water. Plant 2 received three hours of sunlight and less water. After four weeks, Plant 1 was taller. Which claim is best supported by the evidence?",answer:1,nudge:"Compare the environmental conditions each plant received.",options:[
+    {text:"Plant 1 inherited tallness after it was planted.",feedback:"Inherited traits are passed from parents before growth; a plant does not inherit a new trait after it is planted."},
+    {text:"Sunlight and water affected how the plants grew.",feedback:"The plants began similarly, but different sunlight and water conditions were followed by different growth."},
+    {text:"Plant 2 became a different species because it grew less.",feedback:"Differences in growth do not turn one organism into a different species."},
+    {text:"Differences between plants of the same species are always inherited.",feedback:"Organisms of the same species can also differ because of environmental conditions."}
+  ]},
+  {id:"q2",prompt:"A species of rabbit grows thicker fur during cold winters and thinner fur during warm summers. Which explanation best describes how inheritance and environment are involved?",answer:3,nudge:"Look for an answer that includes both an inherited ability and an environmental signal.",options:[
+    {text:"Cold weather changes each rabbit's DNA for the winter.",feedback:"Seasonal temperature does not rewrite the rabbit's DNA each year."},
+    {text:"Fur thickness is only a learned behavior.",feedback:"Growing fur is a biological trait, not a behavior that rabbits practice."},
+    {text:"Each rabbit chooses how thick its fur will become.",feedback:"Rabbits do not consciously choose the thickness of their coat."},
+    {text:"Rabbits inherit the ability to grow fur, while temperature affects how thick it becomes.",feedback:"This correctly connects an inherited capacity with an environmental condition that affects trait development."}
+  ]},
+  {id:"q3",prompt:"A fox finds food in a porch bowl. Three nights later, fox activity is recorded at the same porch and bowl again. Which explanation is best supported?",answer:0,nudge:"Think about what can happen when a behavior leads to a successful result.",options:[
+    {text:"Successful food finding can reinforce learned return behavior.",feedback:"A successful food reward can make returning to that location more likely."},
+    {text:"The fox inherited the porch location from its parents.",feedback:"A specific porch location is not an inherited trait."},
+    {text:"The fox became a new species after eating from the bowl.",feedback:"Eating a new food does not create a new species."},
+    {text:"The photographs prove that the exact same fox returned.",feedback:"The records show repeated fox activity at the same place, but they do not necessarily identify the same individual."}
+  ]},
+  {id:"q4",prompt:"Which evidence combination best supports the claim that environmental changes may have affected the Ridge Den fox population?",answer:2,nudge:"Choose the answer that connects a changing condition with a population pattern and a comparison.",options:[
+    {text:"All three dens had exactly the same measurements every year.",feedback:"That pattern would not show a Ridge Den change connected to its environment."},
+    {text:"One fox photograph looked different, but no measurements were collected.",feedback:"A single appearance without measurements or comparison is weak evidence for a population change."},
+    {text:"Development moved closer to Ridge Den while kit weight and body condition declined there, but comparison dens stayed steadier.",feedback:"This combines environmental change, population measurements, and comparison evidence."},
+    {text:"Adult foxes have reddish coats and bushy tails.",feedback:"Those general fox traits do not explain the changing Ridge Den pattern."}
+  ]},
+  {id:"q5",prompt:"Which sequence best represents the reinforcing feedback loop modeled in the lesson?",answer:1,nudge:"A reinforcing loop should show a successful result making the behavior more likely to happen again.",options:[
+    {text:"Fox sees a house → fox immediately inherits a new trait → all kits change species.",feedback:"A sighting does not cause instant inheritance or a new species."},
+    {text:"Fox explores near homes → finds accessible food → food rewards the behavior → returns more often.",feedback:"Each step increases the chance that the food-seeking behavior will continue."},
+    {text:"Fox finds food → the forest instantly grows back → fox never travels again.",feedback:"Finding food does not instantly restore habitat or end all movement."},
+    {text:"People see a fox → every fox in the population learns the same behavior immediately.",feedback:"Learning occurs through individual experiences; one sighting does not teach an entire population at once."}
+  ]},
+  {id:"q6",prompt:"Which recommendation is best supported by both the habitat evidence and the food-access evidence?",answer:3,nudge:"The strongest recommendation should address more than one environmental condition and continue monitoring.",options:[
+    {text:"Leave food outside every night so foxes do not need to hunt.",feedback:"Regular feeding can strengthen return behavior and increase wildlife conflicts."},
+    {text:"Move the fox den without collecting any more evidence.",feedback:"Moving a den is disruptive and is not supported by the evidence gathered in the lesson."},
+    {text:"Use one photograph to decide that no action is needed.",feedback:"One photograph does not represent the full set of habitat, behavior, and population evidence."},
+    {text:"Reduce accessible food, protect habitat buffers, teach residents not to feed foxes, and continue monitoring.",feedback:"This recommendation addresses both environmental pathways and uses continued evidence collection."}
+  ]}
+];
+
+/* ===================== Screen 13 — Decision Point 2 Convergence ===================== */
+registerScreen(13,{title:"Connect the Environmental Evidence",
+  render(){
+    const choseHabitat=state.navigation.secondPath==="habitat";
+    const habitatText=choseHabitat?(state.secondInvestigation.habitat.teamNote||"").trim():DP2_SHARED_REPORTS.habitat;
+    const foodText=choseHabitat?DP2_SHARED_REPORTS.food:(state.secondInvestigation.food.teamNote||"").trim();
+    return `<div class="screen">
+      ${scene({stamp:"Room 12 · Team Share",title:"Connect the Environmental Evidence",sub:"How might the two environmental conditions work together?"})}
+      <div class="card">
+        <p class="narrative-line">The Habitat Team and Food Access Team return to Room 12. Mr. Alvarez places the findings together.</p>
+        ${dialogue(
+          speak("Nick","One file shows why foxes might travel closer to homes. The other shows why they might keep returning."),
+          alvarez("Now connect the evidence. Explain how habitat changes and accessible food could work together.")
+        )}
+      </div>
+      <div class="dp2-share-grid">
+        <section class="dp2-share-card ${choseHabitat?"yours":"shared"}">
+          <div class="share-kicker">Habitat evidence</div><h3>Habitat Team Findings</h3>
+          <span class="share-source">${choseHabitat?"Your team's note":"Shared by the other team"}</span>
+          <p class="share-text">${habitatText?esc(habitatText):"No Habitat Team note was entered."}</p>
+        </section>
+        <section class="dp2-share-card ${choseHabitat?"shared":"yours"}">
+          <div class="share-kicker">Food-access evidence</div><h3>Food Access Team Findings</h3>
+          <span class="share-source">${choseHabitat?"Shared by the other team":"Your team's note"}</span>
+          <p class="share-text">${foodText?esc(foodText):"No Food Access Team note was entered."}</p>
+        </section>
+      </div>
+      <div class="card">
+        <h2>Room 12 Environmental Explanation</h2>
+        ${promptBox("How might habitat changes near Ridge Den and accessible food near homes work together to affect where foxes travel and how often they return? Use evidence from both teams.")}
+        ${textField("dp2_convergence","Your combined environmental explanation","secondInvestigation.convergence.combinedExplanation","Connect one habitat finding and one food-access finding.")}
+      </div>
+    </div>`;
+  },
+  init(root){autoBindAll(root);}
+});
+
+/* ===================== Screen 14 — Feedback Loop Bridge ===================== */
+registerScreen(14,{title:"A Pattern That Can Grow",
+  render(){return `<div class="screen">
+    ${scene({stamp:"Room 12 · Model Briefing",title:"A Pattern That Can Grow",sub:"When an effect circles back and strengthens a pattern"})}
+    <div class="card">
+      <p class="narrative-line">Mr. Alvarez draws a circle of arrows on the board.</p>
+      ${dialogue(
+        alvarez("A feedback loop happens when one change leads to effects that circle back and make the pattern continue or grow."),
+        speak("Nick","So finding food near a home could make another visit more likely?"),
+        speak("Gracie","And every return visit creates another chance to find food there."),
+        alvarez("Exactly. Build a model that shows how the parts of this system could connect and repeat.")
+      )}
+      <div class="framework-callout"><h4>Modeling reminder</h4><p>There may be more than one way to represent a system. A strong model uses evidence to explain why each arrow makes sense and how the final step connects back to the beginning.</p></div>
+    </div>
+  </div>`;},
+  init(root){autoBindAll(root);}
+});
+
+/* ===================== Screen 15 — Feedback Loop Modeler ===================== */
+registerScreen(15,{title:"Build the Feedback Loop",
+  render(){
+    const m=state.feedbackModel;
+    return `<div class="screen">
+      ${scene({stamp:"Systems Model",title:"Build the Feedback Loop",sub:"Use the evidence to construct a repeating cause-and-effect model."})}
+      <div class="loop-builder">
+        <h2>Build Your Ridge Den Feedback Model</h2>
+        <p class="loop-build-intro"><strong>Use four evidence cards</strong> to fill the feedback loop. Drag a card into a box, or select a card to place it in the first open box. You do not need to check the model; your explanation will justify the connections you made.</p>
+        <div class="loop-build-layout">
+          <aside class="loop-evidence-bank" aria-labelledby="loopBankTitle">
+            <h3 id="loopBankTitle">Evidence Bank</h3>
+            <div class="loop-bank-list" id="loopBank"></div>
+            <button type="button" class="loop-reset-btn" id="resetLoop">Reset Loop</button>
+            <p class="loop-bank-tip">Tip: A feedback loop should circle back. The last step should make an earlier step more likely to happen again.</p>
+          </aside>
+          <section class="loop-model-panel" aria-label="Four-step feedback loop">
+            <div class="loop-cycle-stage" id="loopCycle">
+              <svg class="loop-cycle-svg" viewBox="0 0 100 100" aria-hidden="true">
+                <defs><marker id="loopArrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#aeb8bf"></path></marker></defs>
+                <path d="M58 18 C75 20 82 31 82 43" marker-end="url(#loopArrow)"></path>
+                <path d="M82 58 C80 74 69 82 57 82" marker-end="url(#loopArrow)"></path>
+                <path d="M42 82 C26 80 18 69 18 57" marker-end="url(#loopArrow)"></path>
+                <path d="M18 42 C20 26 31 18 43 18" marker-end="url(#loopArrow)"></path>
+              </svg>
+              ${[0,1,2,3].map(i=>`<div class="loop-drop-zone" data-slot="${i}" role="group" aria-label="Feedback loop step ${i+1}"></div>`).join("")}
+            </div>
+            <p class="loop-sequence-note">Step 1 → Step 2 → Step 3 → Step 4 → Step 1 again</p>
+          </section>
+        </div>
+        <div class="model-justification">
+          ${promptBox("What happens when your feedback loop repeats over time? Use evidence from the Ridge Den investigation to justify why the connections in your model make sense.")}
+          ${textField("model_explanation","Your model justification","feedbackModel.explanation","Explain the arrows in your model and what may happen as the cycle continues.")}
+          <p class="loop-completion-hint" id="loopCompletionHint">Complete the four-step model and justification when you are ready. You may continue at any time.</p>
+        </div>
+      </div>
+    </div>`;
+  },
+  init(root){
+    const m=state.feedbackModel;
+    const bank=$("#loopBank",root);
+    const zones=$$(".loop-drop-zone",root);
+    let draggedId="";
+    let draggedFrom=-1;
+
+    function cardById(id){return FEEDBACK_STEPS.find(card=>card.id===id);}
+    function firstOpenSlot(){return m.slots.findIndex(id=>!id);}
+    function slotsComplete(){return m.slots.length===4&&m.slots.every(Boolean);}
+    function refreshContinue(){
+      const explanation=(m.explanation||"").trim();
+      setContinue(true);
+      const hint=$("#loopCompletionHint",root);
+      if(hint){
+        if(!slotsComplete())hint.textContent=`You may continue at any time. Your model still has ${m.slots.filter(id=>!id).length} open box${m.slots.filter(id=>!id).length===1?"":"es"}.`;
+        else if(explanation.length<15)hint.textContent="You may continue at any time. Add a sentence that justifies the connections in your completed model.";
+        else hint.textContent="Your feedback model and evidence-based justification are ready.";
+      }
+    }
+    function placeCard(id,targetIndex){
+      if(!cardById(id)||targetIndex<0||targetIndex>3)return;
+      const existingIndex=m.slots.indexOf(id);
+      const targetValue=m.slots[targetIndex];
+      if(existingIndex===targetIndex)return;
+      if(existingIndex>-1){
+        m.slots[existingIndex]=targetValue||"";
+      }else if(targetValue){
+        m.slots[targetIndex]="";
+      }
+      m.slots[targetIndex]=id;
+      save();renderBuilder();
+    }
+    function removeCard(index){m.slots[index]="";save();renderBuilder();}
+    function renderBank(){
+      const used=new Set(m.slots.filter(Boolean));
+      bank.innerHTML=FEEDBACK_STEPS.map(card=>`<button type="button" class="loop-bank-chip ${used.has(card.id)?"is-used":""}" draggable="true" data-card-id="${card.id}"><span class="chip-tag">${esc(card.tag)}</span>${esc(card.text)}</button>`).join("");
+      $$(".loop-bank-chip",bank).forEach(chip=>{
+        chip.addEventListener("click",()=>{const open=firstOpenSlot();if(open>-1)placeCard(chip.dataset.cardId,open);});
+        chip.addEventListener("dragstart",e=>{draggedId=chip.dataset.cardId;draggedFrom=-1;e.dataTransfer.effectAllowed="move";e.dataTransfer.setData("text/plain",draggedId);});
+      });
+    }
+    function renderZones(){
+      zones.forEach((zone,i)=>{
+        const card=cardById(m.slots[i]);
+        zone.innerHTML=`<span class="loop-slot-label">Step ${i+1}</span>${card?`<div class="loop-placed-chip" draggable="true" data-card-id="${card.id}" data-from-slot="${i}">${esc(card.text)}<button type="button" class="loop-remove-chip" data-remove-slot="${i}" aria-label="Remove step ${i+1}">×</button></div>`:`<span class="loop-slot-empty">Drop here</span>`}`;
+        zone.classList.toggle("filled",!!card);
+      });
+      $$(".loop-remove-chip",root).forEach(btn=>btn.addEventListener("click",e=>{e.stopPropagation();removeCard(Number(btn.dataset.removeSlot));}));
+      $$(".loop-placed-chip",root).forEach(chip=>chip.addEventListener("dragstart",e=>{draggedId=chip.dataset.cardId;draggedFrom=Number(chip.dataset.fromSlot);e.dataTransfer.effectAllowed="move";e.dataTransfer.setData("text/plain",draggedId);}));
+    }
+    function renderBuilder(){renderBank();renderZones();refreshContinue();}
+
+    zones.forEach((zone,i)=>{
+      zone.addEventListener("dragover",e=>{e.preventDefault();zone.classList.add("drag-over");e.dataTransfer.dropEffect="move";});
+      zone.addEventListener("dragleave",()=>zone.classList.remove("drag-over"));
+      zone.addEventListener("drop",e=>{
+        e.preventDefault();zone.classList.remove("drag-over");
+        const id=e.dataTransfer.getData("text/plain")||draggedId;
+        if(id)placeCard(id,i);
+        draggedId="";draggedFrom=-1;
+      });
+    });
+    $("#resetLoop",root).addEventListener("click",()=>{m.slots=["","","",""];save();renderBuilder();});
+    autoBindAll(root);
+    const ta=$("#model_explanation",root);if(ta)ta.addEventListener("input",refreshContinue);
+    renderBuilder();
+  }
+});
+
+function recommendationData(r){
+  return {
+    actions:RECOMMENDATION_ACTIONS.filter(a=>r.actions.includes(a.id)),
+    habitat:(HABITAT_EVIDENCE_OPTIONS.find(x=>x.id===r.habitatEvidence)||{}).text||"",
+    food:(FOOD_EVIDENCE_OPTIONS.find(x=>x.id===r.foodEvidence)||{}).text||"",
+    reasoning:(r.reasoning||"").trim()
+  };
+}
+function recommendationPlainText(r){
+  const d=recommendationData(r);
+  return [
+    "RIDGE TRAIL WILDLIFE RECOMMENDATION",
+    "To: Dr. Marcus Reed and the Pinecrest Community Wildlife Action Committee",
+    "From: Pinecrest Elementary, Room 12 Science Investigation Team",
+    "Subject: Reducing repeated fox visits while supporting the Ridge Den population",
+    "",
+    "RECOMMENDED ACTIONS",
+    ...d.actions.map((a,i)=>`${i+1}. ${a.title}`),
+    "",
+    "EVIDENCE SUPPORTING THE RECOMMENDATION",
+    `Habitat evidence: ${d.habitat}`,
+    `Food-access evidence: ${d.food}`,
+    "",
+    "HOW THESE ACTIONS COULD INTERRUPT THE FEEDBACK LOOP",
+    d.reasoning,
+    "",
+    "Room 12 recommends using these actions together and continuing to monitor fox activity and Ridge Den conditions."
+  ].join("\n");
+}
+function recommendationDocumentHtml(r){
+  const d=recommendationData(r);
+  if(!r.finalText)return "";
+  return `<article class="recommendation-document" aria-label="Completed Ridge Trail wildlife recommendation">
+    <header class="rec-doc-header">
+      <div class="rec-doc-kicker">Pinecrest Elementary · Room 12</div>
+      <h3>Ridge Trail Wildlife Recommendation</h3>
+      <p>Evidence-based actions for the Pinecrest Community Wildlife Action Committee</p>
+    </header>
+    <div class="rec-doc-meta">
+      <div><span>Prepared for</span>Dr. Marcus Reed and the Wildlife Action Committee</div>
+      <div><span>Prepared by</span>Room 12 Science Investigation Team</div>
+      <div><span>Focus</span>Ridge Den habitat and repeated fox visits</div>
+    </div>
+    <div class="rec-doc-body">
+      <section class="rec-doc-section">
+        <h4>Recommended Actions</h4>
+        <ol class="rec-action-list">${d.actions.map(a=>`<li>${esc(a.title)}</li>`).join("")}</ol>
+      </section>
+      <section class="rec-doc-section">
+        <h4>Evidence Supporting the Recommendation</h4>
+        <div class="rec-evidence-pair">
+          <div class="rec-evidence-card"><strong>Habitat evidence</strong><p>${esc(d.habitat)}</p></div>
+          <div class="rec-evidence-card"><strong>Food-access evidence</strong><p>${esc(d.food)}</p></div>
+        </div>
+      </section>
+      <section class="rec-doc-section">
+        <h4>How the Actions Could Interrupt the Feedback Loop</h4>
+        <p class="rec-doc-reasoning">${esc(d.reasoning)}</p>
+      </section>
+      <div class="rec-doc-closing"><strong>Room 12’s conclusion:</strong> Use these actions together and continue monitoring fox activity and Ridge Den conditions so the committee can revise its response as new evidence is collected.</div>
+    </div>
+  </article>`;
+}
+
+/* ===================== Screen 16 — Recommendation Builder ===================== */
+registerScreen(16,{title:"Build the Committee Recommendation",
+  render(){
+    const r=state.recommendation;
+    return `<div class="screen">
+      ${scene({stamp:"Live Video Meeting",title:"A Request from the Committee",sub:"Dr. Reed joins Room 12 by web conference."})}
+      <div class="card">
+        <p class="narrative-line">Later that afternoon, Mr. Alvarez connects Room 12 to a short web meeting with Dr. Reed. His video appears on the classroom projector.</p>
+        <p class="narrative-line">The committee is preparing to meet with Ridge Trail residents and town planners. Before that meeting, it needs a clear recommendation that turns Room 12’s evidence into practical next steps.</p>
+        <div class="video-meeting" aria-label="Projected web meeting with Dr. Reed">
+          <div class="video-meeting-bar"><span class="video-live">Live committee check-in</span><span>Classroom projector</span></div>
+          <div class="video-tile">
+            <div class="video-avatar" aria-hidden="true">DR</div>
+            <div><div class="video-speaker">Dr. Marcus Reed · Committee President</div><p class="video-quote">“Your investigation suggests that changing habitat and accessible food may work together. Build a recommendation that identifies practical actions, supports those actions with evidence from both teams, and explains how the actions could interrupt the feedback loop.”</p><div class="video-caption">Pinecrest Community Wildlife Action Committee</div></div>
+          </div>
+        </div>
+        ${dialogue(
+          speak("Gracie","So our recommendation needs to do more than list ideas. It has to show why the actions fit the evidence."),
+          alvarez("Exactly. After the call ends, we’ll use the committee’s recommendation template to build a clear, professional brief.")
+        )}
+      </div>
+      <div class="card">
+        <h2>1. Select two or three actions</h2>
+        <p class="small muted">Include at least one food-access action and the habitat-buffer action.</p>
+        <div class="recommendation-grid" id="recommendationActions">
+          ${RECOMMENDATION_ACTIONS.map(a=>`<button type="button" class="rec-action" data-action-id="${a.id}" aria-pressed="${r.actions.includes(a.id)}"><span class="rec-tag">${esc(a.tag)}</span><strong>${esc(a.title)}</strong></button>`).join("")}
+        </div>
+        <h2>2. Select one finding from each team</h2>
+        <div class="evidence-builder">
+          <div class="evidence-box"><h3>Habitat evidence</h3>${HABITAT_EVIDENCE_OPTIONS.map(x=>`<label class="evidence-option"><input type="radio" name="habitatEvidence" value="${x.id}" ${r.habitatEvidence===x.id?"checked":""}>${esc(x.text)}</label>`).join("")}</div>
+          <div class="evidence-box"><h3>Food-access evidence</h3>${FOOD_EVIDENCE_OPTIONS.map(x=>`<label class="evidence-option"><input type="radio" name="foodEvidence" value="${x.id}" ${r.foodEvidence===x.id?"checked":""}>${esc(x.text)}</label>`).join("")}</div>
+        </div>
+        <h2>3. Explain how the actions help</h2>
+        ${promptBox("How could these actions reduce repeated fox visits and support the Ridge Den population?")}
+        ${textField("recommendation_reasoning","Your reasoning","recommendation.reasoning","Connect the actions to the feedback loop and environmental evidence.")}
+        <p class="rec-requirements" id="recRequirements">Choose the required actions and evidence, then write at least one complete sentence.</p>
+        <button type="button" class="btn btn-rust" id="buildRecommendation">Create Recommendation Brief</button>
+        <div id="recBuildStatus" class="rec-build-status info" role="status" aria-live="polite">When you click the button, the lesson will either create your brief or tell you exactly what still needs to be added.</div>
+        <div id="recommendationPreview" class="recommendation-preview ${r.finalText?"":"hidden"}">${recommendationDocumentHtml(r)}</div>
+      </div>
+    </div>`;
+  },
+  init(root){
+    const r=state.recommendation;
+    const preview=$("#recommendationPreview",root);
+    const status=$("#recBuildStatus",root);
+    const reason=$("#recommendation_reasoning",root);
+
+    function syncInputs(){
+      const habitat=$("input[name=habitatEvidence]:checked",root);
+      const food=$("input[name=foodEvidence]:checked",root);
+      r.habitatEvidence=habitat?habitat.value:r.habitatEvidence;
+      r.foodEvidence=food?food.value:r.foodEvidence;
+      r.reasoning=reason?reason.value:r.reasoning;
+    }
+    function missingItems(){
+      syncInputs();
+      const chosen=RECOMMENDATION_ACTIONS.filter(a=>r.actions.includes(a.id));
+      const missing=[];
+      if(chosen.length<2)missing.push("select at least two actions");
+      if(chosen.length>3)missing.push("use no more than three actions");
+      if(!chosen.some(a=>a.category==="food"))missing.push("include one food-access action");
+      if(!chosen.some(a=>a.category==="habitat"))missing.push("include the habitat-buffer action");
+      if(!r.habitatEvidence)missing.push("choose one Habitat Team finding");
+      if(!r.foodEvidence)missing.push("choose one Food Access Team finding");
+      if((r.reasoning||"").trim().length<20)missing.push("write at least one complete sentence explaining how the actions help");
+      return missing;
+    }
+    function invalidate(){
+      r.finalText="";
+      save();
+      preview.classList.add("hidden");
+      status.className="rec-build-status info";
+      status.textContent="Your selections changed. Click Create Recommendation Brief when you are ready to rebuild it.";
+      refresh();
+    }
+    function refresh(){
+      $$(".rec-action",root).forEach(b=>b.setAttribute("aria-pressed",String(r.actions.includes(b.dataset.actionId))));
+      const missing=missingItems();
+      $("#buildRecommendation",root).disabled=false;
+      $("#buildRecommendation",root).setAttribute("aria-disabled","false");
+      $("#recRequirements",root).textContent=missing.length===0
+        ? "Your evidence and actions are ready. Create the committee brief when you are satisfied."
+        : "Select 2–3 actions, including a food-access action and the habitat-buffer action; choose one finding from each team; and write at least one complete sentence.";
+      setContinue(true);
+    }
+    $$(".rec-action",root).forEach(btn=>btn.addEventListener("click",()=>{
+      const id=btn.dataset.actionId;
+      if(r.actions.includes(id))r.actions=r.actions.filter(x=>x!==id);else if(r.actions.length<3)r.actions.push(id);
+      invalidate();
+    }));
+    $$("input[name=habitatEvidence]",root).forEach(x=>x.addEventListener("change",()=>{r.habitatEvidence=x.value;invalidate();}));
+    $$("input[name=foodEvidence]",root).forEach(x=>x.addEventListener("change",()=>{r.foodEvidence=x.value;invalidate();}));
+    if(reason)reason.addEventListener("input",()=>{r.reasoning=reason.value;r.finalText="";save();preview.classList.add("hidden");status.className="rec-build-status info";status.textContent="Your reasoning changed. Click Create Recommendation Brief to build the updated document.";refresh();});
+    $("#buildRecommendation",root).addEventListener("click",()=>{
+      const missing=missingItems();
+      if(missing.length){
+        status.className="rec-build-status error";
+        status.innerHTML=`<strong>Your brief needs a little more evidence.</strong><br>${esc(missing.join("; "))}.`;
+        status.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion:reduce)").matches?"auto":"smooth",block:"center"});
+        return;
+      }
+      r.finalText=recommendationPlainText(r);
+      save();
+      preview.innerHTML=recommendationDocumentHtml(r);
+      preview.classList.remove("hidden");
+      status.className="rec-build-status success";
+      status.textContent="Recommendation brief created below.";
+      preview.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion:reduce)").matches?"auto":"smooth",block:"start"});
+      refresh();
+    });
+    autoBindAll(root);
+    if(r.finalText){status.className="rec-build-status success";status.textContent="Recommendation brief created below.";}
+    refresh();
+  }
+});
+
+/* ===================== Screen 17 — Wrap-Up, Reflection, Quiz, Export ===================== */
+registerScreen(17,{title:"Investigation Complete",hideNav:true,
+  render(){
+    const q=state.quiz;
+    const showQuiz=q.choice==="take";
+    const showExport=q.choice==="skip"||(q.choice==="take"&&q.submitted);
+    return `<div class="screen">
+      ${scene({stamp:"Message from the Committee",title:"Investigation Complete",sub:"The committee responds to Room 12’s completed recommendation."})}
+      <div class="card">
+        <p class="narrative-line">After Mr. Alvarez sends the completed recommendation brief, Dr. Reed replies later that day.</p>
+        <div class="committee-reply"><div class="reply-label">Message from Dr. Marcus Reed</div><p>“Room 12 used multiple kinds of evidence, built a systems model, and recommended actions the committee can use. We will share your brief as we work with Ridge Trail residents and town planners. Thank you for helping Pinecrest respond with evidence instead of guesses.”</p></div>
+        ${dialogue(
+          speak("Gracie","We did not prove one single cause, but we found environmental conditions that could work together."),
+          alvarez("That is what strong scientific explanations do: connect evidence, describe limits, and guide the next decision.")
+        )}
+      </div>
+      <div class="reflection-grid">
+        <div class="reflection-card"><h2>Reflection 1</h2>${promptBox("How did combining two evidence paths strengthen Room 12's explanation?")}${textField("reflection_evidence","Your reflection","reflection.evidenceStrength","Describe what each evidence path added.")}</div>
+        <div class="reflection-card"><h2>Reflection 2</h2>${promptBox("What is one way human choices can affect wildlife behavior or development without changing inherited traits?")}${textField("reflection_human","Your reflection","reflection.humanChoices","Use an example from the fox investigation.")}</div>
+      </div>
+      <section class="quiz-shell">
+        <div class="sect-label">Optional standards quiz</div>
+        <h2>Optional Standards Quiz</h2>
+        <p class="narrative-line">Would you like to take a six-question quiz about inheritance, behavior, and environmental conditions?</p>
+        <p class="small muted">The quiz is optional. If you take it, your responses, feedback, and score will be added to your Investigation Journal.</p>
+        <div class="quiz-choice-card"><div class="quiz-segmented" role="group" aria-label="Optional quiz choice"><button type="button" class="quiz-toggle ${q.choice==="take"?"active":""}" data-quiz-choice="take">Yes, take the quiz</button><button type="button" class="quiz-toggle ${q.choice==="skip"?"active":""}" data-quiz-choice="skip">No, export my journal</button></div></div>
+        <div id="quizPanel" class="quiz-panel ${showQuiz?"":"hidden"}">
+          ${QUIZ_QUESTIONS.map((item,i)=>{
+            const selected=Object.prototype.hasOwnProperty.call(q.answers,item.id)?Number(q.answers[item.id]):-1;
+            const correct=selected===item.answer;
+            return `<div class="quiz-question"><div class="quiz-qnum">Question ${i+1} of ${QUIZ_QUESTIONS.length}</div><p class="quiz-prompt">${esc(item.prompt)}</p>${item.options.map((o,j)=>`<label class="quiz-option ${q.submitted?"disabled":""}"><input type="radio" name="${item.id}" value="${j}" ${selected===j?"checked":""} ${q.submitted?"disabled":""}><span>${esc(o.text)}</span></label>`).join("")}${q.submitted?`<div class="quiz-feedback ${correct?"correct":"incorrect"}"><strong>${correct?"Correct.":"Not quite."}</strong> ${esc(item.options[selected].feedback)}${correct?"":` <strong>Nudge:</strong> ${esc(item.nudge)}`}</div>`:""}</div>`;
+          }).join("")}
+          ${q.submitted?`<div class="quiz-score" id="quizResults">Score: ${q.score} of ${QUIZ_QUESTIONS.length} (${Math.round(q.score/QUIZ_QUESTIONS.length*100)}%).</div><div class="quiz-actions"><button type="button" class="btn btn-outline" id="reviseQuiz">Revise Answers</button></div>`:`<div class="quiz-actions"><button type="button" class="btn btn-rust" id="submitQuiz" disabled>Submit Quiz</button><span class="small muted" id="quizStatus">Answer all six questions to submit.</span></div>`}
+        </div>
+        <div id="exportPanel" class="export-panel ${showExport?"":"hidden"}">${q.choice==="skip"?"<p>The quiz has been skipped. Your case journal and responses are already saved.</p>":q.submitted?`<p>Your quiz score and feedback have been added to the Investigation Journal.</p>`:""}<button type="button" class="export-btn" id="exportJournal">↓ Export Investigation Journal</button></div>
+      </section>
+    </div>`;
+  },
+  init(root){
+    autoBindAll(root);
+    $$("[data-quiz-choice]",root).forEach(btn=>btn.addEventListener("click",()=>{state.quiz.choice=btn.dataset.quizChoice;save();renderCurrent();setTimeout(()=>$(".quiz-shell")?.scrollIntoView({behavior:"smooth",block:"start"}),0);}));
+    if(state.quiz.choice==="take"&&!state.quiz.submitted){
+      function refreshSubmit(){
+        const answered=QUIZ_QUESTIONS.every(item=>Object.prototype.hasOwnProperty.call(state.quiz.answers,item.id));
+        const b=$("#submitQuiz",root);if(b)b.disabled=!answered;
+        const s=$("#quizStatus",root);if(s)s.textContent=answered?"All questions answered. Submit when ready.":"Answer all six questions to submit.";
+      }
+      QUIZ_QUESTIONS.forEach(item=>{$$(`input[name=${item.id}]`,root).forEach(r=>r.addEventListener("change",()=>{state.quiz.answers[item.id]=Number(r.value);save();refreshSubmit();}));});
+      $("#submitQuiz",root).addEventListener("click",()=>{
+        const score=QUIZ_QUESTIONS.reduce((sum,item)=>sum+(Number(state.quiz.answers[item.id])===item.answer?1:0),0);
+        state.quiz.score=score;state.quiz.submitted=true;state.quiz.attempts.push({submittedAt:nowISO(),score,answers:Object.assign({},state.quiz.answers)});save();renderCurrent();setTimeout(()=>$("#quizResults")?.scrollIntoView({behavior:"smooth",block:"center"}),0);
+      });
+      refreshSubmit();
+    }
+    const revise=$("#reviseQuiz",root);if(revise)revise.addEventListener("click",()=>{state.quiz.submitted=false;save();renderCurrent();setTimeout(()=>$(".quiz-shell")?.scrollIntoView({behavior:"smooth",block:"start"}),0);});
+    const exportBtn=$("#exportJournal",root);if(exportBtn)exportBtn.addEventListener("click",downloadJournal);
   }
 });
 
@@ -1586,6 +2302,30 @@ function normalizeState(){
   if(!Array.isArray(state.secondInvestigation.food.foundCorrect))state.secondInvestigation.food.foundCorrect=[];
   if(!Array.isArray(state.secondInvestigation.food.viewedRecords))state.secondInvestigation.food.viewedRecords=[];
   if(typeof state.secondInvestigation.food.teamNote!=="string")state.secondInvestigation.food.teamNote="";
+  if(!state.secondInvestigation.convergence)state.secondInvestigation.convergence={combinedExplanation:""};
+  if(typeof state.secondInvestigation.convergence.combinedExplanation!=="string")state.secondInvestigation.convergence.combinedExplanation="";
+  if(!state.feedbackModel)state.feedbackModel={slots:["","","",""],explanation:""};
+  if(!Array.isArray(state.feedbackModel.slots)||state.feedbackModel.slots.length!==4)state.feedbackModel.slots=["","","",""];
+  const validModelIds=new Set(FEEDBACK_STEPS.map(s=>s.id));
+  const seenModelIds=new Set();
+  state.feedbackModel.slots=state.feedbackModel.slots.map(id=>{
+    if(typeof id!=="string"||!validModelIds.has(id)||seenModelIds.has(id))return "";
+    seenModelIds.add(id);return id;
+  });
+  if(typeof state.feedbackModel.explanation!=="string")state.feedbackModel.explanation="";
+  if(!state.recommendation)state.recommendation={actions:[],habitatEvidence:"",foodEvidence:"",reasoning:"",finalText:""};
+  if(!Array.isArray(state.recommendation.actions))state.recommendation.actions=[];
+  state.recommendation.actions=state.recommendation.actions.filter(id=>RECOMMENDATION_ACTIONS.some(a=>a.id===id)).slice(0,3);
+  for(const k of ["habitatEvidence","foodEvidence","reasoning","finalText"])if(typeof state.recommendation[k]!=="string")state.recommendation[k]="";
+  if(!state.reflection)state.reflection={evidenceStrength:"",humanChoices:""};
+  if(typeof state.reflection.evidenceStrength!=="string")state.reflection.evidenceStrength="";
+  if(typeof state.reflection.humanChoices!=="string")state.reflection.humanChoices="";
+  if(!state.quiz)state.quiz={choice:"",answers:{},submitted:false,score:0,attempts:[]};
+  if(!["","take","skip"].includes(state.quiz.choice))state.quiz.choice="";
+  if(!state.quiz.answers||typeof state.quiz.answers!=="object")state.quiz.answers={};
+  state.quiz.submitted=!!state.quiz.submitted;
+  state.quiz.score=Number(state.quiz.score)||0;
+  if(!Array.isArray(state.quiz.attempts))state.quiz.attempts=[];
   if(!state.progress)state.progress={visitedScreens:[]};
   if(!Array.isArray(state.progress.visitedScreens))state.progress.visitedScreens=[];
   /* Migrate legacy screen keys from before the map + Decision Point 1 restructure. */
@@ -1597,9 +2337,10 @@ function normalizeState(){
   const n=state.navigation.currentScreen;
   if(n==="8A"&&state.navigation.firstPath!=="gallery")state.navigation.currentScreen=7;
   if(n==="8B"&&state.navigation.firstPath!=="dashboard")state.navigation.currentScreen=7;
-  if((n===9||n===10||n===11||n==="12A"||n==="12B")&&!state.navigation.firstPath)state.navigation.currentScreen=7;
+  if((n===9||n===10||n===11||n==="12A"||n==="12B"||n===13||n===14||n===15||n===16||n===17)&&!state.navigation.firstPath)state.navigation.currentScreen=7;
   if(n==="12A"&&state.navigation.secondPath!=="habitat")state.navigation.currentScreen=11;
   if(n==="12B"&&state.navigation.secondPath!=="food")state.navigation.currentScreen=11;
+  if((n===13||n===14||n===15||n===16||n===17)&&!state.navigation.secondPath)state.navigation.currentScreen=11;
 }
 function boot(){
   state=load()||defaultState();
