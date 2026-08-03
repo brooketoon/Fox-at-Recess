@@ -536,28 +536,123 @@ body.has-navbar main{padding-bottom:18px;}
   .obj-grid{grid-template-columns:1fr;}
   .scene .scene-media{height:208px;}
 }
+
+
+/* ==========================================================================\n   STORIES IN SCIENCE CONSISTENCY RETROFIT — SHARED TECHNICAL SHELL\n   Lesson-specific story, interactions, colors, typography, and assets remain intact.\n   ========================================================================== */
+:root{
+  --lesson-content-max:800px;
+  --shell-inline-gap:16px;
+}
+html{scroll-padding-top:18px;scroll-behavior:smooth;}
+body.no-scroll{overflow:hidden;}
+.skip-link{position:fixed;left:10px;top:-60px;z-index:500;background:var(--amber);color:#332608;padding:10px 15px;border-radius:0 0 10px 10px;font-weight:800;text-decoration:none;}
+.skip-link:focus{top:0;}
+.visually-hidden{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0 0 0 0)!important;white-space:nowrap!important;border:0!important;}
+.app-header{position:relative;top:auto;}
+.app-header-inner{width:min(100% - 24px,1000px);padding:10px 0;}
+.header-title{font-size:.96rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.header-actions{flex-wrap:nowrap;}
+.hbtn{min-height:44px;padding:8px 12px;white-space:nowrap;}
+body.launch-mode .app-header,body.launch-mode .tracker{display:none!important;}
+main{max-width:none;margin:0;padding:20px 0 24px;}
+.lesson-shell{width:min(calc(100% - (2 * var(--shell-inline-gap))),var(--lesson-content-max));margin-inline:auto;}
+#stage{min-width:0;}
+.navbar{position:static;width:100%;background:transparent;border:0;padding:0;margin:4px 0 24px;}
+.navbar-inner{max-width:none;margin:0;width:100%;border-top:1px solid #e6e0cf;padding:16px 0 0;gap:12px;}
+#backBtn,#continueBtn{min-height:48px;}
+#continueBtn{background:var(--rust-deep);color:#fff;border:none;border-radius:24px;padding:12px 26px;font-family:var(--font-interface);font-weight:800;font-size:.95rem;}
+#continueBtn:hover{background:var(--rust);}
+#continueBtn:focus-visible,#backBtn:focus-visible{outline:3px solid var(--amber);outline-offset:3px;}
+.tracker{position:relative;top:auto;padding:10px var(--shell-inline-gap);background:var(--birch-card);border-bottom:1px solid #e6e0cf;box-shadow:0 3px 10px rgba(30,30,20,.07);}
+.tracker-inner{width:min(100%,1000px);max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;}
+.tracker-step{min-width:0;display:flex;align-items:flex-start;gap:8px;background:#f4f6f4;border:1px solid #dce2dd;border-radius:11px;padding:9px 10px;}
+.tracker-step .ts-num{width:25px;height:25px;flex:none;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-interface);font-weight:800;font-size:.76rem;background:#e4e8e5;color:#667068;}
+.tracker-step .ts-copy{min-width:0;}
+.tracker-step .ts-label{font-size:.58rem;line-height:1.25;letter-spacing:.65px;}
+.tracker-step .ts-value{font-size:.72rem;line-height:1.3;margin-top:2px;white-space:normal;}
+.tracker-step.is-complete{background:var(--sky);border-color:#c8dccf;}
+.tracker-step.is-complete .ts-num{background:var(--leaf);color:#fff;}
+.tracker-step.is-current{background:#fff4df;border:2px solid var(--rust);}
+.tracker-step.is-current .ts-num{background:var(--rust-deep);color:#fff;}
+.tracker-step.is-current .ts-value{font-weight:800;color:var(--rust-deep);font-style:normal;}
+.tracker-step.is-future{opacity:.72;}
+.validation-message{margin:10px 0 0;padding:10px 12px;border-radius:9px;background:#fff1e7;border-left:4px solid var(--rust-deep);color:#713c1f;font-family:var(--font-interface);font-size:.84rem;font-weight:700;}
+.needs-attention{animation:attentionPulse 1.1s ease;box-shadow:0 0 0 4px rgba(226,112,58,.20)!important;}
+@keyframes attentionPulse{0%,100%{transform:none;}45%{transform:translateY(-2px);}}
+.save-status{display:block;min-height:1.2em;margin:5px 2px 0;font-family:var(--font-interface);font-size:.72rem;font-weight:700;color:var(--leaf-deep);}
+.drawer-overlay,.modal-overlay{backdrop-filter:blur(1px);}
+.drawer{width:min(440px,94vw);}
+.drawer-body .journal-export-row{position:sticky;top:-16px;z-index:2;background:var(--birch-card);padding:0 0 12px;margin-bottom:12px;border-bottom:1px solid #e6e0cf;}
+.journal-stage{font-family:var(--font-interface);font-size:.65rem;letter-spacing:.8px;text-transform:uppercase;color:var(--rust-deep);font-weight:800;margin-bottom:2px;}
+.journal-entry.model .je-a,.journal-entry.quiz .je-a{white-space:normal;}
+.journal-list{margin:0;padding:0;list-style:none;}
+.journal-entry ul{margin:6px 0 0 18px;padding:0;}
+.journal-entry li{margin:4px 0;}
+.modal-shell{position:fixed;inset:0;background:rgba(20,20,15,.55);z-index:300;display:flex;align-items:center;justify-content:center;padding:18px;}
+.modal-dialog{background:var(--birch-card);border-radius:18px;width:min(100%,520px);max-height:90vh;overflow:auto;box-shadow:0 18px 50px rgba(20,20,15,.32);}
+.modal-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:17px 20px;background:var(--leaf-deep);color:#fff;border-radius:18px 18px 0 0;}
+.modal-head h2{color:#fff;margin:0;font-size:1.18rem;}
+.modal-close{width:38px;height:38px;border:none;border-radius:50%;background:rgba(255,255,255,.18);color:#fff;font-size:1.15rem;}
+.modal-body{padding:20px;}
+.modal-actions{display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap;margin-top:18px;}
+.btn-danger{background:#a63d2d;color:#fff;border:none;border-radius:26px;font-family:var(--font-interface);font-weight:800;padding:12px 22px;min-height:46px;}
+.export-name-input{width:100%;min-height:46px;resize:none;}
+.completion-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;background:var(--sky);border:1px solid #d2e3d8;border-radius:14px;padding:14px 16px;margin:0 0 18px;}
+.completion-actions .btn{font-size:.88rem;padding:11px 17px;}
+@media(max-width:760px){
+  .tracker{overflow-x:auto;padding-inline:10px;}
+  .tracker-inner{display:flex;width:max-content;min-width:100%;}
+  .tracker-step{width:150px;flex:0 0 150px;}
+}
+@media(max-width:560px){
+  :root{--shell-inline-gap:10px;}
+  .app-header-inner{width:calc(100% - 16px);display:grid;grid-template-columns:minmax(0,1fr);gap:8px;}
+  .brand{flex-direction:row;align-items:center;gap:8px;}
+  .brand .grade{font-size:.62rem;}
+  .header-title{display:none;}
+  .header-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;width:100%;}
+  .hbtn{justify-content:center;padding:8px 5px;font-size:.72rem;min-width:0;}
+  .navbar-inner{align-items:stretch;}
+  #backBtn,#continueBtn{flex:1;justify-content:center;text-align:center;}
+  .drawer{width:96vw;}
+  .modal-actions{flex-direction:column-reverse;}
+  .modal-actions>*{width:100%;justify-content:center;text-align:center;}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}.needs-attention{animation:none;}}
+
 </style>
 </head>
-<body>
+<body class="launch-mode">
+<a class="skip-link" href="#stage">Skip to lesson content</a>
+<div id="liveRegion" class="visually-hidden" role="status" aria-live="polite" aria-atomic="true"></div>
 
-<header class="app-header" role="banner">
+<header class="app-header" id="appHeader" role="banner">
   <div class="app-header-inner">
-    <div class="brand">
+    <div class="brand" aria-label="Stories in Science, Grade 5 Life Science">
       <span class="sis">Stories in Science</span>
       <span class="grade">Grade 5 &middot; Life Science</span>
     </div>
-    <div class="header-title" id="headerTitle" aria-live="polite">Launch</div>
-    <div class="header-actions">
-      <button class="hbtn" id="glossaryBtn">Glossary</button>
-      <button class="hbtn" id="journalBtn">Journal</button>
-      <button class="hbtn" id="restartBtn">Restart</button>
+    <div class="header-title" id="headerTitle">The Fox at Recess</div>
+    <div class="header-actions" aria-label="Lesson tools">
+      <button class="hbtn" id="glossaryBtn" type="button" aria-haspopup="dialog">Glossary</button>
+      <button class="hbtn" id="journalBtn" type="button" aria-haspopup="dialog">View Journal</button>
+      <button class="hbtn" id="restartBtn" type="button" aria-haspopup="dialog">Restart</button>
     </div>
   </div>
 </header>
 
-<div class="tracker hidden" id="tracker"></div>
-<main id="stage" role="main"></main>
-<nav class="navbar hidden" id="navbar"><div class="navbar-inner"><button id="backBtn" aria-label="Go back">&larr; Back</button><button id="continueBtn" disabled>Continue</button></div></nav>
+<div class="tracker hidden" id="tracker" aria-label="Investigation progress"></div>
+<main id="main">
+  <div class="lesson-shell">
+    <div id="stage" tabindex="-1"></div>
+    <nav class="navbar hidden" id="navbar" aria-label="Lesson navigation">
+      <div class="navbar-inner">
+        <button id="backBtn" type="button" aria-label="Go back">&larr; Back</button>
+        <button id="continueBtn" type="button">Continue</button>
+      </div>
+    </nav>
+  </div>
+</main>
 <div id="modalRoot"></div>
 
 <script>
@@ -579,30 +674,30 @@ function fmtDate(iso){if(!iso)return "—";const d=new Date(iso);return d.toLoca
 function ttsButton(text){
   return `<button class="tts-btn" type="button" data-tts="${esc(text)}">&#128266; <span class="tts-label">Read aloud</span></button>`;
 }
-document.addEventListener("click",e=>{
-  const btn=e.target.closest("[data-tts]");
-  if(!btn)return;
-  if(typeof window.speechSynthesis==="undefined")return;
-  const label=btn.querySelector(".tts-label");
-  if(window.speechSynthesis.speaking){
-    window.speechSynthesis.cancel();
-    if(label)label.textContent="Read aloud";
-    return;
-  }
-  const utter=new SpeechSynthesisUtterance(btn.dataset.tts);
-  utter.rate=0.95;
-  utter.onend=()=>{if(label)label.textContent="Read aloud";};
-  utter.onerror=()=>{if(label)label.textContent="Read aloud";};
-  if(label)label.textContent="Stop";
-  window.speechSynthesis.speak(utter);
+let activeTtsButton=null;
+function resetTtsButton(){if(activeTtsButton){const label=activeTtsButton.querySelector(".tts-label");if(label)label.textContent="Read aloud";activeTtsButton.classList.remove("is-playing");activeTtsButton=null;}}
+document.addEventListener("click",event=>{
+  const button=event.target.closest("[data-tts]");if(!button||typeof window.speechSynthesis==="undefined")return;
+  const wasActive=activeTtsButton===button&&window.speechSynthesis.speaking;
+  window.speechSynthesis.cancel();resetTtsButton();if(wasActive)return;
+  const utterance=new SpeechSynthesisUtterance(button.dataset.tts);utterance.rate=.95;activeTtsButton=button;button.classList.add("is-playing");
+  const label=button.querySelector(".tts-label");if(label)label.textContent="Stop";
+  utterance.onend=resetTtsButton;utterance.onerror=resetTtsButton;window.speechSynthesis.speak(utterance);
 });
 
-const LS_KEY="ridge_foxinvestigation_v1";
-function defaultState(){
+const STORAGE_KEY="storiesInScience:foxAtRecess:v3";
+const LEGACY_STORAGE_KEYS=["ridge_foxinvestigation_v1"];
+function createDefaultState(){
   return {
-    meta:{lessonTitle:"The Fox at Recess: A Ridge Den Investigation",lessonVersion:"1.1-constructible-feedback-model",standard:"AZ 5.L3U1.10",studentLabel:"",sessionCode:"",startedAt:"",lastSavedAt:""},
-    navigation:{currentScreen:1,firstPath:"",secondPath:""},
-    progress:{visitedScreens:[1]},
+    lessonId:"foxAtRecess",
+    lessonTitle:"The Fox at Recess: A Ridge Den Investigation",
+    version:"3",
+    started:false,
+    completed:false,
+    meta:{lessonTitle:"The Fox at Recess: A Ridge Den Investigation",lessonVersion:"3",standard:"AZ 5.L3U1.10",startedAt:"",lastSavedAt:""},
+    navigation:{currentScreen:1,currentStage:"launch",firstPath:"",secondPath:""},
+    progress:{encounteredScreens:[1],encounteredInteractions:[]},
+    evidenceSelections:{mapLocations:{orientation:[],sightings:[],numbers:[]}},
     entry:{playgroundNote:"",homeNote:"",emailSubject:"Fox sighting near playground fence",emailBody:"",mapObservation:"",assignmentAccepted:false},
     firstInvestigation:{
       gallery:{photosViewed:[],patternNote:"",limitationNote:""},
@@ -611,44 +706,81 @@ function defaultState(){
     },
     secondInvestigation:{
       habitat:{yearsViewed:[],teamNote:"",selectedYear:2022},
-      food:{selectedHotspots:[],foundCorrect:[],viewedRecords:[],teamNote:""},
+      food:{selectedHotspots:[],foundCorrect:[],viewedRecords:[],teamNote:"",lastFeedbackId:"",lastRecordId:""},
       convergence:{combinedExplanation:""}
     },
-    feedbackModel:{
-      slots:["","","",""],
-      explanation:""
-    },
+    feedbackModel:{slots:["","","",""],explanation:""},
     recommendation:{actions:[],habitatEvidence:"",foodEvidence:"",reasoning:"",finalText:""},
     reflection:{evidenceStrength:"",humanChoices:""},
-    quiz:{choice:"",answers:{},submitted:false,score:0,attempts:[]}
+    quiz:{started:false,completed:false,choice:"",answers:{},revisions:{},submitted:false,score:null,attempts:[]}
   };
 }
 let state=null;
-function save(){try{state.meta.lastSavedAt=nowISO();localStorage.setItem(LS_KEY,JSON.stringify(state));}catch(e){}}
-function load(){try{const raw=localStorage.getItem(LS_KEY);if(raw)return JSON.parse(raw);}catch(e){}return null;}
-function hasSave(){try{return !!localStorage.getItem(LS_KEY);}catch(e){return false;}}
-function getSessionCode(){
-  if(!state.meta.sessionCode){
-    const A="ABCDEFGHJKLMNPQRSTUVWXYZ23456789";let c="";
-    for(let i=0;i<6;i++)c+=A.charAt(Math.floor(Math.random()*A.length));
-    state.meta.sessionCode=c;try{save();}catch(e){}
-  }
-  return state.meta.sessionCode;
+function saveState(){
+  try{
+    state.meta.lastSavedAt=nowISO();
+    localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
+  }catch(e){announce("Progress could not be saved on this device.");}
 }
+function loadState(){
+  try{
+    const direct=localStorage.getItem(STORAGE_KEY);
+    if(direct)return JSON.parse(direct);
+    for(const key of LEGACY_STORAGE_KEYS){
+      const legacy=localStorage.getItem(key);
+      if(legacy)return JSON.parse(legacy);
+    }
+  }catch(e){}
+  return null;
+}
+function clearState(){
+  try{
+    localStorage.removeItem(STORAGE_KEY);
+    LEGACY_STORAGE_KEYS.forEach(key=>localStorage.removeItem(key));
+  }catch(e){}
+}
+function hasSave(){return !!(state&&state.started&&state.navigation&&state.navigation.currentScreen!==1);}
+function save(){saveState();}
+function load(){return loadState();}
+function recordScreenEncounter(screen){
+  if(!state.progress)state.progress={encounteredScreens:[],encounteredInteractions:[]};
+  if(!Array.isArray(state.progress.encounteredScreens))state.progress.encounteredScreens=[];
+  if(!state.progress.encounteredScreens.some(x=>String(x)===String(screen)))state.progress.encounteredScreens.push(screen);
+}
+function recordInteractionEncounter(id){
+  if(!id)return;
+  if(!state.progress)state.progress={encounteredScreens:[],encounteredInteractions:[]};
+  if(!Array.isArray(state.progress.encounteredInteractions))state.progress.encounteredInteractions=[];
+  if(!state.progress.encounteredInteractions.includes(id))state.progress.encounteredInteractions.push(id);
+}
+function announce(message){const region=$("#liveRegion");if(region){region.textContent="";requestAnimationFrame(()=>{region.textContent=message;});}}
 function getPath(p){return p.split(".").reduce((o,k)=>(o==null?o:o[k]),state);}
 function setPath(p,val){
   const parts=p.split(".");let o=state;
-  for(let i=0;i<parts.length-1;i++)o=o[parts[i]];
-  o[parts[parts.length-1]]=val;save();
+  for(let i=0;i<parts.length-1;i++){
+    if(!o[parts[i]]||typeof o[parts[i]]!=="object")o[parts[i]]={};
+    o=o[parts[i]];
+  }
+  o[parts[parts.length-1]]=val;
+  recordInteractionEncounter(p);
+  saveState();
 }
 function textField(id,label,path,placeholder){
   const cur=getPath(path)||"";
   return `<label class="field-label" for="${id}">${esc(label)}</label>
-    <textarea id="${id}" data-path="${path}" placeholder="${esc(placeholder||"")}">${esc(cur)}</textarea>`;
+    <textarea id="${id}" data-path="${path}" placeholder="${esc(placeholder||"")}">${esc(cur)}</textarea><span class="save-status" id="${id}_save" aria-live="polite"></span>`;
 }
 function autoBindAll(root){
   $$("textarea[data-path],input[data-path]",root).forEach(el=>{
-    el.addEventListener("input",()=>setPath(el.dataset.path,el.value));
+    if(!el.nextElementSibling||!el.nextElementSibling.classList.contains("save-status")){
+      const status=document.createElement("span");status.className="save-status";status.setAttribute("aria-live","polite");el.insertAdjacentElement("afterend",status);
+    }
+    let timer=0;
+    el.addEventListener("input",()=>{
+      setPath(el.dataset.path,el.value);
+      const status=el.nextElementSibling&&el.nextElementSibling.classList.contains("save-status")?el.nextElementSibling:null;
+      if(status){status.textContent="Saved to your Investigation Journal.";clearTimeout(timer);timer=setTimeout(()=>{status.textContent="";},1800);}
+    });
   });
 }
 function promptBox(q){return `<span class="prompt-box">${esc(q)}</span>`;}
@@ -679,138 +811,236 @@ function alertPanel(html){return `<div class="alert-panel">${html}</div>`;}
 /* ===================== Screen router ===================== */
 const SCREENS={};
 function registerScreen(n,def){SCREENS[n]=def;}
-function setContinue(ok){
-  const b=$("#continueBtn");
-  if(b)b.disabled=false;
+const TRACKER_STAGES=[
+  {label:"Observe and Report",value:"Document the sighting"},
+  {label:"First Evidence",value:"Compare the Ridge Den pattern"},
+  {label:"Environmental Evidence",value:"Investigate possible causes"},
+  {label:"Model the Pattern",value:"Build the feedback loop"},
+  {label:"Recommend and Reflect",value:"Use evidence for action"}
+];
+function stageIndexForScreen(screen){
+  const s=String(screen);
+  if(["2","3","4","5","6"].includes(s))return 0;
+  if(["7","8A","8B","9"].includes(s))return 1;
+  if(["10","11","12A","12B","13"].includes(s))return 2;
+  if(["14","15"].includes(s))return 3;
+  if(["16","17"].includes(s))return 4;
+  return -1;
 }
+function setContinue(){const b=$("#continueBtn");if(b){b.disabled=false;b.removeAttribute("aria-disabled");}}
 function updateHeader(){
-  const n=state.navigation.currentScreen;
-  const def=SCREENS[n];
-  $("#headerTitle").textContent=(n===1)?"":(def&&def.title?def.title:("Screen "+n));
+  const screen=state.navigation.currentScreen;
+  const launch=String(screen)==="1";
+  document.body.classList.toggle("launch-mode",launch);
+  const def=SCREENS[screen];
+  $("#headerTitle").textContent="The Fox at Recess";
   const nav=$("#navbar");
-  nav.classList.toggle("hidden",n===1);
-  document.body.classList.toggle("has-navbar",n!==1);
-  const backBtn=$("#backBtn");
-  if(backBtn)backBtn.style.visibility=(n===1)?"hidden":"visible";
-  const contBtn=$("#continueBtn");
-  if(contBtn)contBtn.style.display=(def&&def.hideNav)?"none":"";
-  updateTracker(n);
+  const hideNav=launch||!!(def&&def.hideNav);
+  nav.classList.toggle("hidden",hideNav);
+  updateTracker(screen);
 }
-function updateTracker(n){
-  const t=$("#tracker");
-  if(!t)return;
-  t.classList.toggle("hidden",n===1);
-  if(n===1)return;
-  const p=state.navigation.firstPath;
-  const p2=state.navigation.secondPath;
-  const step1Done=!!p;
-  const step1Value=p==="gallery"?"Study the Sightings":p==="dashboard"?"Study the Numbers":"Awaiting your choice…";
-  const step2Done=!!p2;
-  const step2Value=p2==="habitat"?"Track the Changing Habitat":p2==="food"?"Follow the Food Trail":((n===10||n===11)?"Awaiting your choice…":"Coming soon");
-  const step2Class=step2Done?"done":((n===10||n===11||n==="12A"||n==="12B")?"":"soon");
-  t.innerHTML=`<div class="tracker-inner">
-    <div class="tracker-step ${step1Done?"done":""}"><span class="ts-num">${step1Done?"&#10003;":"1"}</span><div><div class="ts-label">Evidence Path</div><div class="ts-value">${esc(step1Value)}</div></div></div>
-    <div class="tracker-step ${step2Class}"><span class="ts-num">${step2Done?"&#10003;":"2"}</span><div><div class="ts-label">Deeper Investigation</div><div class="ts-value">${esc(step2Value)}</div></div></div>
-  </div>`;
+function updateTracker(screen){
+  const tracker=$("#tracker");
+  const launch=String(screen)==="1";
+  tracker.classList.toggle("hidden",launch);
+  if(launch){tracker.innerHTML="";return;}
+  const current=stageIndexForScreen(screen);
+  state.navigation.currentStage=TRACKER_STAGES[Math.max(0,current)].label;
+  tracker.innerHTML=`<div class="tracker-inner">${TRACKER_STAGES.map((stage,i)=>{
+    const status=i<current?"is-complete":i===current?"is-current":"is-future";
+    const stateText=i<current?"Completed":i===current?"Current":"Upcoming";
+    let value=stage.value;
+    if(i===1&&state.navigation.firstPath)value=state.navigation.firstPath==="gallery"?"Sightings evidence selected":"Field measurements selected";
+    if(i===2&&state.navigation.secondPath)value=state.navigation.secondPath==="habitat"?"Habitat evidence selected":"Food-access evidence selected";
+    return `<div class="tracker-step ${status}" ${i===current?'aria-current="step"':''}><span class="ts-num">${i<current?"✓":i+1}</span><span class="ts-copy"><span class="ts-label">${esc(stage.label)} · ${stateText}</span><br><span class="ts-value">${esc(value)}</span></span></div>`;
+  }).join("")}</div>`;
 }
-function renderCurrent(){
-  const n=state.navigation.currentScreen;
-  const def=SCREENS[n];
+function focusCurrentHeading(){
+  const heading=$("#stage .screen h1, #stage .screen h2");
+  if(heading){heading.setAttribute("tabindex","-1");heading.focus({preventScroll:true});}
+}
+function renderScreen(){
+  const screen=state.navigation.currentScreen;
+  const def=SCREENS[screen];
   const stage=$("#stage");
   if(!def){stage.innerHTML="<p>Screen not found.</p>";return;}
   stage.innerHTML=def.render();
   updateHeader();
-  setContinue(true);
+  setContinue();
   if(def.init)def.init(stage);
 }
-function goToScreen(n){
+function renderCurrent(){renderScreen();}
+function normalizeRequestedScreen(screen){
+  let n=screen;
   if(n==="8A"&&state.navigation.firstPath!=="gallery")n=7;
   if(n==="8B"&&state.navigation.firstPath!=="dashboard")n=7;
-  if((n===9||n===10||n===11||n==="12A"||n==="12B"||n===13||n===14||n===15||n===16||n===17)&&!state.navigation.firstPath)n=7;
+  if(([9,10,11,"12A","12B",13,14,15,16,17].some(x=>String(x)===String(n)))&&!state.navigation.firstPath)n=7;
   if(n==="12A"&&state.navigation.secondPath!=="habitat")n=11;
   if(n==="12B"&&state.navigation.secondPath!=="food")n=11;
-  if((n===13||n===14||n===15||n===16||n===17)&&!state.navigation.secondPath)n=11;
-  $("#modalRoot").innerHTML="";
-  document.removeEventListener("keydown",escClose);
-  document.removeEventListener("keydown",escCloseDrawer);
-  state.navigation.currentScreen=n;
-  if(!state.progress)state.progress={visitedScreens:[]};
-  if(!state.progress.visitedScreens.includes(n))state.progress.visitedScreens.push(n);
-  save();renderCurrent();
-  window.scrollTo({top:0,behavior:(matchMedia("(prefers-reduced-motion:reduce)").matches?"auto":"smooth")});
+  if(([13,14,15,16,17].some(x=>String(x)===String(n)))&&!state.navigation.secondPath)n=11;
+  return n;
 }
-const NUMERIC_ORDER=[1,2,3,4,5,6,7];
+function goToScreen(screen){
+  const n=normalizeRequestedScreen(screen);
+  closeActiveLayer(false);
+  if(window.speechSynthesis)window.speechSynthesis.cancel();
+  state.navigation.currentScreen=n;
+  state.started=String(n)!=="1";
+  if(state.started&&!state.meta.startedAt)state.meta.startedAt=nowISO();
+  if(String(n)==="17")state.completed=true;
+  recordScreenEncounter(n);
+  saveState();
+  renderScreen();
+  window.scrollTo({top:0,behavior:matchMedia("(prefers-reduced-motion:reduce)").matches?"auto":"smooth"});
+  if(String(n)!=="1")requestAnimationFrame(focusCurrentHeading);
+  announce(`Opened ${SCREENS[n]&&SCREENS[n].title?SCREENS[n].title:"the next lesson page"}.`);
+}
+function validationResult(valid,selector,message){return {valid,selector,message};}
+function validateCurrentScreen(){
+  const n=String(state.navigation.currentScreen);
+  const txt=(v,min=1)=>String(v||"").trim().length>=min;
+  if(n==="3")return validationResult(txt(state.entry.homeNote),"#q_home","Add Gracie's evidence note before continuing.");
+  if(n==="4")return validationResult(txt(state.entry.emailBody),"#email_body","Write the observation-based email before continuing.");
+  if(n==="6")return validationResult(txt(state.entry.mapObservation),"#map_note","Add your Pinecrest map note before continuing.");
+  if(n==="7")return validationResult(!!state.navigation.firstPath,".station-grid","Choose one evidence path before continuing.");
+  if(n==="8A"){
+    if(state.firstInvestigation.gallery.photosViewed.length<GALLERY.length)return validationResult(false,"#galleryGrid","Open all eight trail-camera records before continuing.");
+    return validationResult(txt(state.firstInvestigation.gallery.patternNote),"#gal_pattern","Add the Sightings Team note before continuing.");
+  }
+  if(n==="8B"){
+    if(state.firstInvestigation.dashboard.variablesViewed.length<3)return validationResult(false,"#varChips","Examine all three field measurements before continuing.");
+    return validationResult(txt(state.firstInvestigation.dashboard.claim),"#dash_claim","Add the Numbers Team note before continuing.");
+  }
+  if(n==="9")return validationResult(txt(state.firstInvestigation.convergence.combinedClaim),"#convergence_claim","Combine one finding from each team before continuing.");
+  if(n==="11")return validationResult(!!state.navigation.secondPath,".station-grid","Choose one environmental evidence file before continuing.");
+  if(n==="12A"){
+    if(state.secondInvestigation.habitat.yearsViewed.length<5)return validationResult(false,".timeline-shell","View all five habitat years before continuing.");
+    return validationResult(txt(state.secondInvestigation.habitat.teamNote),"#habitat_team_note","Add the Habitat Team note before continuing.");
+  }
+  if(n==="12B"){
+    if(state.secondInvestigation.food.foundCorrect.length<FOOD_CORRECT_IDS.length)return validationResult(false,"#foodScene","Find all four food-access clues before continuing.");
+    if(state.secondInvestigation.food.viewedRecords.length<FOOD_RECORDS.length)return validationResult(false,"#foodFollowup","Open both follow-up camera records before continuing.");
+    return validationResult(txt(state.secondInvestigation.food.teamNote),"#food_team_note","Add the Food Access Team note before continuing.");
+  }
+  if(n==="13")return validationResult(txt(state.secondInvestigation.convergence.combinedExplanation),"#dp2_convergence","Connect the habitat and food-access evidence before continuing.");
+  if(n==="15"){
+    if(!Array.isArray(state.feedbackModel.slots)||!state.feedbackModel.slots.every(Boolean))return validationResult(false,"#loopCycle","Complete all four steps of the feedback-loop model before continuing.");
+    return validationResult(txt(state.feedbackModel.explanation,15),"#model_explanation","Add an evidence-based model justification before continuing.");
+  }
+  if(n==="16")return validationResult(!!state.recommendation.finalText,"#buildRecommendation","Create the committee recommendation brief before continuing.");
+  return validationResult(true,"","");
+}
+function clearValidation(){
+  $$(".validation-message").forEach(el=>el.remove());
+  $$(".needs-attention").forEach(el=>el.classList.remove("needs-attention"));
+}
+function showValidation(result){
+  clearValidation();
+  const target=$(result.selector)||$("#stage");
+  const message=document.createElement("div");
+  message.className="validation-message";
+  message.setAttribute("role","alert");
+  message.textContent=result.message;
+  if(target.matches("textarea,input,button"))target.insertAdjacentElement("afterend",message);else target.appendChild(message);
+  target.classList.add("needs-attention");
+  target.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion:reduce)").matches?"auto":"smooth",block:"center"});
+  if(typeof target.focus==="function"){
+    if(!target.hasAttribute("tabindex")&&!target.matches("textarea,input,button,select,a"))target.setAttribute("tabindex","-1");
+    target.focus({preventScroll:true});
+  }
+  setTimeout(()=>target.classList.remove("needs-attention"),1300);
+  announce(result.message);
+}
+function attemptContinue(){
+  const result=validateCurrentScreen();
+  if(!result.valid){showValidation(result);return false;}
+  clearValidation();
+  nextScreen();return true;
+}
 function nextScreen(){
-  const n=state.navigation.currentScreen;
-  if(n===9){goToScreen(10);return;}
-  if(n===10){goToScreen(11);return;}
-  if(n===13){goToScreen(14);return;}
-  if(n===14){goToScreen(15);return;}
-  if(n===15){goToScreen(16);return;}
-  if(n===16){goToScreen(17);return;}
-  const i=NUMERIC_ORDER.indexOf(n);
-  if(i>-1 && i<NUMERIC_ORDER.length-1)goToScreen(NUMERIC_ORDER[i+1]);
+  const n=String(state.navigation.currentScreen);
+  if(n==="1"){goToScreen(2);return;}
+  if(n==="7"){goToScreen(state.navigation.firstPath==="gallery"?"8A":"8B");return;}
+  if(n==="8A"||n==="8B"){goToScreen(9);return;}
+  if(n==="11"){goToScreen(state.navigation.secondPath==="habitat"?"12A":"12B");return;}
+  if(n==="12A"||n==="12B"){goToScreen(13);return;}
+  const order=["2","3","4","5","6","7","9","10","11","13","14","15","16","17"];
+  const i=order.indexOf(n);if(i>=0&&i<order.length-1)goToScreen(Number.isNaN(Number(order[i+1]))?order[i+1]:Number(order[i+1]));
 }
 function prevScreen(){
-  const n=state.navigation.currentScreen;
-  if(n===17){goToScreen(16);return;}
-  if(n===16){goToScreen(15);return;}
-  if(n===15){goToScreen(14);return;}
-  if(n===14){goToScreen(13);return;}
-  if(n===13){goToScreen(state.navigation.secondPath==="habitat"?"12A":"12B");return;}
+  const n=String(state.navigation.currentScreen);
+  if(n==="17"){goToScreen(16);return;}
+  if(n==="16"){goToScreen(15);return;}
+  if(n==="15"){goToScreen(14);return;}
+  if(n==="14"){goToScreen(13);return;}
+  if(n==="13"){goToScreen(state.navigation.secondPath==="habitat"?"12A":"12B");return;}
   if(n==="12A"||n==="12B"){goToScreen(11);return;}
-  if(n===11){goToScreen(10);return;}
-  if(n===10){goToScreen(9);return;}
-  if(n===9){
-    if(state.navigation.firstPath==="gallery")goToScreen("8A");
-    else if(state.navigation.firstPath==="dashboard")goToScreen("8B");
-    else goToScreen(7);
-    return;
-  }
+  if(n==="11"){goToScreen(10);return;}
+  if(n==="10"){goToScreen(9);return;}
+  if(n==="9"){goToScreen(state.navigation.firstPath==="gallery"?"8A":"8B");return;}
   if(n==="8A"||n==="8B"){goToScreen(7);return;}
-  const i=NUMERIC_ORDER.indexOf(n);
-  if(i>0)goToScreen(NUMERIC_ORDER[i-1]);
+  const order=["1","2","3","4","5","6","7"];
+  const i=order.indexOf(n);if(i>0)goToScreen(Number(order[i-1]));
 }
-$("#continueBtn").addEventListener("click",nextScreen);
+$("#continueBtn").addEventListener("click",attemptContinue);
 
-/* ---------- Modal ---------- */
-function openModal(bodyHtml,onMount){
+/* ---------- Drawers and styled modals ---------- */
+let activeLayer=null;
+function focusableElements(container){return $$('button:not([disabled]),[href],input:not([disabled]),textarea:not([disabled]),select:not([disabled]),[tabindex]:not([tabindex="-1"])',container).filter(el=>!el.hidden&&el.offsetParent!==null);}
+function handleLayerKeydown(event){
+  if(!activeLayer)return;
+  if(event.key==="Escape"){event.preventDefault();closeActiveLayer(true);return;}
+  if(event.key!=="Tab")return;
+  const items=focusableElements(activeLayer.container);
+  if(!items.length){event.preventDefault();activeLayer.container.focus();return;}
+  const first=items[0],last=items[items.length-1];
+  if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}
+  else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}
+}
+function activateLayer(container,trigger,initialSelector,onClose){
+  activeLayer={container,trigger:trigger||document.activeElement,onClose:onClose||null};
+  document.body.classList.add("no-scroll");
+  document.addEventListener("keydown",handleLayerKeydown);
+  requestAnimationFrame(()=>{const first=initialSelector?$(initialSelector,container):null;(first||focusableElements(container)[0]||container).focus();});
+}
+function closeActiveLayer(restoreFocus=true){
+  if(!activeLayer){$("#modalRoot").innerHTML="";document.body.classList.remove("no-scroll");return;}
+  const previous=activeLayer;activeLayer=null;
+  document.removeEventListener("keydown",handleLayerKeydown);
+  document.body.classList.remove("no-scroll");
+  $("#modalRoot").innerHTML="";
+  if(previous.onClose)previous.onClose();
+  if(restoreFocus&&previous.trigger&&typeof previous.trigger.focus==="function")previous.trigger.focus();
+}
+function openDrawer(side,titleText,bodyHtml,trigger){
+  closeActiveLayer(false);
   const root=$("#modalRoot");
-  root.innerHTML=`<div class="modal-overlay" id="mOverlay"><div class="modal-box" role="dialog" aria-modal="true">${bodyHtml}</div></div>`;
-  const ov=$("#mOverlay",root);
-  ov.addEventListener("click",e=>{if(e.target===ov)closeModal();});
-  document.addEventListener("keydown",escClose);
+  root.innerHTML=`<div class="drawer-overlay" id="drOverlay"></div><aside class="drawer ${side}" id="drPanel" role="dialog" aria-modal="true" aria-labelledby="drTitle" tabindex="-1"><div class="drawer-head"><h2 id="drTitle">${esc(titleText)}</h2><button class="drawer-close" id="drClose" type="button" aria-label="Close ${esc(titleText)}">&times;</button></div><div class="drawer-body">${bodyHtml}</div></aside>`;
+  const panel=$("#drPanel",root);
+  $("#drOverlay",root).addEventListener("click",()=>closeActiveLayer(true));
+  $("#drClose",root).addEventListener("click",()=>closeActiveLayer(true));
+  activateLayer(panel,trigger||document.activeElement,"#drClose");
+  requestAnimationFrame(()=>panel.classList.add("open"));
+}
+function openStyledModal({title,body,trigger,initialSelector,onMount}){
+  closeActiveLayer(false);
+  const root=$("#modalRoot");
+  root.innerHTML=`<div class="modal-shell" id="activeModalOverlay"><section class="modal-dialog" id="activeModal" role="dialog" aria-modal="true" aria-labelledby="activeModalTitle" tabindex="-1"><div class="modal-head"><h2 id="activeModalTitle">${esc(title)}</h2><button type="button" class="modal-close" id="activeModalClose" aria-label="Close">&times;</button></div><div class="modal-body">${body}</div></section></div>`;
+  const overlay=$("#activeModalOverlay",root),dialog=$("#activeModal",root);
+  overlay.addEventListener("click",event=>{if(event.target===overlay)closeActiveLayer(true);});
+  $("#activeModalClose",root).addEventListener("click",()=>closeActiveLayer(true));
+  activateLayer(dialog,trigger||document.activeElement,initialSelector||"#activeModalClose");
   if(onMount)onMount(root);
 }
-function escClose(e){if(e.key==="Escape")closeModal();}
-function closeModal(){$("#modalRoot").innerHTML="";document.removeEventListener("keydown",escClose);}
-
-/* ---------- Slide-out drawer (Glossary = left, Journal = right) ---------- */
-let drawerLastFocus=null;
-function openDrawer(side,titleText,bodyHtml){
-  const root=$("#modalRoot");
-  drawerLastFocus=document.activeElement;
-  root.innerHTML=`<div class="drawer-overlay" id="drOverlay"></div>
-    <div class="drawer ${side}" id="drPanel" role="dialog" aria-modal="true" aria-label="${esc(titleText)}">
-      <div class="drawer-head"><h2>${esc(titleText)}</h2><button class="drawer-close" id="drClose" aria-label="Close">&times;</button></div>
-      <div class="drawer-body">${bodyHtml}</div>
-    </div>`;
-  $("#drOverlay",root).addEventListener("click",closeDrawer);
-  $("#drClose",root).addEventListener("click",closeDrawer);
-  document.addEventListener("keydown",escCloseDrawer);
-  requestAnimationFrame(()=>{$("#drPanel",root).classList.add("open");});
-}
-function escCloseDrawer(e){if(e.key==="Escape")closeDrawer();}
-function closeDrawer(){
-  const panel=$("#drPanel");
-  if(!panel){$("#modalRoot").innerHTML="";return;}
-  panel.classList.remove("open");
-  document.removeEventListener("keydown",escCloseDrawer);
-  setTimeout(()=>{$("#modalRoot").innerHTML="";},200);
-  if(drawerLastFocus&&drawerLastFocus.focus)drawerLastFocus.focus();
+function openRestartModal(){
+  const trigger=$("#restartBtn");
+  openStyledModal({title:"Restart this lesson?",trigger,initialSelector:"#keepProgress",body:`<p>This will erase your current decisions, models, written responses, journal entries, and optional quiz progress from this device.</p><div class="modal-actions"><button type="button" class="btn btn-outline" id="keepProgress">Keep My Progress</button><button type="button" class="btn-danger" id="confirmRestart">Restart Lesson</button></div>`,onMount(root){
+    $("#keepProgress",root).addEventListener("click",()=>closeActiveLayer(true));
+    $("#confirmRestart",root).addEventListener("click",()=>{clearState();state=createDefaultState();closeActiveLayer(false);renderScreen();window.scrollTo(0,0);announce("Lesson restarted. Your saved progress was cleared.");});
+  }});
 }
 
-/* ===================== Glossary (minimal) ===================== */
+/* ===================== Glossary ===================== */
 const GLOSSARY=[
   ["Litter size","The number of kits (baby foxes) born to a vixen in one season."],
   ["Body condition","A simple 1–5 rating of how healthy and well-fed an animal looks."],
@@ -820,113 +1050,132 @@ const GLOSSARY=[
   ["Inherited trait","A characteristic passed from parents to offspring through genes."],
   ["Feedback loop","A pattern in which one change leads to effects that circle back and strengthen or continue the pattern."]
 ];
-function openGlossary(){
-  openDrawer("left","Glossary",`<dl>${GLOSSARY.map(([t,d])=>`<dt>${esc(t)}</dt><dd>${esc(d)}</dd>`).join("")}</dl>`);
-}
+function openGlossary(){openDrawer("left","Glossary",`<dl>${GLOSSARY.map(([term,definition])=>`<dt>${esc(term)}</dt><dd>${esc(definition)}</dd>`).join("")}</dl>`,$("#glossaryBtn"));}
 
-/* ===================== Journal (only encountered prompts/decisions) ===================== */
-const JOURNAL_SCHEMA=[
-  {screen:3,label:"What evidence should Gracie record from the playground sighting and her experiences near Ridge Trail?",get:()=>state.entry.homeNote,type:"prompt"},
-  {screen:4,label:"Email to the Pinecrest Elementary Front Office",get:()=>{
-      const subj=(state.entry.emailSubject||"").trim();
-      const body=(state.entry.emailBody||"").trim();
-      return [subj?("Subject: "+subj):"",body].filter(Boolean).join(" — ");
-    },type:"prompt"},
-  {screen:6,label:"Pinecrest Map Note",get:()=>state.entry.mapObservation,type:"prompt"},
-  {screen:7,label:"Investigation team chosen",type:"decision",get:()=>{
-      const p=state.navigation.firstPath;
-      if(p==="gallery")return "Study the Sightings (trail-camera evidence)";
-      if(p==="dashboard")return "Study the Numbers (field measurements)";
-      return "";
-    },ready:()=>!!state.navigation.firstPath},
-  {screen:"8A",label:"Sightings Team note",get:()=>state.firstInvestigation.gallery.patternNote,type:"prompt",onlyIfPath:"gallery"},
-  {screen:"8B",label:"Working note: Litter size",get:()=>state.firstInvestigation.dashboard.lengthNote,type:"prompt",onlyIfPath:"dashboard",ready:()=>state.firstInvestigation.dashboard.variablesViewed.includes("litter")},
-  {screen:"8B",label:"Working note: Average kit weight",get:()=>state.firstInvestigation.dashboard.massNote,type:"prompt",onlyIfPath:"dashboard",ready:()=>state.firstInvestigation.dashboard.variablesViewed.includes("weight")},
-  {screen:"8B",label:"Working note: Body-condition score",get:()=>state.firstInvestigation.dashboard.conditionNote,type:"prompt",onlyIfPath:"dashboard",ready:()=>state.firstInvestigation.dashboard.variablesViewed.includes("condition")},
-  {screen:"8B",label:"Numbers Team note",get:()=>state.firstInvestigation.dashboard.claim,type:"prompt",onlyIfPath:"dashboard"},
-  {screen:9,label:"Room 12 convergence note",get:()=>state.firstInvestigation.convergence.combinedClaim,type:"prompt"},
-  {screen:11,label:"Deeper investigation chosen",type:"decision",get:()=>{
-      const p=state.navigation.secondPath;
-      if(p==="habitat")return "Track the Changing Habitat";
-      if(p==="food")return "Follow the Food Trail";
-      return "";
-    },ready:()=>!!state.navigation.secondPath},
-  {screen:"12A",label:"Habitat Team note",get:()=>state.secondInvestigation.habitat.teamNote,type:"prompt",onlyIfSecondPath:"habitat"},
-  {screen:"12B",label:"Food Access Team note",get:()=>state.secondInvestigation.food.teamNote,type:"prompt",onlyIfSecondPath:"food"},
-  {screen:13,label:"DP2 convergence explanation",get:()=>state.secondInvestigation.convergence.combinedExplanation,type:"prompt"},
-  {screen:15,label:"Feedback-loop model",get:()=>{
-      const steps=(state.feedbackModel.slots||[]).map((id,i)=>{
-        const card=FEEDBACK_STEPS.find(s=>s.id===id);
-        return card?`Step ${i+1}: ${card.text}`:"";
-      }).filter(Boolean);
-      return [steps.length?steps.join(" → "):"",state.feedbackModel.explanation||""].filter(Boolean).join("\n");
-    },type:"prompt",ready:()=>Array.isArray(state.feedbackModel.slots)&&state.feedbackModel.slots.length===4&&state.feedbackModel.slots.every(Boolean)&&(state.feedbackModel.explanation||"").trim().length>=15},
-  {screen:16,label:"Recommendation to Dr. Reed and the committee",get:()=>state.recommendation.finalText,type:"prompt",ready:()=>!!state.recommendation.finalText},
-  {screen:17,label:"Reflection: combining evidence",get:()=>state.reflection.evidenceStrength,type:"prompt"},
-  {screen:17,label:"Reflection: human choices and wildlife",get:()=>state.reflection.humanChoices,type:"prompt"},
-  {screen:17,label:"Optional standards quiz",get:()=>{
-      if(state.quiz.choice==="skip")return "Quiz skipped.";
-      if(state.quiz.choice==="take"&&state.quiz.submitted)return `Quiz completed: ${state.quiz.score} of ${QUIZ_QUESTIONS.length} correct.`;
-      if(state.quiz.choice==="take")return "Quiz selected but not yet submitted.";
-      return "No quiz choice made.";
-    },type:"decision",ready:()=>!!state.quiz.choice}
-];
-function getJournalEntries(){
-  const visited=state.progress&&state.progress.visitedScreens?state.progress.visitedScreens:[];
-  return JOURNAL_SCHEMA.filter(e=>{
-    if(!visited.includes(e.screen))return false;
-    if(e.onlyIfPath&&state.navigation.firstPath!==e.onlyIfPath)return false;
-    if(e.onlyIfSecondPath&&state.navigation.secondPath!==e.onlyIfSecondPath)return false;
-    if(e.ready&&!e.ready())return false;
-    return true;
-  });
+/* ===================== Investigation Journal ===================== */
+function screenEncountered(screen){return !!(state.progress&&state.progress.encounteredScreens||[]).some(x=>String(x)===String(screen));}
+function nonBlank(value){return String(value==null?"":value).trim();}
+function journalRecord(records,screen,stage,label,value,type="response"){
+  const clean=nonBlank(value);if(!screenEncountered(screen)||!clean)return;
+  records.push({screen:String(screen),stage,label,value:clean,type});
 }
-function openJournal(){
-  const entries=getJournalEntries();
-  let body;
-  if(!entries.length){
-    body=`<p class="journal-empty">Your journal will fill in as you work through the investigation.</p>`;
-  }else{
-    body=entries.map(e=>{
-      const val=(e.get()||"").toString().trim();
-      const answered=val.length>0;
-      const cls=e.type==="decision"?"journal-entry decision":"journal-entry";
-      return `<div class="${cls}"><div class="je-screen">Screen ${e.screen}</div><div class="je-q">${esc(e.label)}</div><div class="je-a${answered?"":" blank"}">${answered?esc(val):"Not answered yet"}</div></div>`;
-    }).join("");
+function getJournalRecords(){
+  const records=[];
+  journalRecord(records,3,"Observe and Report","Evidence recorded from the playground sighting and Ridge Trail experiences",state.entry.homeNote);
+  const email=[nonBlank(state.entry.emailSubject)?`Subject: ${nonBlank(state.entry.emailSubject)}`:"",nonBlank(state.entry.emailBody)].filter(Boolean).join("\n");
+  journalRecord(records,4,"Observe and Report","Observation-based email to the Pinecrest Elementary Front Office",email);
+  const orientation=(state.evidenceSelections.mapLocations.orientation||[]).map(id=>(MAP_POINTS.orientation.find(p=>p.id===id)||{}).label).filter(Boolean);
+  journalRecord(records,6,"Observe and Report","Pinecrest map locations examined",orientation.join(", "),"evidence");
+  journalRecord(records,6,"Observe and Report","Pinecrest map note",state.entry.mapObservation);
+  journalRecord(records,7,"First Evidence","First evidence path selected",state.navigation.firstPath==="gallery"?"Study the Sightings: trail-camera evidence":state.navigation.firstPath==="dashboard"?"Study the Numbers: field measurements":"","decision");
+  if(state.navigation.firstPath==="gallery"){
+    const map=(state.evidenceSelections.mapLocations.sightings||[]).map(id=>(MAP_POINTS.sightings.find(p=>p.id===id)||{}).label).filter(Boolean);
+    journalRecord(records,"8A","First Evidence","Sightings evidence locations examined",map.join(", "),"evidence");
+    const photos=(state.firstInvestigation.gallery.photosViewed||[]).map(id=>GALLERY.find(g=>g.id===id)).filter(Boolean).map(g=>`${g.year}, ${g.caption}: ${g.note}`);
+    journalRecord(records,"8A","First Evidence","Trail-camera records examined",photos.join("\n"),"evidence");
+    journalRecord(records,"8A","First Evidence","Sightings Team report",state.firstInvestigation.gallery.patternNote);
   }
-  openDrawer("right","Investigation Journal",body);
+  if(state.navigation.firstPath==="dashboard"){
+    const map=(state.evidenceSelections.mapLocations.numbers||[]).map(id=>(MAP_POINTS.numbers.find(p=>p.id===id)||{}).label).filter(Boolean);
+    journalRecord(records,"8B","First Evidence","Den-monitoring locations examined",map.join(", "),"evidence");
+    journalRecord(records,"8B","First Evidence","Comparison den selected",state.firstInvestigation.dashboard.compareDen,"decision");
+    const viewed=(state.firstInvestigation.dashboard.variablesViewed||[]).map(key=>(VARIABLES[key]||{}).label).filter(Boolean);
+    journalRecord(records,"8B","First Evidence","Field measurements examined",viewed.join(", "),"evidence");
+    journalRecord(records,"8B","First Evidence","Working note: Litter size",state.firstInvestigation.dashboard.lengthNote);
+    journalRecord(records,"8B","First Evidence","Working note: Average kit weight",state.firstInvestigation.dashboard.massNote);
+    journalRecord(records,"8B","First Evidence","Working note: Body-condition score",state.firstInvestigation.dashboard.conditionNote);
+    journalRecord(records,"8B","First Evidence","Numbers Team report",state.firstInvestigation.dashboard.claim);
+  }
+  journalRecord(records,9,"First Evidence","Room 12 convergence claim about what changed at Ridge Den",state.firstInvestigation.convergence.combinedClaim);
+  journalRecord(records,11,"Environmental Evidence","Deeper investigation selected",state.navigation.secondPath==="habitat"?"Track the Changing Habitat":state.navigation.secondPath==="food"?"Follow the Food Trail":"","decision");
+  if(state.navigation.secondPath==="habitat"){
+    const years=(state.secondInvestigation.habitat.yearsViewed||[]).slice().sort().join(", ");
+    journalRecord(records,"12A","Environmental Evidence","Habitat timeline years examined",years,"evidence");
+    journalRecord(records,"12A","Environmental Evidence","Habitat Team report",state.secondInvestigation.habitat.teamNote);
+  }
+  if(state.navigation.secondPath==="food"){
+    const selected=(state.secondInvestigation.food.selectedHotspots||[]).map(id=>FOOD_HOTSPOTS.find(h=>h.id===id)).filter(Boolean).map(h=>`${h.label} — ${h.correct?"food clue":"not a food clue"}`);
+    journalRecord(records,"12B","Environmental Evidence","Neighborhood items classified",selected.join("\n"),"classification");
+    const followups=(state.secondInvestigation.food.viewedRecords||[]).map(id=>FOOD_RECORDS.find(r=>r.id===id)).filter(Boolean).map(r=>`${r.title}: ${r.note}`);
+    journalRecord(records,"12B","Environmental Evidence","Follow-up camera records examined",followups.join("\n"),"evidence");
+    journalRecord(records,"12B","Environmental Evidence","Food Access Team report",state.secondInvestigation.food.teamNote);
+  }
+  journalRecord(records,13,"Environmental Evidence","Room 12 explanation connecting habitat change and food access",state.secondInvestigation.convergence.combinedExplanation);
+  if(screenEncountered(15)){
+    const used=(state.feedbackModel.slots||[]).map(id=>FEEDBACK_STEPS.find(step=>step.id===id)).filter(Boolean);
+    if(used.length){
+      journalRecord(records,15,"Model the Pattern","Feedback-loop components used",used.map(x=>`${x.tag}: ${x.text}`).join("\n"),"model");
+      const unused=FEEDBACK_STEPS.filter(step=>!state.feedbackModel.slots.includes(step.id));
+      journalRecord(records,15,"Model the Pattern","Evidence-bank components not used",unused.map(x=>`${x.tag}: ${x.text}`).join("\n"),"model");
+      if(used.length===4)journalRecord(records,15,"Model the Pattern","Feedback-loop sequence and arrow direction",`${used.map((x,i)=>`Step ${i+1}: ${x.text}`).join(" → ")} → returns to Step 1`,"model");
+    }
+    journalRecord(records,15,"Model the Pattern","Student justification for the feedback-loop connections",state.feedbackModel.explanation,"model");
+  }
+  if(screenEncountered(16)){
+    const actions=(state.recommendation.actions||[]).map(id=>RECOMMENDATION_ACTIONS.find(a=>a.id===id)).filter(Boolean).map(a=>a.title);
+    journalRecord(records,16,"Recommend and Reflect","Recommended actions selected",actions.join("\n"),"recommendation");
+    journalRecord(records,16,"Recommend and Reflect","Habitat evidence selected",(HABITAT_EVIDENCE_OPTIONS.find(x=>x.id===state.recommendation.habitatEvidence)||{}).text||"","evidence");
+    journalRecord(records,16,"Recommend and Reflect","Food-access evidence selected",(FOOD_EVIDENCE_OPTIONS.find(x=>x.id===state.recommendation.foodEvidence)||{}).text||"","evidence");
+    journalRecord(records,16,"Recommend and Reflect","Reasoning about interrupting the feedback loop",state.recommendation.reasoning);
+    journalRecord(records,16,"Recommend and Reflect","Completed Ridge Trail wildlife recommendation",state.recommendation.finalText,"recommendation");
+  }
+  journalRecord(records,17,"Recommend and Reflect","Reflection: how combining evidence strengthened the explanation",state.reflection.evidenceStrength);
+  journalRecord(records,17,"Recommend and Reflect","Reflection: how human choices can affect wildlife",state.reflection.humanChoices);
+  const quizOpened=state.quiz.started||state.quiz.choice||Object.keys(state.quiz.answers||{}).length||state.quiz.attempts.length;
+  if(screenEncountered(17)&&quizOpened){
+    if(state.quiz.choice==="skip")journalRecord(records,17,"Optional Quiz","Optional quiz status","Student chose not to take the optional quiz.","quiz");
+    else{
+      journalRecord(records,17,"Optional Quiz","Optional quiz status",state.quiz.submitted?`Completed with a score of ${state.quiz.score} of ${QUIZ_QUESTIONS.length}.`:"Opened or started; not yet submitted.","quiz");
+      QUIZ_QUESTIONS.forEach((question,index)=>{
+        if(!Object.prototype.hasOwnProperty.call(state.quiz.answers,question.id))return;
+        const selected=Number(state.quiz.answers[question.id]);
+        const answer=question.options[selected];
+        let value=`Final selected answer: ${answer?answer.text:"No response"}`;
+        if(state.quiz.submitted){value+=`\nCorrect answer: ${question.options[question.answer].text}\nResult: ${selected===question.answer?"Correct":"Incorrect"}\nFeedback: ${selected===question.answer?answer.feedback:`${answer.feedback} Nudge: ${question.nudge}`}`;}
+        if(Number(state.quiz.revisions&&state.quiz.revisions[question.id])>0)value+=`\nRevised: Yes (${state.quiz.revisions[question.id]} change${state.quiz.revisions[question.id]===1?"":"s"})`;
+        journalRecord(records,17,"Optional Quiz",`Question ${index+1}: ${question.prompt}`,value,"quiz");
+      });
+    }
+  }
+  return records;
 }
-function journalQuizDetails(){
-  if(state.quiz.choice==="skip")return `<section><h2>Optional Standards Quiz</h2><p>The student chose to skip the optional quiz.</p></section>`;
-  if(state.quiz.choice!=="take")return `<section><h2>Optional Standards Quiz</h2><p>No quiz choice was recorded.</p></section>`;
-  if(!state.quiz.submitted)return `<section><h2>Optional Standards Quiz</h2><p>The quiz was selected but not submitted.</p></section>`;
-  const rows=QUIZ_QUESTIONS.map((q,i)=>{
-    const selected=Number(state.quiz.answers[q.id]);
-    const option=q.options[selected];
-    const correct=selected===q.answer;
-    const feedback=correct?option.feedback:`${option.feedback} Nudge: ${q.nudge}`;
-    return `<div class="quiz-entry"><h3>Question ${i+1}</h3><p><strong>${esc(q.prompt)}</strong></p><p>Response: ${esc(option?option.text:"No response")}</p><p>${correct?"Correct":"Incorrect"} — ${esc(feedback)}</p></div>`;
-  }).join("");
-  return `<section><h2>Optional Standards Quiz</h2><p><strong>Score: ${state.quiz.score} of ${QUIZ_QUESTIONS.length}</strong></p>${rows}</section>`;
+function journalEntriesHtml(){
+  const records=getJournalRecords();
+  if(!records.length)return `<p class="journal-empty">Your journal will fill in as you work through the investigation.</p>`;
+  return `<ol class="journal-list">${records.map(record=>`<li class="journal-entry ${esc(record.type)}"><div class="journal-stage">${esc(record.stage)}</div><div class="je-screen">Lesson page ${esc(record.screen)}</div><div class="je-q">${esc(record.label)}</div><div class="je-a">${esc(record.value).replace(/\n/g,"<br>")}</div></li>`).join("")}</ol>`;
 }
-function downloadJournal(){
-  const entries=getJournalEntries();
-  const entryHtml=entries.map(e=>{
-    const val=(e.get()||"").toString().trim()||"Not answered";
-    return `<section><h2>${esc(e.label)}</h2><p>${esc(val).replace(/\n/g,"<br>")}</p></section>`;
-  }).join("");
-  const title=esc(state.meta.lessonTitle);
-  const student=esc(state.meta.studentLabel||"Student");
-  const code=esc(getSessionCode());
-  const html=`<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title} — Investigation Journal</title><style>body{font-family:Arial,sans-serif;max-width:850px;margin:32px auto;padding:0 24px;color:#292b2a;line-height:1.55}h1{color:#2C6B44}h2{color:#2C6B44;font-size:1.15rem;border-bottom:1px solid #dce5df;padding-bottom:5px}section{margin:24px 0}.meta{background:#eef7f1;border-radius:10px;padding:12px 15px}.quiz-entry{border-left:4px solid #E2703A;padding-left:13px;margin:18px 0}.quiz-entry h3{margin-bottom:5px}@media print{body{margin:0;max-width:none}}</style></head><body><h1>${title}</h1><div class="meta"><strong>${student}</strong><br>Session code: ${code}<br>Standard: ${esc(state.meta.standard)}<br>Exported: ${esc(new Date().toLocaleString())}</div>${entryHtml}${journalQuizDetails()}</body></html>`;
-  const blob=new Blob([html],{type:"text/html;charset=utf-8"});
-  const url=URL.createObjectURL(blob);
-  const a=document.createElement("a");
-  a.href=url;
-  a.download=`Fox_at_Recess_Investigation_Journal_${getSessionCode()}.html`;
-  document.body.appendChild(a);a.click();a.remove();
-  setTimeout(()=>URL.revokeObjectURL(url),1000);
+function renderJournal(){return `<div class="journal-export-row"><button type="button" class="export-btn" id="drawerExportJournal">Export Journal</button></div>${journalEntriesHtml()}`;}
+function openJournal(){
+  openDrawer("right","Investigation Journal",renderJournal(),$("#journalBtn"));
+  const button=$("#drawerExportJournal");if(button)button.addEventListener("click",()=>openExportModal(button));
 }
+function normalizeFilename(value){return String(value||"").toLowerCase().replace(/[\s\u2013\u2014:]+/g," ").trim();}
+function buildExportFilename(input){
+  const title=state.lessonTitle||state.meta.lessonTitle;
+  let base=String(input||"").trim()||"Student Journal";
+  const normalizedBase=normalizeFilename(base),normalizedTitle=normalizeFilename(title);
+  if(!normalizedBase.includes(normalizedTitle)&&!normalizedBase.includes("the fox at recess"))base=`${base} – ${title}`;
+  return base.replace(/[<>:"/\\|?*\x00-\x1F]/g,"-").replace(/\s+/g," ").replace(/[. ]+$/g,"").slice(0,180)||`Student Journal – ${title}`;
+}
+function exportedJournalDocument(){
+  const title=esc(state.lessonTitle||state.meta.lessonTitle);
+  return `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title} — Investigation Journal</title><style>body{font-family:Arial,sans-serif;max-width:850px;margin:32px auto;padding:0 24px;color:#292b2a;line-height:1.55}h1{color:#2C6B44}h2{color:#2C6B44;font-size:1.15rem}.meta{background:#eef7f1;border-radius:10px;padding:12px 15px;margin-bottom:24px}.journal-list{list-style:none;padding:0}.journal-entry{border-left:4px solid #7FAE6E;padding:2px 0 10px 14px;margin:0 0 22px}.journal-stage{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:#C25A28;font-weight:bold}.je-screen{font-size:.75rem;color:#68736b}.je-q{font-weight:bold;margin:5px 0}.je-a{white-space:normal}.journal-entry.quiz{border-left-color:#E2703A}@media print{body{margin:0;max-width:none}}</style></head><body><h1>${title}</h1><div class="meta"><strong>Investigation Journal</strong><br>Standard: ${esc(state.meta.standard)}<br>Exported: ${esc(new Date().toLocaleString())}</div>${journalEntriesHtml()}</body></html>`;
+}
+function exportJournal(name){
+  const filename=buildExportFilename(name);
+  const blob=new Blob([exportedJournalDocument()],{type:"text/html;charset=utf-8"});
+  const url=URL.createObjectURL(blob),link=document.createElement("a");
+  link.href=url;link.download=`${filename}.html`;document.body.appendChild(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+  announce(`Journal exported as ${filename}.`);
+}
+function openExportModal(trigger){
+  openStyledModal({title:"Export Journal",trigger:trigger||document.activeElement,initialSelector:"#exportNameInput",body:`<label class="field-label" for="exportNameInput">What should we name your file?</label><input class="export-name-input" id="exportNameInput" type="text" placeholder="Brooke Science Journal" autocomplete="off"><p class="small muted" style="margin-top:9px">The lesson title will be added automatically.</p><div class="modal-actions"><button type="button" class="btn btn-outline" id="cancelExport">Cancel</button><button type="button" class="export-btn" id="confirmExport">Export Journal</button></div>`,onMount(root){
+    $("#cancelExport",root).addEventListener("click",()=>closeActiveLayer(true));
+    $("#confirmExport",root).addEventListener("click",()=>{const name=$("#exportNameInput",root).value;exportJournal(name);closeActiveLayer(false);});
+    $("#exportNameInput",root).addEventListener("keydown",event=>{if(event.key==="Enter"){event.preventDefault();$("#confirmExport",root).click();}});
+  }});
+}
+function downloadJournal(){openExportModal(document.activeElement);}
 
 /* ===================== Data ===================== */
 const YEARS=[2022,2023,2024,2025,2026];
@@ -1000,15 +1249,17 @@ function renderPinecrestMap(layer){
 }
 function bindPinecrestMap(root,layer){
   const points=MAP_POINTS[layer]||[];
-  $$(".map-marker",root).forEach(btn=>{
-    btn.addEventListener("click",()=>{
-      $$(".map-marker",root).forEach(b=>b.setAttribute("aria-pressed","false"));
-      btn.setAttribute("aria-pressed","true");
-      const p=points.find(x=>x.id===btn.dataset.id);
-      const panel=$("#mapInfoPanel",root);
-      if(p&&panel)panel.innerHTML=`<div class="mi-label">${esc(p.label)}</div><p style="margin:0">${esc(p.desc)}</p>`;
-    });
-  });
+  const viewed=state.evidenceSelections.mapLocations[layer]||[];
+  function showPoint(id){
+    const p=points.find(x=>x.id===id),panel=$("#mapInfoPanel",root);if(!p||!panel)return;
+    $$(".map-marker",root).forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.id===id)));
+    panel.innerHTML=`<div class="mi-label">${esc(p.label)}</div><p style="margin:0">${esc(p.desc)}</p>`;
+  }
+  $$(".map-marker",root).forEach(btn=>btn.addEventListener("click",()=>{
+    const id=btn.dataset.id;if(!viewed.includes(id))viewed.push(id);
+    state.evidenceSelections.mapLocations[layer]=viewed;recordInteractionEncounter(`map:${layer}:${id}`);saveState();showPoint(id);
+  }));
+  if(viewed.length)showPoint(viewed[viewed.length-1]);
 }
 
 const CONVERGENCE_REPORTS={
@@ -1030,7 +1281,7 @@ const GALLERY=[
 /* ===================== Screen 1 — Launch ===================== */
 registerScreen(1,{title:"Launch",hideNav:true,
   render(){
-    const started=hasSave()&&state.navigation.currentScreen>1;
+    const started=hasSave();
     const objectives=[
       "Distinguish evidence about where and how an animal appears from evidence about physical traits like body size or condition.",
       "Compare observational evidence (photographs) with measured evidence (field data) to determine whether a pattern is real.",
@@ -1074,25 +1325,13 @@ registerScreen(1,{title:"Launch",hideNav:true,
           </div>
         </div>
       </details>
-
-      <div class="utility-row">
-        <button id="laRestart">Restart</button><span class="u-sep">&middot;</span>
-        <span class="u-code">Code: ${esc(getSessionCode())}</span>
-      </div>
       <div class="landing-footer">&copy; 2026 Brooke Toon. Part of the Stories in Science Framework. This is a partial build (Entry + Exploration layers) for review.</div>
     </div>`;
   },
   init(root){
-    function go(){
-      if(!state.meta.startedAt)state.meta.startedAt=nowISO();
-      const target=(hasSave()&&state.navigation.currentScreen>1)?state.navigation.currentScreen:2;
+    $("#laBegin",root).addEventListener("click",()=>{
+      const target=hasSave()?state.navigation.currentScreen:2;
       goToScreen(target);
-    }
-    $("#laBegin",root).addEventListener("click",go);
-    $("#laRestart",root).addEventListener("click",()=>{
-      if(confirm("Restart the investigation? This clears your saved progress.")){
-        localStorage.removeItem(LS_KEY);state=defaultState();goToScreen(1);
-      }
     });
   }
 });
@@ -1256,7 +1495,7 @@ registerScreen(7,{title:"Choose Your Evidence Path",
         ${promptBox("Which evidence should Gracie investigate first?")}
       </div>
       <div class="station-grid">
-        <button class="station-card" data-path="gallery">
+        <button class="station-card ${state.navigation.firstPath==="gallery"?"selected":""}" data-path="gallery" aria-pressed="${state.navigation.firstPath==="gallery"}">
           <div class="st-top"></div>
           <div class="st-body">
             <span class="st-kicker">Trail-camera evidence</span>
@@ -1265,7 +1504,7 @@ registerScreen(7,{title:"Choose Your Evidence Path",
             <span class="st-open">Open the Archive &rarr;</span>
           </div>
         </button>
-        <button class="station-card" data-path="dashboard">
+        <button class="station-card ${state.navigation.firstPath==="dashboard"?"selected":""}" data-path="dashboard" aria-pressed="${state.navigation.firstPath==="dashboard"}">
           <div class="st-top"></div>
           <div class="st-body">
             <span class="st-kicker">Field measurements</span>
@@ -1279,14 +1518,15 @@ registerScreen(7,{title:"Choose Your Evidence Path",
   },
   init(root){
     $$(".station-card",root).forEach(card=>card.addEventListener("click",()=>{
-      state.navigation.firstPath=card.dataset.path;save();
-      goToScreen(card.dataset.path==="gallery"?"8A":"8B");
+      state.navigation.firstPath=card.dataset.path;recordInteractionEncounter("decision:firstEvidencePath");saveState();
+      $$(".station-card",root).forEach(item=>{const selected=item===card;item.classList.toggle("selected",selected);item.setAttribute("aria-pressed",String(selected));});
+      announce(`${card.querySelector("h3").textContent} selected. Choose Continue to open this evidence path.`);
     }));
   }
 });
 
 /* ===================== Screen 8A — Trail-Cam Archive ===================== */
-registerScreen("8A",{title:"The Trail-Cam Archive",hideNav:true,
+registerScreen("8A",{title:"The Trail-Cam Archive",
   render(){
     return `<div class="screen">
       ${scene({stamp:"Sightings Team",title:"The Trail-Cam Archive"})}
@@ -1324,10 +1564,6 @@ registerScreen("8A",{title:"The Trail-Cam Archive",hideNav:true,
         ${promptBox("What should the Sightings Team report to Room 12 about how the Ridge Den foxes have appeared or behaved over the five seasons? Use evidence from at least two trail-camera records.")}
         ${textField("gal_pattern","Sightings Team note","firstInvestigation.gallery.patternNote")}
         <div class="path-transition">The Sightings Team saves its note and returns to Room 12. The photographs show what the cameras captured, but the Numbers Team has evidence the cameras cannot provide.</div>
-        <div class="path-transition-actions">
-          <button class="btn btn-amber" id="continueConvergence">Continue &rarr;</button>
-          <button class="btn-ghost" id="backToChoice">&larr; Back to the choice screen</button>
-        </div>
       </div>
     </div>`;
   },
@@ -1335,7 +1571,7 @@ registerScreen("8A",{title:"The Trail-Cam Archive",hideNav:true,
     bindPinecrestMap(root,"sightings");
     const g=state.firstInvestigation.gallery;
     function markSeen(id){
-      if(!g.photosViewed.includes(id)){g.photosViewed.push(id);save();}
+      if(!g.photosViewed.includes(id)){g.photosViewed.push(id);recordInteractionEncounter(`gallery:${id}`);saveState();}
       const tile=$(`.photo-tile[data-id="${id}"]`,root);if(tile)tile.classList.add("seen");
       if(g.photosViewed.length>=GALLERY.length){$("#galleryReveal",root).classList.remove("hidden");setContinue(true);}
     }
@@ -1359,8 +1595,6 @@ registerScreen("8A",{title:"The Trail-Cam Archive",hideNav:true,
       if(g.photosViewed.includes(item.id))tile.classList.add("seen");
     });
     autoBindAll(root);
-    const cc=$("#continueConvergence",root);if(cc)cc.addEventListener("click",()=>goToScreen(9));
-    const bc=$("#backToChoice",root);if(bc)bc.addEventListener("click",()=>goToScreen(7));
     if(g.photosViewed.length>=GALLERY.length){$("#galleryReveal",root).classList.remove("hidden");}
     else setContinue(false);
   }
@@ -1397,7 +1631,7 @@ function chartSVG(dens,varKey){
   svg+="</svg>";
   return svg;
 }
-registerScreen("8B",{title:"The Den-Monitoring Dashboard",hideNav:true,
+registerScreen("8B",{title:"The Den-Monitoring Dashboard",
   render(){
     const dash=state.firstInvestigation.dashboard;
     return `<div class="screen">
@@ -1444,10 +1678,6 @@ registerScreen("8B",{title:"The Den-Monitoring Dashboard",hideNav:true,
         ${promptBox("What should the Numbers Team report to Room 12 about how the Ridge Den foxes have changed over time and how Ridge Den compares with another den? Use evidence from at least two measurements.")}
         ${textField("dash_claim","Numbers Team note","firstInvestigation.dashboard.claim")}
         <div class="path-transition">The Numbers Team saves its note and returns to Room 12. The measurements show patterns that photographs alone cannot confirm, but the Sightings Team has evidence about where and how the foxes appeared.</div>
-        <div class="path-transition-actions">
-          <button class="btn btn-amber" id="continueConvergence">Continue &rarr;</button>
-          <button class="btn-ghost" id="backToChoice">&larr; Back to the choice screen</button>
-        </div>
       </div>
     </div>`;
   },
@@ -1468,7 +1698,7 @@ registerScreen("8B",{title:"The Den-Monitoring Dashboard",hideNav:true,
         `<div class="chart-legend">${dens.map(d=>`<span><i style="background:${DEN_COLOR[d]}"></i>${esc(d)}</span>`).join("")}</div>
          <div class="var-note">${textField("dnote_"+curVar,"Working note: "+V.label,"firstInvestigation.dashboard."+V.note)}</div>`;
       autoBindAll($("#chartWrap",root));
-      if(!dash.variablesViewed.includes(curVar)){dash.variablesViewed.push(curVar);save();}
+      if(!dash.variablesViewed.includes(curVar)){dash.variablesViewed.push(curVar);recordInteractionEncounter(`dashboard:${curVar}`);saveState();}
       refreshBadges();
       if(dash.variablesViewed.length>=3){$("#dashReveal",root).classList.remove("hidden");setContinue(true);}
     }
@@ -1480,14 +1710,12 @@ registerScreen("8B",{title:"The Den-Monitoring Dashboard",hideNav:true,
     $$("#denChips .chip",root).forEach(b=>{
       if(b.dataset.den===dash.compareDen)b.classList.add("active");
       b.addEventListener("click",()=>{
-        dash.compareDen=b.dataset.den;save();
+        dash.compareDen=b.dataset.den;recordInteractionEncounter(`dashboard:comparison:${dash.compareDen}`);saveState();
         $$("#denChips .chip",root).forEach(x=>x.classList.toggle("active",x===b));
         draw();
       });
     });
     autoBindAll(root);
-    const cc=$("#continueConvergence",root);if(cc)cc.addEventListener("click",()=>goToScreen(9));
-    const bc=$("#backToChoice",root);if(bc)bc.addEventListener("click",()=>goToScreen(7));
     refreshBadges();
     if(dash.variablesViewed.length){
       curVar=dash.variablesViewed[dash.variablesViewed.length-1];
@@ -1576,7 +1804,7 @@ registerScreen(10,{title:"A New Question",
 });
 
 /* ===================== Screen 11 — Decision Point 2 Setup ===================== */
-registerScreen(11,{title:"Choose the Next Evidence",hideNav:true,
+registerScreen(11,{title:"Choose the Next Evidence",
   render(){
     return `<div class="screen">
       ${scene({stamp:"Room 12 · Deeper Investigation",title:"Choose the Next Evidence",sub:"What environmental conditions might explain the pattern?"})}
@@ -1597,7 +1825,7 @@ registerScreen(11,{title:"Choose the Next Evidence",hideNav:true,
         ${promptBox("Which evidence should Gracie investigate?")}
       </div>
       <div class="station-grid">
-        <button class="station-card" data-second-path="habitat">
+        <button class="station-card ${state.navigation.secondPath==="habitat"?"selected":""}" data-second-path="habitat" aria-pressed="${state.navigation.secondPath==="habitat"}">
           <div class="st-top"></div>
           <div class="st-body">
             <span class="st-kicker">Habitat evidence</span>
@@ -1606,7 +1834,7 @@ registerScreen(11,{title:"Choose the Next Evidence",hideNav:true,
             <span class="st-open">Open the Habitat File &rarr;</span>
           </div>
         </button>
-        <button class="station-card" data-second-path="food">
+        <button class="station-card ${state.navigation.secondPath==="food"?"selected":""}" data-second-path="food" aria-pressed="${state.navigation.secondPath==="food"}">
           <div class="st-top"></div>
           <div class="st-body">
             <span class="st-kicker">Food-access evidence</span>
@@ -1620,9 +1848,9 @@ registerScreen(11,{title:"Choose the Next Evidence",hideNav:true,
   },
   init(root){
     $$(".station-card[data-second-path]",root).forEach(card=>card.addEventListener("click",()=>{
-      state.navigation.secondPath=card.dataset.secondPath;
-      save();
-      goToScreen(card.dataset.secondPath==="habitat"?"12A":"12B");
+      state.navigation.secondPath=card.dataset.secondPath;recordInteractionEncounter("decision:secondEvidencePath");saveState();
+      $$(".station-card[data-second-path]",root).forEach(item=>{const selected=item===card;item.classList.toggle("selected",selected);item.setAttribute("aria-pressed",String(selected));});
+      announce(`${card.querySelector("h3").textContent} selected. Choose Continue to open this evidence file.`);
     }));
   }
 });
@@ -1655,7 +1883,7 @@ const FOOD_RECORDS=[
 ];
 
 /* ===================== Screen 12A — Habitat Timeline ===================== */
-registerScreen("12A",{title:"Track the Changing Habitat",hideNav:true,
+registerScreen("12A",{title:"Track the Changing Habitat",
   render(){
     const habitat=state.secondInvestigation.habitat;
     const selected=HABITAT_YEARS.includes(Number(habitat.selectedYear))?Number(habitat.selectedYear):2022;
@@ -1692,7 +1920,6 @@ registerScreen("12A",{title:"Track the Changing Habitat",hideNav:true,
         ${promptBox("What changed in the habitat around Ridge Den from 2022 to 2026, and how could those changes affect where the foxes travel or find natural food? Use at least two pieces of evidence from the timeline.")}
         ${textField("habitat_team_note","Your Habitat Team note","secondInvestigation.habitat.teamNote","Use evidence from at least two years.")}
         <div class="dp2-complete">Your Habitat Team note is saved. The class will compare this evidence with the Food Access Team's findings in the next section.</div>
-        <div class="reveal-action"><button class="btn btn-rust" type="button" id="habitatToConvergence">Share with Room 12 &rarr;</button></div>
       </div>
     </div>`;
   },
@@ -1702,8 +1929,8 @@ registerScreen("12A",{title:"Track the Changing Habitat",hideNav:true,
     function renderYear(year){
       year=Number(year);
       habitat.selectedYear=year;
-      if(!habitat.yearsViewed.includes(year))habitat.yearsViewed.push(year);
-      save();
+      if(!habitat.yearsViewed.includes(year)){habitat.yearsViewed.push(year);recordInteractionEncounter(`habitat:${year}`);}
+      saveState();
       wrap.innerHTML=`<img src="${HABITAT_IMAGES[year]}" alt="Illustrated view of the Ridge Den habitat in ${year}." onerror="imgFallback(this)">`;
       $("#habitatYearLabel",root).textContent=year;
       const range=$("#habitatRange",root);range.value=year;range.setAttribute("aria-valuenow",year);
@@ -1719,13 +1946,12 @@ registerScreen("12A",{title:"Track the Changing Habitat",hideNav:true,
     $("#habitatRange",root).addEventListener("input",e=>renderYear(e.target.value));
     $$(".timeline-year-btn",root).forEach(btn=>btn.addEventListener("click",()=>renderYear(btn.dataset.year)));
     autoBindAll(root);
-    const shareBtn=$("#habitatToConvergence",root);if(shareBtn)shareBtn.addEventListener("click",()=>goToScreen(13));
     renderYear(habitat.selectedYear||2022);
   }
 });
 
 /* ===================== Screen 12B — Food Source Identifier ===================== */
-registerScreen("12B",{title:"Follow the Food Trail",hideNav:true,
+registerScreen("12B",{title:"Follow the Food Trail",
   render(){
     const food=state.secondInvestigation.food;
     const allClues=FOOD_CORRECT_IDS.every(id=>food.foundCorrect.includes(id));
@@ -1767,7 +1993,6 @@ registerScreen("12B",{title:"Follow the Food Trail",hideNav:true,
         ${promptBox("What evidence suggests that food near Ridge Trail homes could affect where the foxes go and how often they return? Use at least two pieces of evidence.")}
         ${textField("food_team_note","Your Food Access Team note","secondInvestigation.food.teamNote","Use evidence from the scene and camera records.")}
         <div class="dp2-complete">Your Food Access Team note is saved. The class will compare this evidence with the Habitat Team's findings in the next section.</div>
-        <div class="reveal-action"><button class="btn btn-rust" type="button" id="foodToConvergence">Share with Room 12 &rarr;</button></div>
       </div>
     </div>`;
   },
@@ -1781,7 +2006,7 @@ registerScreen("12B",{title:"Follow the Food Trail",hideNav:true,
       const clue=FOOD_HOTSPOTS.find(h=>h.id===btn.dataset.hotspot);
       if(!food.selectedHotspots.includes(clue.id))food.selectedHotspots.push(clue.id);
       if(clue.correct&&!food.foundCorrect.includes(clue.id))food.foundCorrect.push(clue.id);
-      save();
+      food.lastFeedbackId=clue.id;recordInteractionEncounter(`foodClue:${clue.id}`);saveState();
       btn.setAttribute("aria-pressed","true");
       btn.classList.toggle("selected-correct",clue.correct);
       btn.classList.toggle("selected-distractor",!clue.correct);
@@ -1793,7 +2018,7 @@ registerScreen("12B",{title:"Follow the Food Trail",hideNav:true,
     $$(".food-record",root).forEach(btn=>btn.addEventListener("click",()=>{
       const record=FOOD_RECORDS.find(r=>r.id===btn.dataset.record);
       if(!food.viewedRecords.includes(record.id))food.viewedRecords.push(record.id);
-      save();
+      food.lastRecordId=record.id;recordInteractionEncounter(`foodRecord:${record.id}`);saveState();
       btn.classList.add("viewed");
       btn.setAttribute("aria-pressed","true");
       const copy=$(".food-record-copy span",btn);if(copy)copy.textContent="Viewed ✓";
@@ -1801,7 +2026,8 @@ registerScreen("12B",{title:"Follow the Food Trail",hideNav:true,
       if(FOOD_RECORDS.every(r=>food.viewedRecords.includes(r.id)))$("#foodReveal",root).classList.remove("hidden");
     }));
     autoBindAll(root);
-    const shareBtn=$("#foodToConvergence",root);if(shareBtn)shareBtn.addEventListener("click",()=>goToScreen(13));
+    if(food.lastFeedbackId){const clue=FOOD_HOTSPOTS.find(h=>h.id===food.lastFeedbackId),panel=$("#foodFeedback",root);if(clue&&panel){panel.classList.toggle("correct",clue.correct);panel.innerHTML=`<div class="if-title">${clue.correct?"Food clue found":"Not a food clue"}: ${esc(clue.label)}</div><p style="margin:0">${esc(clue.feedback)}</p>`;}}
+    if(food.lastRecordId){const record=FOOD_RECORDS.find(r=>r.id===food.lastRecordId),detail=$("#foodRecordDetail",root);if(record&&detail)detail.innerHTML=`<strong>${esc(record.title)}</strong><p style="margin:4px 0 0">${esc(record.note)}</p>`;}
     refreshClueProgress();
   }
 });
@@ -1996,9 +2222,9 @@ registerScreen(15,{title:"Build the Feedback Loop",
         m.slots[targetIndex]="";
       }
       m.slots[targetIndex]=id;
-      save();renderBuilder();
+      recordInteractionEncounter("feedbackModel:slots");saveState();renderBuilder();
     }
-    function removeCard(index){m.slots[index]="";save();renderBuilder();}
+    function removeCard(index){m.slots[index]="";recordInteractionEncounter("feedbackModel:slots");saveState();renderBuilder();}
     function renderBank(){
       const used=new Set(m.slots.filter(Boolean));
       bank.innerHTML=FEEDBACK_STEPS.map(card=>`<button type="button" class="loop-bank-chip ${used.has(card.id)?"is-used":""}" draggable="true" data-card-id="${card.id}"><span class="chip-tag">${esc(card.tag)}</span>${esc(card.text)}</button>`).join("");
@@ -2028,7 +2254,7 @@ registerScreen(15,{title:"Build the Feedback Loop",
         draggedId="";draggedFrom=-1;
       });
     });
-    $("#resetLoop",root).addEventListener("click",()=>{m.slots=["","","",""];save();renderBuilder();});
+    $("#resetLoop",root).addEventListener("click",()=>{m.slots=["","","",""];recordInteractionEncounter("feedbackModel:slots");saveState();renderBuilder();});
     autoBindAll(root);
     const ta=$("#model_explanation",root);if(ta)ta.addEventListener("input",refreshContinue);
     renderBuilder();
@@ -2188,7 +2414,7 @@ registerScreen(16,{title:"Build the Committee Recommendation",
     $$(".rec-action",root).forEach(btn=>btn.addEventListener("click",()=>{
       const id=btn.dataset.actionId;
       if(r.actions.includes(id))r.actions=r.actions.filter(x=>x!==id);else if(r.actions.length<3)r.actions.push(id);
-      invalidate();
+      recordInteractionEncounter("recommendation:actions");invalidate();
     }));
     $$("input[name=habitatEvidence]",root).forEach(x=>x.addEventListener("change",()=>{r.habitatEvidence=x.value;invalidate();}));
     $$("input[name=foodEvidence]",root).forEach(x=>x.addEventListener("change",()=>{r.foodEvidence=x.value;invalidate();}));
@@ -2202,7 +2428,7 @@ registerScreen(16,{title:"Build the Committee Recommendation",
         return;
       }
       r.finalText=recommendationPlainText(r);
-      save();
+      recordInteractionEncounter("recommendation:finalBrief");saveState();
       preview.innerHTML=recommendationDocumentHtml(r);
       preview.classList.remove("hidden");
       status.className="rec-build-status success";
@@ -2232,6 +2458,7 @@ registerScreen(17,{title:"Investigation Complete",hideNav:true,
           alvarez("That is what strong scientific explanations do: connect evidence, describe limits, and guide the next decision.")
         )}
       </div>
+      <div class="completion-actions" aria-label="Completion actions"><button type="button" class="btn btn-outline" id="completionViewJournal">View Journal</button><button type="button" class="export-btn" id="completionExportJournal">Export Journal</button><button type="button" class="btn btn-rust" id="completionQuizAction">${q.submitted?"Review Optional Quiz":"Take Optional Quiz"}</button></div>
       <div class="reflection-grid">
         <div class="reflection-card"><h2>Reflection 1</h2>${promptBox("How did combining two evidence paths strengthen Room 12's explanation?")}${textField("reflection_evidence","Your reflection","reflection.evidenceStrength","Describe what each evidence path added.")}</div>
         <div class="reflection-card"><h2>Reflection 2</h2>${promptBox("What is one way human choices can affect wildlife behavior or development without changing inherited traits?")}${textField("reflection_human","Your reflection","reflection.humanChoices","Use an example from the fox investigation.")}</div>
@@ -2250,115 +2477,114 @@ registerScreen(17,{title:"Investigation Complete",hideNav:true,
           }).join("")}
           ${q.submitted?`<div class="quiz-score" id="quizResults">Score: ${q.score} of ${QUIZ_QUESTIONS.length} (${Math.round(q.score/QUIZ_QUESTIONS.length*100)}%).</div><div class="quiz-actions"><button type="button" class="btn btn-outline" id="reviseQuiz">Revise Answers</button></div>`:`<div class="quiz-actions"><button type="button" class="btn btn-rust" id="submitQuiz" disabled>Submit Quiz</button><span class="small muted" id="quizStatus">Answer all six questions to submit.</span></div>`}
         </div>
-        <div id="exportPanel" class="export-panel ${showExport?"":"hidden"}">${q.choice==="skip"?"<p>The quiz has been skipped. Your case journal and responses are already saved.</p>":q.submitted?`<p>Your quiz score and feedback have been added to the Investigation Journal.</p>`:""}<button type="button" class="export-btn" id="exportJournal">↓ Export Investigation Journal</button></div>
+        <div id="exportPanel" class="export-panel ${showExport?"":"hidden"}">${q.choice==="skip"?"<p>The quiz has been skipped. Your case journal and responses are already saved.</p>":q.submitted?`<p>Your quiz score and feedback have been added to the Investigation Journal.</p>`:""}<button type="button" class="export-btn" id="exportJournal">Export Journal</button></div>
       </section>
     </div>`;
   },
   init(root){
     autoBindAll(root);
-    $$("[data-quiz-choice]",root).forEach(btn=>btn.addEventListener("click",()=>{state.quiz.choice=btn.dataset.quizChoice;save();renderCurrent();setTimeout(()=>$(".quiz-shell")?.scrollIntoView({behavior:"smooth",block:"start"}),0);}));
+    $$("[data-quiz-choice]",root).forEach(btn=>btn.addEventListener("click",()=>{state.quiz.choice=btn.dataset.quizChoice;state.quiz.started=state.quiz.choice==="take";recordInteractionEncounter("quiz:choice");saveState();renderCurrent();setTimeout(()=>$(".quiz-shell")?.scrollIntoView({behavior:"smooth",block:"start"}),0);}));
     if(state.quiz.choice==="take"&&!state.quiz.submitted){
       function refreshSubmit(){
         const answered=QUIZ_QUESTIONS.every(item=>Object.prototype.hasOwnProperty.call(state.quiz.answers,item.id));
         const b=$("#submitQuiz",root);if(b)b.disabled=!answered;
         const s=$("#quizStatus",root);if(s)s.textContent=answered?"All questions answered. Submit when ready.":"Answer all six questions to submit.";
       }
-      QUIZ_QUESTIONS.forEach(item=>{$$(`input[name=${item.id}]`,root).forEach(r=>r.addEventListener("change",()=>{state.quiz.answers[item.id]=Number(r.value);save();refreshSubmit();}));});
+      QUIZ_QUESTIONS.forEach(item=>{$$(`input[name=${item.id}]`,root).forEach(r=>r.addEventListener("change",()=>{const next=Number(r.value);if(Object.prototype.hasOwnProperty.call(state.quiz.answers,item.id)&&Number(state.quiz.answers[item.id])!==next)state.quiz.revisions[item.id]=(Number(state.quiz.revisions[item.id])||0)+1;state.quiz.answers[item.id]=next;state.quiz.started=true;recordInteractionEncounter(`quiz:${item.id}`);saveState();refreshSubmit();}));});
       $("#submitQuiz",root).addEventListener("click",()=>{
         const score=QUIZ_QUESTIONS.reduce((sum,item)=>sum+(Number(state.quiz.answers[item.id])===item.answer?1:0),0);
-        state.quiz.score=score;state.quiz.submitted=true;state.quiz.attempts.push({submittedAt:nowISO(),score,answers:Object.assign({},state.quiz.answers)});save();renderCurrent();setTimeout(()=>$("#quizResults")?.scrollIntoView({behavior:"smooth",block:"center"}),0);
+        state.quiz.score=score;state.quiz.submitted=true;state.quiz.completed=true;state.quiz.started=true;state.quiz.attempts.push({submittedAt:nowISO(),score,answers:Object.assign({},state.quiz.answers)});recordInteractionEncounter("quiz:submitted");saveState();renderCurrent();setTimeout(()=>$("#quizResults")?.scrollIntoView({behavior:"smooth",block:"center"}),0);
       });
       refreshSubmit();
     }
-    const revise=$("#reviseQuiz",root);if(revise)revise.addEventListener("click",()=>{state.quiz.submitted=false;save();renderCurrent();setTimeout(()=>$(".quiz-shell")?.scrollIntoView({behavior:"smooth",block:"start"}),0);});
-    const exportBtn=$("#exportJournal",root);if(exportBtn)exportBtn.addEventListener("click",downloadJournal);
+    const revise=$("#reviseQuiz",root);if(revise)revise.addEventListener("click",()=>{state.quiz.submitted=false;state.quiz.completed=false;saveState();renderCurrent();setTimeout(()=>$(".quiz-shell")?.scrollIntoView({behavior:"smooth",block:"start"}),0);});
+    const exportBtn=$("#exportJournal",root);if(exportBtn)exportBtn.addEventListener("click",()=>openExportModal(exportBtn));
+    const viewJournal=$("#completionViewJournal",root);if(viewJournal)viewJournal.addEventListener("click",openJournal);
+    const completionExport=$("#completionExportJournal",root);if(completionExport)completionExport.addEventListener("click",()=>openExportModal(completionExport));
+    const quizAction=$("#completionQuizAction",root);if(quizAction)quizAction.addEventListener("click",()=>{if(!state.quiz.submitted){state.quiz.choice="take";state.quiz.started=true;saveState();renderCurrent();}setTimeout(()=>$(".quiz-shell")?.scrollIntoView({behavior:"smooth",block:"start"}),0);});
   }
 });
 
-/* ===================== Boot ===================== */
+/* ===================== Initialization ===================== */
 function normalizeState(){
-  if(!state.entry)state.entry={};
-  if(typeof state.entry.mapObservation!=="string")state.entry.mapObservation="";
-  if(!state.navigation)state.navigation={currentScreen:1,firstPath:"",secondPath:""};
+  const defaults=createDefaultState();
+  if(!state||typeof state!=="object")state=defaults;
+  state.lessonId="foxAtRecess";state.lessonTitle=defaults.lessonTitle;state.version="3";
+  state.started=!!state.started||String(state.navigation&&state.navigation.currentScreen)!=="1";
+  state.completed=!!state.completed;
+  if(!state.meta)state.meta=defaults.meta;
+  state.meta.lessonTitle=defaults.lessonTitle;state.meta.lessonVersion="3";state.meta.standard=state.meta.standard||defaults.meta.standard;
+  delete state.meta["student"+"Label"];delete state.meta["session"+"Code"];
+  if(!state.navigation)state.navigation=defaults.navigation;
   if(typeof state.navigation.secondPath!=="string")state.navigation.secondPath="";
-  if(!state.firstInvestigation)state.firstInvestigation={};
-  if(!state.firstInvestigation.gallery)state.firstInvestigation.gallery={photosViewed:[],patternNote:"",limitationNote:""};
+  if(typeof state.navigation.firstPath!=="string")state.navigation.firstPath="";
+  if(!state.progress)state.progress=defaults.progress;
+  const legacyVisited=Array.isArray(state.progress.visitedScreens)?state.progress.visitedScreens:[];
+  if(!Array.isArray(state.progress.encounteredScreens))state.progress.encounteredScreens=legacyVisited.length?legacyVisited:[1];
+  if(!Array.isArray(state.progress.encounteredInteractions))state.progress.encounteredInteractions=[];
+  delete state.progress.visitedScreens;
+  if(!state.evidenceSelections)state.evidenceSelections=defaults.evidenceSelections;
+  if(!state.evidenceSelections.mapLocations)state.evidenceSelections.mapLocations=defaults.evidenceSelections.mapLocations;
+  for(const layer of ["orientation","sightings","numbers"])if(!Array.isArray(state.evidenceSelections.mapLocations[layer]))state.evidenceSelections.mapLocations[layer]=[];
+  if(!state.entry)state.entry=defaults.entry;
+  for(const key of Object.keys(defaults.entry))if(typeof state.entry[key]!==typeof defaults.entry[key])state.entry[key]=defaults.entry[key];
+  if(!state.firstInvestigation)state.firstInvestigation=defaults.firstInvestigation;
+  if(!state.firstInvestigation.gallery)state.firstInvestigation.gallery=defaults.firstInvestigation.gallery;
   if(!Array.isArray(state.firstInvestigation.gallery.photosViewed))state.firstInvestigation.gallery.photosViewed=[];
   if(typeof state.firstInvestigation.gallery.patternNote!=="string")state.firstInvestigation.gallery.patternNote="";
-  if(!state.firstInvestigation.dashboard)state.firstInvestigation.dashboard={variablesViewed:[],lengthNote:"",massNote:"",conditionNote:"",compareDen:"Meadow Den",claim:""};
+  if(!state.firstInvestigation.dashboard)state.firstInvestigation.dashboard=defaults.firstInvestigation.dashboard;
   if(!Array.isArray(state.firstInvestigation.dashboard.variablesViewed))state.firstInvestigation.dashboard.variablesViewed=[];
-  if(typeof state.firstInvestigation.dashboard.claim!=="string")state.firstInvestigation.dashboard.claim="";
+  for(const key of ["lengthNote","massNote","conditionNote","claim"])if(typeof state.firstInvestigation.dashboard[key]!=="string")state.firstInvestigation.dashboard[key]="";
+  if(!DENS.includes(state.firstInvestigation.dashboard.compareDen)||state.firstInvestigation.dashboard.compareDen==="Ridge Den")state.firstInvestigation.dashboard.compareDen="Meadow Den";
   if(!state.firstInvestigation.convergence)state.firstInvestigation.convergence={combinedClaim:""};
   if(typeof state.firstInvestigation.convergence.combinedClaim!=="string")state.firstInvestigation.convergence.combinedClaim="";
-  if(!state.secondInvestigation)state.secondInvestigation={};
-  if(!state.secondInvestigation.habitat)state.secondInvestigation.habitat={yearsViewed:[],teamNote:"",selectedYear:2022};
+  if(!state.secondInvestigation)state.secondInvestigation=defaults.secondInvestigation;
+  if(!state.secondInvestigation.habitat)state.secondInvestigation.habitat=defaults.secondInvestigation.habitat;
   if(!Array.isArray(state.secondInvestigation.habitat.yearsViewed))state.secondInvestigation.habitat.yearsViewed=[];
-  state.secondInvestigation.habitat.yearsViewed=state.secondInvestigation.habitat.yearsViewed.map(Number).filter(y=>HABITAT_YEARS.includes(y));
+  state.secondInvestigation.habitat.yearsViewed=state.secondInvestigation.habitat.yearsViewed.map(Number).filter(year=>HABITAT_YEARS.includes(year));
   if(typeof state.secondInvestigation.habitat.teamNote!=="string")state.secondInvestigation.habitat.teamNote="";
-  if(!HABITAT_YEARS.includes(Number(state.secondInvestigation.habitat.selectedYear)))state.secondInvestigation.habitat.selectedYear=2022;
-  else state.secondInvestigation.habitat.selectedYear=Number(state.secondInvestigation.habitat.selectedYear);
-  if(!state.secondInvestigation.food)state.secondInvestigation.food={selectedHotspots:[],foundCorrect:[],viewedRecords:[],teamNote:""};
-  if(!Array.isArray(state.secondInvestigation.food.selectedHotspots))state.secondInvestigation.food.selectedHotspots=[];
-  if(!Array.isArray(state.secondInvestigation.food.foundCorrect))state.secondInvestigation.food.foundCorrect=[];
-  if(!Array.isArray(state.secondInvestigation.food.viewedRecords))state.secondInvestigation.food.viewedRecords=[];
-  if(typeof state.secondInvestigation.food.teamNote!=="string")state.secondInvestigation.food.teamNote="";
+  state.secondInvestigation.habitat.selectedYear=HABITAT_YEARS.includes(Number(state.secondInvestigation.habitat.selectedYear))?Number(state.secondInvestigation.habitat.selectedYear):2022;
+  if(!state.secondInvestigation.food)state.secondInvestigation.food=defaults.secondInvestigation.food;
+  for(const key of ["selectedHotspots","foundCorrect","viewedRecords"])if(!Array.isArray(state.secondInvestigation.food[key]))state.secondInvestigation.food[key]=[];
+  for(const key of ["teamNote","lastFeedbackId","lastRecordId"])if(typeof state.secondInvestigation.food[key]!=="string")state.secondInvestigation.food[key]="";
   if(!state.secondInvestigation.convergence)state.secondInvestigation.convergence={combinedExplanation:""};
   if(typeof state.secondInvestigation.convergence.combinedExplanation!=="string")state.secondInvestigation.convergence.combinedExplanation="";
-  if(!state.feedbackModel)state.feedbackModel={slots:["","","",""],explanation:""};
+  if(!state.feedbackModel)state.feedbackModel=defaults.feedbackModel;
   if(!Array.isArray(state.feedbackModel.slots)||state.feedbackModel.slots.length!==4)state.feedbackModel.slots=["","","",""];
-  const validModelIds=new Set(FEEDBACK_STEPS.map(s=>s.id));
-  const seenModelIds=new Set();
-  state.feedbackModel.slots=state.feedbackModel.slots.map(id=>{
-    if(typeof id!=="string"||!validModelIds.has(id)||seenModelIds.has(id))return "";
-    seenModelIds.add(id);return id;
-  });
+  const validModelIds=new Set(FEEDBACK_STEPS.map(step=>step.id)),usedModelIds=new Set();
+  state.feedbackModel.slots=state.feedbackModel.slots.map(id=>{if(typeof id!=="string"||!validModelIds.has(id)||usedModelIds.has(id))return "";usedModelIds.add(id);return id;});
   if(typeof state.feedbackModel.explanation!=="string")state.feedbackModel.explanation="";
-  if(!state.recommendation)state.recommendation={actions:[],habitatEvidence:"",foodEvidence:"",reasoning:"",finalText:""};
+  if(!state.recommendation)state.recommendation=defaults.recommendation;
   if(!Array.isArray(state.recommendation.actions))state.recommendation.actions=[];
-  state.recommendation.actions=state.recommendation.actions.filter(id=>RECOMMENDATION_ACTIONS.some(a=>a.id===id)).slice(0,3);
-  for(const k of ["habitatEvidence","foodEvidence","reasoning","finalText"])if(typeof state.recommendation[k]!=="string")state.recommendation[k]="";
-  if(!state.reflection)state.reflection={evidenceStrength:"",humanChoices:""};
-  if(typeof state.reflection.evidenceStrength!=="string")state.reflection.evidenceStrength="";
-  if(typeof state.reflection.humanChoices!=="string")state.reflection.humanChoices="";
-  if(!state.quiz)state.quiz={choice:"",answers:{},submitted:false,score:0,attempts:[]};
+  state.recommendation.actions=state.recommendation.actions.filter(id=>RECOMMENDATION_ACTIONS.some(action=>action.id===id)).slice(0,3);
+  for(const key of ["habitatEvidence","foodEvidence","reasoning","finalText"])if(typeof state.recommendation[key]!=="string")state.recommendation[key]="";
+  if(!state.reflection)state.reflection=defaults.reflection;
+  for(const key of ["evidenceStrength","humanChoices"])if(typeof state.reflection[key]!=="string")state.reflection[key]="";
+  if(!state.quiz)state.quiz=defaults.quiz;
   if(!["","take","skip"].includes(state.quiz.choice))state.quiz.choice="";
   if(!state.quiz.answers||typeof state.quiz.answers!=="object")state.quiz.answers={};
-  state.quiz.submitted=!!state.quiz.submitted;
-  state.quiz.score=Number(state.quiz.score)||0;
+  if(!state.quiz.revisions||typeof state.quiz.revisions!=="object")state.quiz.revisions={};
   if(!Array.isArray(state.quiz.attempts))state.quiz.attempts=[];
-  if(!state.progress)state.progress={visitedScreens:[]};
-  if(!Array.isArray(state.progress.visitedScreens))state.progress.visitedScreens=[];
-  /* Migrate legacy screen keys from before the map + Decision Point 1 restructure. */
-  if(state.navigation.currentScreen==="6A"){
-    state.navigation.currentScreen=(state.navigation.firstPath==="gallery")?"8A":7;
-  }else if(state.navigation.currentScreen==="6B"){
-    state.navigation.currentScreen=(state.navigation.firstPath==="dashboard")?"8B":7;
-  }
-  const n=state.navigation.currentScreen;
-  if(n==="8A"&&state.navigation.firstPath!=="gallery")state.navigation.currentScreen=7;
-  if(n==="8B"&&state.navigation.firstPath!=="dashboard")state.navigation.currentScreen=7;
-  if((n===9||n===10||n===11||n==="12A"||n==="12B"||n===13||n===14||n===15||n===16||n===17)&&!state.navigation.firstPath)state.navigation.currentScreen=7;
-  if(n==="12A"&&state.navigation.secondPath!=="habitat")state.navigation.currentScreen=11;
-  if(n==="12B"&&state.navigation.secondPath!=="food")state.navigation.currentScreen=11;
-  if((n===13||n===14||n===15||n===16||n===17)&&!state.navigation.secondPath)state.navigation.currentScreen=11;
+  state.quiz.started=!!state.quiz.started||state.quiz.choice==="take"||Object.keys(state.quiz.answers).length>0;
+  state.quiz.submitted=!!state.quiz.submitted;state.quiz.completed=!!state.quiz.completed||state.quiz.submitted;
+  state.quiz.score=state.quiz.score==null?null:Number(state.quiz.score);
+  if(state.navigation.currentScreen==="6A")state.navigation.currentScreen=state.navigation.firstPath==="gallery"?"8A":7;
+  if(state.navigation.currentScreen==="6B")state.navigation.currentScreen=state.navigation.firstPath==="dashboard"?"8B":7;
+  state.navigation.currentScreen=normalizeRequestedScreen(state.navigation.currentScreen);
 }
-function boot(){
-  state=load()||defaultState();
+function initialize(){
+  state=loadState()||createDefaultState();
   normalizeState();
   if(!SCREENS[state.navigation.currentScreen])state.navigation.currentScreen=1;
-  if(!state.progress.visitedScreens.includes(state.navigation.currentScreen))state.progress.visitedScreens.push(state.navigation.currentScreen);
-  save();
-  renderCurrent();
+  recordScreenEncounter(state.navigation.currentScreen);
+  saveState();
+  renderScreen();
 }
 $("#glossaryBtn").addEventListener("click",openGlossary);
 $("#journalBtn").addEventListener("click",openJournal);
-$("#restartBtn").addEventListener("click",()=>{
-  if(confirm("Restart the investigation? This clears your saved progress.")){
-    localStorage.removeItem(LS_KEY);state=defaultState();goToScreen(1);
-  }
-});
+$("#restartBtn").addEventListener("click",openRestartModal);
 $("#backBtn").addEventListener("click",prevScreen);
-boot();
+initialize();
 </script>
 </body>
 </html>
