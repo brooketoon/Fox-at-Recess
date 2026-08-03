@@ -429,7 +429,7 @@ document.addEventListener("click",e=>{
 const LS_KEY="ridge_foxinvestigation_v1";
 function defaultState(){
   return {
-    meta:{lessonTitle:"The Fox at Recess: A Ridge Den Investigation",lessonVersion:"0.4-dp2-interactives",standard:"AZ 5.L3U1.10",studentLabel:"",sessionCode:"",startedAt:"",lastSavedAt:""},
+    meta:{lessonTitle:"The Fox at Recess: A Ridge Den Investigation",lessonVersion:"0.4-dp2-record-update",standard:"AZ 5.L3U1.10",studentLabel:"",sessionCode:"",startedAt:"",lastSavedAt:""},
     navigation:{currentScreen:1,firstPath:"",secondPath:""},
     progress:{visitedScreens:[1]},
     entry:{playgroundNote:"",homeNote:"",emailSubject:"Fox sighting near playground fence",emailBody:"",mapObservation:"",assignmentAccepted:false},
@@ -1407,8 +1407,8 @@ const FOOD_HOTSPOTS=[
 ];
 const FOOD_CORRECT_IDS=FOOD_HOTSPOTS.filter(h=>h.correct).map(h=>h.id);
 const FOOD_RECORDS=[
-  {id:"record-1",img:"images/food-trail-camera-1.png",title:"Follow-Up Record 1",note:"A fox was captured near a Ridge Trail porch and outdoor bowl at night."},
-  {id:"record-2",img:"images/food-trail-camera-2.png",title:"Follow-Up Record 2",note:"Another camera record from the same area shows a fox returning again later."}
+  {id:"record-1",img:"images/food-trail-camera-1.png",title:"Follow-Up Record 1",note:"A fox was recorded near an outdoor pet-food bowl at a Ridge Trail home."},
+  {id:"record-2",img:"images/food-trail-camera-2.png",title:"Follow-Up Record 2",note:"Three nights later, a fox was recorded at the same porch and bowl again."}
 ];
 
 /* ===================== Screen 12A — Habitat Timeline ===================== */
@@ -1504,7 +1504,7 @@ registerScreen("12B",{title:"Follow the Food Trail",hideNav:true,
       </div>
       <div id="foodFollowup" class="card ${allClues?"":"hidden"}">
         <h2>Follow-Up Records</h2>
-        <p class="narrative-line">The team found possible food sources. Now open both camera records to check whether foxes returned to the area.</p>
+        <p class="narrative-line">The team found possible food sources. Now open both camera records to check whether fox activity occurred repeatedly at the same food source.</p>
         <div class="food-record-grid">
           ${FOOD_RECORDS.map(r=>`<button type="button" class="food-record ${food.viewedRecords.includes(r.id)?"viewed":""}" data-record="${r.id}" aria-pressed="${food.viewedRecords.includes(r.id)}">
             <img src="${r.img}" alt="${esc(r.title)} from a Ridge Trail porch camera." onerror="imgFallback(this)">
