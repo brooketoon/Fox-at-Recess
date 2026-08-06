@@ -540,7 +540,7 @@ body.has-navbar main{padding-bottom:18px;}
 
 /* ==========================================================================\n   STORIES IN SCIENCE CONSISTENCY RETROFIT — SHARED TECHNICAL SHELL\n   Lesson-specific story, interactions, colors, typography, and assets remain intact.\n   ========================================================================== */
 :root{
-  --lesson-content-max:800px;
+  --lesson-content-max:900px;
   --shell-inline-gap:16px;
 }
 html{scroll-padding-top:18px;scroll-behavior:smooth;}
@@ -553,7 +553,7 @@ body.no-scroll{overflow:hidden;}
 .header-title{font-size:.96rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .header-actions{flex-wrap:nowrap;}
 .hbtn{min-height:44px;padding:8px 12px;white-space:nowrap;}
-body.launch-mode .app-header,body.launch-mode .tracker{display:none!important;}
+body.launch-mode .header-actions{display:none!important;}
 main{max-width:none;margin:0;padding:20px 0 24px;}
 .lesson-shell{width:min(calc(100% - (2 * var(--shell-inline-gap))),var(--lesson-content-max));margin-inline:auto;}
 #stage{min-width:0;}
@@ -674,13 +674,52 @@ function fmtDate(iso){if(!iso)return "—";const d=new Date(iso);return d.toLoca
 function ttsButton(text){
   return `<button class="tts-btn" type="button" data-tts="${esc(text)}">&#128266; <span class="tts-label">Read aloud</span></button>`;
 }
+/* Reads the narrative content already on the current screen (scenes,
+   dialogue, case files, alerts, team reports, etc.) but never the journal
+   drawer, journal prompt questions, or form controls. */
+const TTS_READ_SELECTORS=[
+  ".scene h2",".scene .scene-sub",".scene .stamp",
+  ".narrative-line",".dialogue",
+  ".case-file .file-tab",".case-file p",
+  ".alert-panel",
+  ".msg-panel .cam-head",".msg-panel .autolog",".chat-bubble",
+  ".video-speaker",".video-quote",
+  ".committee-reply .reply-label",".committee-reply p",
+  ".team-report h3",".team-report .tr-source",".team-report .tr-text",
+  ".dp2-share-card h3",".dp2-share-card .share-source",".dp2-share-card .share-text",
+  ".timeline-look",
+  ".rec-doc-header h3",".rec-doc-header p",".rec-doc-section h4",".rec-doc-reasoning",".rec-evidence-card",
+  ".identifier-feedback",".food-record-detail",
+  ".map-info-panel",
+  ".loop-slot-label",".loop-placed-chip",".loop-bank-chip",".loop-build-intro",
+  ".model-feedback",".completed-loop-node",
+  ".rec-action strong",".rec-action .rec-tag",
+  ".evidence-box h3",
+  ".framework-callout h4",".framework-callout p",
+  "h2"
+].join(",");
+function screenReadAloudText(root){
+  const seen=new Set();const parts=[];
+  $$(TTS_READ_SELECTORS,root).forEach(el=>{
+    if(el.closest(".prompt-box")||el.closest("label")||el.closest(".email-compose")||el.closest(".drawer-body")||el.closest(".tts-btn"))return;
+    const text=(el.textContent||"").replace(/\s+/g," ").trim();
+    if(!text||seen.has(text))return;
+    seen.add(text);parts.push(text);
+  });
+  return parts.join(". ");
+}
+function ttsButtonLive(){
+  return `<button class="tts-btn" type="button" data-tts-live="1">&#128266; <span class="tts-label">Read aloud</span></button>`;
+}
 let activeTtsButton=null;
 function resetTtsButton(){if(activeTtsButton){const label=activeTtsButton.querySelector(".tts-label");if(label)label.textContent="Read aloud";activeTtsButton.classList.remove("is-playing");activeTtsButton=null;}}
 document.addEventListener("click",event=>{
-  const button=event.target.closest("[data-tts]");if(!button||typeof window.speechSynthesis==="undefined")return;
+  const button=event.target.closest("[data-tts],[data-tts-live]");if(!button||typeof window.speechSynthesis==="undefined")return;
   const wasActive=activeTtsButton===button&&window.speechSynthesis.speaking;
   window.speechSynthesis.cancel();resetTtsButton();if(wasActive)return;
-  const utterance=new SpeechSynthesisUtterance(button.dataset.tts);utterance.rate=.95;activeTtsButton=button;button.classList.add("is-playing");
+  const text=button.hasAttribute("data-tts-live")?screenReadAloudText($("#stage")):button.dataset.tts;
+  if(!text)return;
+  const utterance=new SpeechSynthesisUtterance(text);utterance.rate=.95;activeTtsButton=button;button.classList.add("is-playing");
   const label=button.querySelector(".tts-label");if(label)label.textContent="Stop";
   utterance.onend=resetTtsButton;utterance.onerror=resetTtsButton;window.speechSynthesis.speak(utterance);
 });
@@ -897,6 +936,12 @@ function goToScreen(screen){
 }
 function validationResult(valid,selector,message){return {valid,selector,message};}
 function validateCurrentScreen(){
+  // Consistency pass: Continue is never blocked by missing selections,
+  // unviewed gallery items, or unwritten responses, matching the
+  // "no gating" rule used across every Stories in Science lesson. Checks
+  // below are left in place, unused, in case a specific reveal-aware gate
+  // is ever reintroduced deliberately.
+  return validationResult(true,"","");
   const n=String(state.navigation.currentScreen);
   const txt=(v,min=1)=>String(v||"").trim().length>=min;
   if(n==="3")return validationResult(txt(state.entry.homeNote),"#q_home","Add Gracie's evidence note before continuing.");
@@ -1169,11 +1214,10 @@ function exportJournal(name){
   announce(`Journal exported as ${filename}.`);
 }
 function openExportModal(trigger){
-  openStyledModal({title:"Export Journal",trigger:trigger||document.activeElement,initialSelector:"#exportNameInput",body:`<label class="field-label" for="exportNameInput">What should we name your file?</label><input class="export-name-input" id="exportNameInput" type="text" placeholder="Brooke Science Journal" autocomplete="off"><p class="small muted" style="margin-top:9px">The lesson title will be added automatically.</p><div class="modal-actions"><button type="button" class="btn btn-outline" id="cancelExport">Cancel</button><button type="button" class="export-btn" id="confirmExport">Export Journal</button></div>`,onMount(root){
-    $("#cancelExport",root).addEventListener("click",()=>closeActiveLayer(true));
-    $("#confirmExport",root).addEventListener("click",()=>{const name=$("#exportNameInput",root).value;exportJournal(name);closeActiveLayer(false);});
-    $("#exportNameInput",root).addEventListener("keydown",event=>{if(event.key==="Enter"){event.preventDefault();$("#confirmExport",root).click();}});
-  }});
+  // Consistency pass: export is now a single direct action (matching the
+  // Alien Alert pattern) rather than a filename-entry modal. Function name
+  // kept so existing call sites don't need to change.
+  exportJournal();
 }
 function downloadJournal(){openExportModal(document.activeElement);}
 
@@ -1341,19 +1385,20 @@ registerScreen(2,{title:"Recess",
   render(){
     return `<div class="screen">
       ${scene({stamp:"Pinecrest Elementary",title:"Recess"})}
-      <div class="scene-duo">
-        <div class="duo-text">
-          <div class="observation-block">
-            <p class="dialogue">Kickball was mid-inning. The four-square line was arguing about a do-over. Then, near the back fence, something moved low and fast near the blacktop.</p>
-            <p class="dialogue observation-emphasis">Reddish coat. Pointed ears. Bushy tail. It crossed the open pavement, slipped under the fence beside the construction gate, and disappeared into the trees.</p>
+      <div class="card">
+        ${ttsButtonLive()}
+        <p class="narrative-line">Kickball was mid-inning. The four-square line was arguing about a do-over. Then, near the back fence, something moved low and fast near the blacktop.</p>
+        <p class="dialogue observation-emphasis" style="margin-bottom:16px">Reddish coat. Pointed ears. Bushy tail. It crossed the open pavement, slipped under the fence beside the construction gate, and disappeared into the trees.</p>
+        <div class="scene-duo">
+          <div class="duo-text">
+            ${dialogue(
+              speak("Gracie","Wait—was that—"),
+              speak("Nick","That's a fox!"),
+              speak("Mr. Alvarez","Everyone inside. Now.")
+            )}
           </div>
-          ${dialogue(
-            speak("Gracie","Wait—was that—"),
-            speak("Nick","That's a fox!"),
-            speak("Mr. Alvarez","Everyone inside. Now.")
-          )}
+          <div class="duo-img">${imageBlock("images/playground-fox-sighting.png","A fox crossing an elementary school playground in daylight while kids nearby turn to look.")}</div>
         </div>
-        <div class="duo-img">${imageBlock("images/playground-fox-sighting.png","A fox crossing an elementary school playground in daylight while kids nearby turn to look.")}</div>
       </div>
     </div>`;
   },
@@ -1366,6 +1411,7 @@ registerScreen(3,{title:"Back in Class",
     return `<div class="screen">
       ${scene({stamp:"Pinecrest Elementary · Room 12",title:"Back in Class"})}
       <div class="card">
+        ${ttsButtonLive()}
         <p class="narrative-line">The classroom buzzed with theories about what they had seen.</p>
         <div class="scene-duo">
           <div class="duo-img">${imageBlock("images/classroom-buzz.png","An elementary classroom buzzing with students talking excitedly after recess.")}</div>
@@ -1396,6 +1442,7 @@ registerScreen(4,{title:"Writing to the Front Office",
     return `<div class="screen">
       ${scene({stamp:"Pinecrest Elementary · Room 12",title:"Writing to the Front Office"})}
       <div class="card">
+        ${ttsButtonLive()}
         <div class="scene-duo">
           <div class="duo-text">
             <p class="narrative-line">Mr. Alvarez decided the front office needed to know about the fox today, before heading into the weekend.</p>
@@ -1430,6 +1477,7 @@ registerScreen(5,{title:"A Message About Ridge Den",
     return `<div class="screen">
       ${scene({stamp:"Room 12 · Smartboard",title:"A Message About Ridge Den"})}
       <div class="card">
+        ${ttsButtonLive()}
         <p class="narrative-line">On Monday, Mr. Alvarez was surprised to find a reply to Friday's email in his inbox. The front office had forwarded Room 12's report to the Pinecrest Community Wildlife Action Committee.</p>
         <div class="scene-duo">
           <div class="duo-text">
@@ -1451,6 +1499,7 @@ registerScreen(6,{title:"Mapping Pinecrest",
     return `<div class="screen">
       ${scene({stamp:"Dr. Reed's Evidence Packet",title:"Mapping Pinecrest",sub:"Where did the sighting happen?"})}
       <div class="card">
+        ${ttsButtonLive()}
         <p class="narrative-line">Dr. Reed had included a map of Pinecrest with the committee's message. It showed the school, the forested ridge, the new Ridge Trail neighborhood, and the place where the fox crossed the playground.</p>
         ${dialogue(
           speak("Gracie","That’s Ridge Trail. I live there—our house is near the edge of the trees."),
@@ -1479,6 +1528,7 @@ registerScreen(7,{title:"Choose Your Evidence Path",
     return `<div class="screen">
       ${scene({stamp:"Room 12 · Investigation Teams",title:"Choose Your Evidence Path"})}
       <div class="card">
+        ${ttsButtonLive()}
         <div class="scene-duo">
           <div class="duo-img">${imageBlock("images/evidence-path.png","Mr. Alvarez introducing two evidence paths to Room 12.")}</div>
           <div class="duo-text">
@@ -1539,6 +1589,7 @@ registerScreen("8A",{title:"The Trail-Cam Archive",
         <p class="narrative-line" style="margin-bottom:0">Now examine the records from those camera locations in chronological order.</p>
       </div>
       <div class="card">
+        ${ttsButtonLive()}
         <p class="narrative-line">The Sightings Team receives a digital archive containing five seasons of trail-camera photographs from Ridge Den. Some cameras were placed near the den. Others recorded animal paths closer to Ridge Trail.</p>
         ${dialogue(alvarez("Look at the photographs in order. One unusual image may not mean much by itself. Your team needs to determine whether the records show a pattern."))}
         <p class="narrative-line" style="margin-bottom:0"><strong>Open all eight trail-camera records.</strong> Pay attention to what changes &mdash; and what stays the same.</p>
@@ -1645,6 +1696,7 @@ registerScreen("8B",{title:"The Den-Monitoring Dashboard",
         <p class="narrative-line" style="margin-bottom:0">Now compare the field measurements collected from these den areas.</p>
       </div>
       <div class="card">
+        ${ttsButtonLive()}
         <p class="narrative-line">The Numbers Team receives five years of wildlife-monitoring records. The measurements were collected during the same part of each fox season so the committee could compare the dens over time.</p>
         <p class="narrative-line">Ridge Den will remain on every graph. The team can compare it with Meadow Den or Quarry Den.</p>
         ${dialogue(alvarez("A change at one den could mean something different from a change happening everywhere. Compare the records before you draw a conclusion."))}
@@ -1738,6 +1790,7 @@ registerScreen(9,{title:"Put the Evidence Together",
     return `<div class="screen">
       ${scene({stamp:"Room 12 · Team Share",title:"Put the Evidence Together",sub:"What changed at Ridge Den?"})}
       <div class="card">
+        ${ttsButtonLive()}
         <p class="narrative-line" style="margin-bottom:6px">Both teams are ready to share their findings.</p>
         <p class="narrative-line">Mr. Alvarez places their reports side by side so the class can compare what each type of evidence adds.</p>
         ${dialogue(
@@ -1786,6 +1839,7 @@ registerScreen(10,{title:"A New Question",
     return `<div class="screen">
       ${scene({stamp:"Wednesday Morning · Room 12",title:"A New Question"})}
       <div class="card">
+        ${ttsButtonLive()}
         <div class="scene-duo">
           <div class="duo-img">${imageBlock("images/follow-up-message.png","A follow-up message from Dr. Reed to Room 12.")}</div>
           <div class="duo-text">
@@ -1809,6 +1863,7 @@ registerScreen(11,{title:"Choose the Next Evidence",
     return `<div class="screen">
       ${scene({stamp:"Room 12 · Deeper Investigation",title:"Choose the Next Evidence",sub:"What environmental conditions might explain the pattern?"})}
       <div class="card">
+        ${ttsButtonLive()}
         <div class="scene-duo">
           <div class="duo-img">${imageBlock("images/deeper-investigation.png","Mr. Alvarez introducing two environmental evidence files to Gracie and Nick.")}</div>
           <div class="duo-text">
@@ -1891,6 +1946,7 @@ registerScreen("12A",{title:"Track the Changing Habitat",
     return `<div class="screen">
       ${scene({stamp:"Habitat Team",title:"Track the Changing Habitat",sub:"How did the area around Ridge Den change?"})}
       <div class="card">
+        ${ttsButtonLive()}
         <p class="narrative-line">Gracie joins the Habitat Team. Nick opens the Food Trail file.</p>
         <p class="narrative-line">The Habitat Team begins by comparing maps of the Ridge Den area across five years. Dr. Reed wants the team to investigate how the land around the den has changed over time.</p>
         ${dialogue(alvarez("Look carefully across the years. Focus on what changes around Ridge Den and how those changes might affect the foxes' habitat."))}
@@ -1959,6 +2015,7 @@ registerScreen("12B",{title:"Follow the Food Trail",
     return `<div class="screen">
       ${scene({stamp:"Food Access Team",title:"Follow the Food Trail",sub:"What might draw foxes toward homes?"})}
       <div class="card">
+        ${ttsButtonLive()}
         <p class="narrative-line">Gracie joins the Food Access Team. Nick opens the Habitat file.</p>
         <p class="narrative-line">The Food Access Team begins by examining a Ridge Trail neighborhood scene. Dr. Reed wants the team to investigate what food sources might be attracting foxes near homes.</p>
         ${dialogue(alvarez("Identify which items in the scene could provide food or attract a fox. Then examine the follow-up records to see whether foxes may be returning."))}
@@ -2107,6 +2164,7 @@ registerScreen(13,{title:"Connect the Environmental Evidence",
     return `<div class="screen">
       ${scene({stamp:"Room 12 · Team Share",title:"Connect the Environmental Evidence",sub:"How might the two environmental conditions work together?"})}
       <div class="card">
+        ${ttsButtonLive()}
         <p class="narrative-line">The Habitat Team and Food Access Team return to Room 12. Mr. Alvarez places the findings together.</p>
         ${dialogue(
           speak("Nick","One file shows why foxes might travel closer to homes. The other shows why they might keep returning."),
@@ -2140,6 +2198,7 @@ registerScreen(14,{title:"A Pattern That Can Grow",
   render(){return `<div class="screen">
     ${scene({stamp:"Room 12 · Model Briefing",title:"A Pattern That Can Grow",sub:"When an effect circles back and strengthens a pattern"})}
     <div class="card">
+      ${ttsButtonLive()}
       <p class="narrative-line">Mr. Alvarez draws a circle of arrows on the board.</p>
       ${dialogue(
         alvarez("A feedback loop happens when one change leads to effects that circle back and make the pattern continue or grow."),
@@ -2161,6 +2220,7 @@ registerScreen(15,{title:"Build the Feedback Loop",
       ${scene({stamp:"Systems Model",title:"Build the Feedback Loop",sub:"Use the evidence to construct a repeating cause-and-effect model."})}
       <div class="loop-builder">
         <h2>Build Your Ridge Den Feedback Model</h2>
+        ${ttsButtonLive()}
         <p class="loop-build-intro"><strong>Use four evidence cards</strong> to fill the feedback loop. Drag a card into a box, or select a card to place it in the first open box. You do not need to check the model; your explanation will justify the connections you made.</p>
         <div class="loop-build-layout">
           <aside class="loop-evidence-bank" aria-labelledby="loopBankTitle">
@@ -2332,6 +2392,7 @@ registerScreen(16,{title:"Build the Committee Recommendation",
     return `<div class="screen">
       ${scene({stamp:"Live Video Meeting",title:"A Request from the Committee",sub:"Dr. Reed joins Room 12 by web conference."})}
       <div class="card">
+        ${ttsButtonLive()}
         <p class="narrative-line">Later that afternoon, Mr. Alvarez connects Room 12 to a short web meeting with Dr. Reed. His video appears on the classroom projector.</p>
         <p class="narrative-line">The committee is preparing to meet with Ridge Trail residents and town planners. Before that meeting, it needs a clear recommendation that turns Room 12’s evidence into practical next steps.</p>
         <div class="video-meeting" aria-label="Projected web meeting with Dr. Reed">
@@ -2451,6 +2512,7 @@ registerScreen(17,{title:"Investigation Complete",hideNav:true,
     return `<div class="screen">
       ${scene({stamp:"Message from the Committee",title:"Investigation Complete",sub:"The committee responds to Room 12’s completed recommendation."})}
       <div class="card">
+        ${ttsButtonLive()}
         <p class="narrative-line">After Mr. Alvarez sends the completed recommendation brief, Dr. Reed replies later that day.</p>
         <div class="committee-reply"><div class="reply-label">Message from Dr. Marcus Reed</div><p>“Room 12 used multiple kinds of evidence, built a systems model, and recommended actions the committee can use. We will share your brief as we work with Ridge Trail residents and town planners. Thank you for helping Pinecrest respond with evidence instead of guesses.”</p></div>
         ${dialogue(
